@@ -2,37 +2,15 @@ SET NAMES UTF8;
 DROP DATABASE IF EXISTS modernsky;
 CREATE DATABASE modernsky CHARSET=UTF8;
 USE modernsky;
-#网站的基本信息
-CREATE TABLE modernsky_site_information(
-    site_name VARCHAR(16),
-    logo       VARCHAR(64),
-    copyright VARCHAR(64),
-    designed  VARCHAR(64)
-);
-INSERT INTO modernsky_site_information VALUES("Modernsky","image/site_information/logo.png","©1997-2014　摩登天空 版权所有　Modernsky Entertainment CO.,LTD.　All Copyright Reserved　京ICP备14018992号-1","Designed & Powered　by ShirleyLu");
-#导航条目
-CREATE TABLE modernsky_navbar_item(
-    name VARCHAR(16),
-    url  VARCHAR(64)
-);
-INSERT INTO modernsky_navbar_item VALUES
-    #("全国","html/index.html"),
-    #("城市切换","html/index.html"),
-    ("演出","html/live_shows.html"),
-    ("音乐节","html/music_festival.html"),
-    ("艺人","html/artists.html"),
-    ("唱片","html/records.html"),
-    ("商店","html/Modernsky_lab.html"),
-    ("新闻","html/news.html"),
-    ("关于摩登","html/about_modernsky.html");
-#轮播图
-CREATE TABLE modernsky_carousel_item(
+
+-- 轮播图片表
+CREATE TABLE carousel(
     cid INT PRIMARY KEY AUTO_INCREMENT,
-    pic VARCHAR(128),
-    url VARCHAR(128),
-    title VARCHAR(32)
+    pic VARCHAR(200),
+    url VARCHAR(200),
+    title VARCHAR(200)
 );
-INSERT INTO modernsky_carousel_item VALUES
+INSERT INTO carousel VALUES
     (NULL,"img/carousel_item/carouse-1.jpg","html/carouse-1.html","《Ghost Mane》| STARR J与恶魔一起住在Dark Castle"),
     (NULL,"img/carousel_item/carouse-2.jpg","html/carouse-2.html","赐我们一首比“情歌而已”更值得唱的歌 声音碎片第三支预热单曲《送流水》首发"),
     (NULL,"img/carousel_item/carouse-3.jpg","html/carouse-3.html","我眼里只有一个3号他永远昂着头 | 黄旭全新单曲《低位》致敬韦德"),
@@ -41,29 +19,63 @@ INSERT INTO modernsky_carousel_item VALUES
     (NULL,"img/carousel_item/carouse-6.jpg","html/carouse-6.html","16层新专辑先行单曲上线，精巧器乐铺排搭建诡异《失落园》"),
     (NULL,"img/carousel_item/carouse-7.jpg","html/carouse-7.html",'“标题如歌” | OBi《爱你》温柔上线'),
     (NULL,"img/carousel_item/carouse-8.jpg","html/carouse-8.html","李大奔的硬核浪漫：如果不是你，随便谁都一样");
-#用户列表
-CREATE TABLE modernsky_user(
+
+-- 用户列表
+CREATE TABLE user(
     uid INT PRIMARY KEY AUTO_INCREMENT,
-    uname VARCHAR(32),
-    upwd VARCHAR(32),
-    email VARCHAR(64),
-    phone VARCHAR(11),
-    avatar VARCHAR(128),
-    user_name VARCHAR(32),
-    gender INT
+    uname VARCHAR(200),
+    upwd VARCHAR(200),
+    email VARCHAR(200),
+    phone VARCHAR(200),
+    avatar VARCHAR(200),
+    -- 真实姓名
+    rname VARCHAR(200),
+    gender INT,
+    card_type INT,
+    cardNum VARCHAR(200),
+    xueli INT,
+    school VARCHAR(200),
+    stuNum VARCHAR(200)
 );
-INSERT INTO modernsky_user VALUES
+INSERT INTO user VALUES
     ("NULL","Sunny","123456ab","1090165836@qq.com","18818218069","image/avatar/default.jpg","吴雅丽","1"),
     ("NULL","Shirley","12345678","1090165835@qq.com","18818218067","image/avatar/default.jpg","韩梅梅","1"),
     ("NULL","Alan","123456ab","1090165834@qq.com","18818218066","image/avatar/default.jpg","李雷","0"),
     ("NULL","Edward","123456ab","1090165833@qq.com","18818218065","image/avatar/default.jpg","徐亮","0");
-#演出风格
+
+-- 收件人地址表
+CREATE TABLE address(
+    aid INT PRIMARY KEY AUTO_INCREMENT,
+    prov VARCHAR(200),
+    city VARCHAR(200),
+    street VARCHAR(200),
+    receiver VARCHAR(200),
+    phone VARCHAR(200),
+    uid INT
+);
+
+-- 演出表
+CREATE TABLE show(
+    sid INT PRIMARY KEY AUTO_INCREMENT,
+    sname VARCHAR(200),
+    -- 演出风格
+    ssid INT,
+    ticket_tpye INT,
+    price DECIMAL,
+    discount DECIMAL,
+    status INT,
+    -- 演出信息
+    description VARCHAR(500)
+)
+
+
+-- 演出风格
 CREATE TABLE show_style(
   ssid INT PRIMARY KEY AUTO_INCREMENT,
-  ssname VARCHAR(32)
+  ssname VARCHAR(200)
 );
 INSERT INTO show_style VALUES
-    #("1","全部"),
+    -- ("1","全部"),
     ("2","摇滚"),
     ("3","后摇滚"),
     ("4","流行"),
@@ -76,10 +88,11 @@ INSERT INTO show_style VALUES
     ("11","跳舞"),
     ("12","金属"),
     ("13","世界音乐");
-#演出城市
+
+-- 演出城市
 CREATE TABLE show_city(
     scid INT PRIMARY KEY AUTO_INCREMENT,
-    scname VARCHAR(32)
+    city VARCHAR(200)
 );
 INSERT INTO show_city VALUES
     /**("1","全国"),**/
@@ -94,7 +107,8 @@ INSERT INTO show_city VALUES
     ("10","重庆"),
     ("11","长沙"),
     ("12","南京");
-#演出现场
+
+-- 演出现场
 CREATE TABLE show_performance(
     spid INT PRIMARY KEY AUTO_INCREMENT,
     spname VARCHAR(32),
@@ -102,7 +116,6 @@ CREATE TABLE show_performance(
     spaddress  VARCHAR(64),
     ppic VARCHAR(128),
     showcityId INT,
-    FOREIGN KEY(showcityId) REFERENCES show_city(scid)
 );
 INSERT INTO show_performance VALUES
     ("1","蘑菇空间.MoguSpace","13651253655","北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店",
