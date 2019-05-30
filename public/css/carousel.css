@@ -1,0 +1,19 @@
+
+.carousel-indicators li{
+  width:15px;height:15px;
+  background-color:#fff;
+  margin-left:6px;
+  margin-right:6px;
+  border-radius: 50%;
+}
+.carousel-indicators .active{
+  background-color:#0aa1ed;
+}
+/*重写左右箭头的样式*/
+.carousel-control-prev,
+.carousel-control-next{
+  width:4%;height:20%;
+  background-color:#aaa;
+  top:40%;
+  border-radius:0.25rem;
+}
