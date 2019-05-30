@@ -4,10 +4,11 @@ section>div{
   margin:150px auto 0; 
 }
 /* 演出城市 */
-#live>.liveCity,#live>.liveHouse{
+#live>.liveCity,#live>.liveHouse,#live>.liveTime,#live>.liveStyle{
   width:1200px;
   display:flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  /* float:left; */
   width:1200px;
   height:60px;
   line-height:60px;
@@ -16,38 +17,100 @@ section>div{
   border-bottom:1px dotted #b2b2b2;
 }
 #live>.liveCity>div,
-#live>.liveHouse>div{
+#live>.liveHouse>div,
+#live>.liveTime>div,
+#live>.liveStyle>div{
+  margin-left:30px;
+  width:1027px;
   display:flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  float:left;
 }
 #live>.liveCity>div>ul,
-#live>.liveHouse>div>ul{
+#live>.liveHouse>div>ul,
+#live>.liveTime>div>ul,
+#live>.liveStyle>div>ul{
   list-style:none;
   width:1027px;
   display:flex;
-  justify-content: space-between;
+  margin-left:0;
+  /* justify-content: space-between; */
   overflow:hidden;
+  flex-wrap: wrap;
 }
 #live>.liveCity>div>ul>li,
-#live>.liveHouse>div>ul>li{
+#live>.liveHouse>div>ul>li,
+#live>.liveTime>div>ul>li,
+#live>.liveStyle>div>ul>li{
+  margin-left:20px;
   height:60px;
+  margin-right:30px;
+}
+#live>.liveTime>div>ul>li:nth-child(6){
+  margin-right:5px;
+}
+#live>.liveTime>div>ul>li:nth-child(7){
+  margin-left:0;
+  margin-right:5px;
+}
+#live>.liveTime>div>ul>li:nth-child(8){
+  margin-right:0px;
+  margin-left:0;
+}
+#live>.liveTime>div>ul>li:nth-child(9){
+  margin:0;
+}
+#live>.liveTime>div>ul>li:nth-child(9)>a{
+  display:inline-block;
+  margin-left:5px;
+  height:30px;
+  width:70px;
+  line-height:30px;
+  background:#e72f2f;
+  color:#fff;
+  text-align:center;
+  border-radius:3px;
+  font-size:12px;
 }
 #live>.liveCity>div>ul>li>a,
-#live>.liveHouse>div>ul>li>a{
+#live>.liveHouse>div>ul>li>a,
+#live>.liveTime>div>ul>li>a,
+#live>.liveStyle>div>ul>li>a{
   display:inline-block;
   height:60px;
   line-height:60px;
   text-decoration:none;
   color:#555555;
 }
+#live>.liveCity>div>ul>li>a:hover,
+#live>.liveHouse>div>ul>li>a:hover,
+#live>.liveTime>div>ul>li>a:hover,
+#live>.liveStyle>div>ul>li>a:hover{
+  color:#e72f2f;
+}
 #live>.liveCity>div>ul>li:first-child>a,
-#live>.liveHouse>div>ul>li:first-child>a{
+#live>.liveHouse>div>ul>li:first-child>a,
+#live>.liveTime>div>ul>li:first-child>a,
+#live>.liveStyle>div>ul>li:first-child>a{
   color:#e72f2f;
 }
 #live>.liveCity>span>a,
-#live>.liveHouse>span>a{
+#live>.liveHouse>span>a,
+#live>.liveTime>span>a,
+#live>.liveStyle>span>a{
+  margin-left:50px;
   text-decoration:none;
   color:#555555;
+}
+/* 演出时间 */
+#live>.liveTime>div>ul>li>input{
+  width:180px;
+  height:30px;
+  border:1px solid #b2b2b2;
+  border-radius:2px;
+}
+#live>.liveTime>div>ul>li>input:focus{
+  outline: none;
 }
 /* 各单元title样式 */
 .title{
