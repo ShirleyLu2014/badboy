@@ -26,7 +26,21 @@ header{
   color:#fff;
 }
 #header>#header1>div:nth-child(2)>ul>li>a{
-  width:60px;
+  width:64px;
+  text-align:center;
+}
+.music{
+  float: left;
+}
+.size{
+  font-size:12px;
+}
+.nth{
+  margin-right: -6px !important;
+
+}
+.nth a{
+  width:40px !important;
 }
 #header>#header1>div:nth-child(2)>ul>li:nth-child(5)>a{
   width:100px;
