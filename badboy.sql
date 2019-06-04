@@ -3,6 +3,25 @@ DROP DATABASE IF EXISTS badboy;
 CREATE DATABASE badboy CHARSET=UTF8;
 USE badboy;
 
+-- 演出城市
+CREATE TABLE cities(
+    cid INT PRIMARY KEY AUTO_INCREMENT,
+    city VARCHAR(200)
+);
+INSERT INTO cities VALUES
+    /**("1","全国"),**/
+    ("2","北京"),
+    ("3","上海"),
+    ("4","广州"),
+    ("5","成都"),
+    ("6","深圳"),
+    ("7","杭州"),
+    ("8","武汉"),
+    ("9","西安"),
+    ("10","重庆"),
+    ("11","长沙"),
+    ("12","南京");
+
 -- 用户列表
 CREATE TABLE users(
     uid INT PRIMARY KEY AUTO_INCREMENT,
@@ -14,17 +33,18 @@ CREATE TABLE users(
     -- 真实姓名
     rname VARCHAR(200),
     gender INT,
-    card_type INT,
-    cardNum VARCHAR(200),
-    xueli INT,
-    school VARCHAR(200),
-    stuNum VARCHAR(200)
+    -- 关联城市表
+    cid INT,
+    -- 星座
+    const VARCHAR(200),
+    -- 血型
+    blood VARCHAR(200)
 );
 INSERT INTO users VALUES
-    (NULL,"Sunny","123456ab","1090165836@qq.com","18818218069","image/avatar/default.jpg","吴雅丽","1",NULL,NULL,NULL,NULL,NULL),
-    (NULL,"Shirley","12345678","1090165835@qq.com","18818218067","image/avatar/default.jpg","韩梅梅","1",NULL,NULL,NULL,NULL,NULL),
-    (NULL,"Alan","123456ab","1090165834@qq.com","18818218066","image/avatar/default.jpg","李雷","0",NULL,NULL,NULL,NULL,NULL),
-    (NULL,"Edward","123456ab","1090165833@qq.com","18818218065","image/avatar/default.jpg","徐亮","0",NULL,NULL,NULL,NULL,NULL);
+    (NULL,"Sunny","123456ab","1090165836@qq.com","18818218069","image/avatar/default.jpg","吴雅丽","1",NULL,NULL,NULL),
+    (NULL,"Shirley","12345678","1090165835@qq.com","18818218067","image/avatar/default.jpg","韩梅梅","1",NULL,NULL,NULL),
+    (NULL,"Alan","123456ab","1090165834@qq.com","18818218066","image/avatar/default.jpg","李雷","0",NULL,NULL,NULL),
+    (NULL,"Edward","123456ab","1090165833@qq.com","18818218065","image/avatar/default.jpg","徐亮","0",NULL,NULL,NULL); 
 
 -- 演出风格
 CREATE TABLE styles(
@@ -242,24 +262,7 @@ CREATE TABLE arshows(
     shid INT
 );
 
--- 演出城市
-CREATE TABLE cities(
-    cid INT PRIMARY KEY AUTO_INCREMENT,
-    city VARCHAR(200)
-);
-INSERT INTO cities VALUES
-    /**("1","全国"),**/
-    ("2","北京"),
-    ("3","上海"),
-    ("4","广州"),
-    ("5","成都"),
-    ("6","深圳"),
-    ("7","杭州"),
-    ("8","武汉"),
-    ("9","西安"),
-    ("10","重庆"),
-    ("11","长沙"),
-    ("12","南京");
+
 
 -- 演出现场
 CREATE TABLE venues(
