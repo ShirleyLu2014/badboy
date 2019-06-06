@@ -1,0 +1,125 @@
+#header1 ul{
+  /* display:flex; */
+  list-style:none;
+}
+#header1 ul li{
+  float:left;
+}
+#header>#header1 ul>li>a{
+  display:inline-block;
+  text-decoration:none;
+  color:#fff;
+}
+#header>#header1>div:nth-child(2)>ul>li>a{
+  width:64px;
+  text-align:center;
+}
+.header-cent{
+  /* width:852px; */
+  width:200px;
+}
+
+.music{
+  float: left;
+}
+.size{
+  font-size:12px;
+}
+.size:hover{
+    background-color: red;
+}
+.nth{
+  margin-right: -6px !important;
+}
+.nth a{
+  width:40px !important;
+}
+.cdcity{
+  position: relative;
+  margin-left:5px;
+}
+ .list-cent{
+  float:left;
+  /* margin-left:104px; */
+} 
+.list-cent li{
+  /* width:84px; */
+  width:60px;
+  margin-left:44px;
+  text-align:center;
+  font-weight: 550;
+}
+.over{
+  position:absolute;
+  top:60px;
+  width:0px;
+  height:0px;
+  background-color: #f2f2f2;
+  /* border-top:1px solid red; */
+  transition:1.5s;
+}
+.cdcity:hover .over{
+  height:120px;
+  width:500px;
+  border-top:1px solid red;
+}
+.list-cent li:hover{
+  background-color: #e72f2f;
+}
+.list-cent li .server{
+  width:82px !important;
+}
+#header>#header1>div:nth-child(2)>ul>li:nth-child(5)>a{
+  width:100px;
+}
+#header>#header1>div:nth-child(2)>ul>li:last-child>a{
+  width: 64px;
+}
+#header>#header1 ul>li>a:hover{
+  color:#fff;
+}
+#header>#header1>div:first-child{
+  margin-right:70px;
+}
+#header>#header1>div:first-child>a{
+  padding:0;
+  margin:0;
+  height:60px;
+  line-height:60px;
+}
+#header>#header1>div:first-child>a>img{
+  height:40px;
+}
+/*#header>#header1>div:last-child{
+  margin-left:80px;
+}*/
+#header>#header1>div:last-child{
+  float:right;
+}
+#header>#header1>div:last-child::after{
+  content: "";
+  display:block;
+  clear: both;
+}
+#header>#header1>div:last-child>ul>li:first-child{
+  margin-left:60px;
+}
+#header>#header1>div:last-child>ul>li>a:first-child{
+  width:40px;
+}
+#header>#header1>div:last-child>ul>li{
+  margin-right:10px;
+}
+#header>#header1>div:last-child>ul>li>input{
+  padding-left:10px;
+  outline:none;
+  width:180px;
+  height:30px;
+  border:0;
+  border-radius:20px;
+  font-size:12px;
+  /* color:rgb(156, 154, 154); */
+}
+/*#header>#header1>div:last-child>ul>li>a{
+  position: relative;
+}*/
