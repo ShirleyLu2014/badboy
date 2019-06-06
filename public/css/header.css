@@ -2,23 +2,27 @@ header{
   font-family:Tahoma, "Microsoft Yahei", 微软雅黑, 宋体, 黑体, Arial, Helvetica, STHeiti;
   width:100%;
 }
+ol, ul, dl{
+  margin:0;
+}
 #header1{
   width:100%;
   display:flex;
   height:60px;
-  background-color:rgba(23, 162, 184,0.9);
-  /* background-color:rgba(27, 151, 223, 0.6); */
-  /* background-color:#9fd9f6; */
+  background-color:#282828;
   padding:0 10%;
   line-height: 60px;
   position: fixed;
   top:0;
-  z-index:99999;
+  z-index:1;
   margin:0 auto;
 }
 #header1 ul{
-  display:flex;
+  /* display:flex; */
   list-style:none;
+}
+#header1 ul li{
+  float:left;
 }
 #header>#header1 ul>li>a{
   display:inline-block;
@@ -29,27 +33,71 @@ header{
   width:64px;
   text-align:center;
 }
+.header-cent{
+  width:852px;
+}
+.header-cent,.music,.list-cent::after{
+  content: "";
+  display:block;
+  clear: both;
+}
 .music{
   float: left;
 }
 .size{
   font-size:12px;
 }
+.size:hover{
+    background-color: red;
+}
 .nth{
   margin-right: -6px !important;
-
 }
 .nth a{
   width:40px !important;
+}
+.cdcity{
+  position: relative;
+  margin-left:5px;
+}
+ .list-cent{
+  float:left;
+  margin-left:104px;
+} 
+.list-cent li{
+  width:84px;
+  margin-left:44px;
+  text-align:center;
+  font-weight: 550;
+}
+.over{
+  position:absolute;
+  top:60px;
+  width:0px;
+  height:0px;
+  background-color: #f2f2f2;
+  /* border-top:1px solid red; */
+  transition:1.5s;
+}
+.cdcity:hover .over{
+  height:120px;
+  width:500px;
+  border-top:1px solid red;
+}
+.list-cent li:hover{
+  background-color: #e72f2f;
+}
+.list-cent li .server{
+  width:82px !important;
 }
 #header>#header1>div:nth-child(2)>ul>li:nth-child(5)>a{
   width:100px;
 }
 #header>#header1>div:nth-child(2)>ul>li:last-child>a{
-  width:100px;
+  width: 64px;
 }
 #header>#header1 ul>li>a:hover{
-  color:rgb(10, 107, 235);
+  color:#fff;
 }
 #header>#header1>div:first-child{
   margin-right:70px;
@@ -62,9 +110,6 @@ header{
 }
 #header>#header1>div:first-child>a>img{
   height:40px;
-}
-#header>#header1>div:nth-child(2)>ul>li{
-  margin-right:10px;
 }
 #header>#header1>div:last-child{
   margin-left:80px;
