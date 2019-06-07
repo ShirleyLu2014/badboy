@@ -107,14 +107,15 @@ section>div.carousel{
   display:flex;
   justify-content: space-between;
   height:376px;
+  margin-bottom:100px;
 }
 .firstFloor>.upcoming{
   width:810px;
-  border:1px solid #f00;
+  /* border:1px solid #f00; */
 }
 .firstFloor>.showCalendar{
   width:388px;
-  border:1px solid #f00;
+  /* border:1px solid #f00; */
 }
 /* .firstFloor>.upcoming>.titleBar>*/h2{ 
   color:#666666;
@@ -202,7 +203,11 @@ section>div.carousel{
 .upcomingList>a>p.showTime:hover,.upcomingList>a>p.site:hover{
   color:#e72f2f;
 }
+/* 演出日历 */
+/* 日历标题 */
 .showCalendar>.calendarHead{
+  height:50px;
+  border:1px solid #f00;
   display:flex;
   justify-content: space-between;
 }
@@ -217,8 +222,6 @@ span.year,span.month{
 }
 .showCalendar>.calendarHead>.calendarDate{
   border: 1px #fff solid;
-  position: relative;
-  /* width: 100%;*/
   padding: 0 10px; 
   margin: -1px -11px;
   /* border-bottom: 1px #eee solid; */
@@ -242,7 +245,30 @@ span.year,span.month{
   background-position: -127px -39px;
   cursor: pointer;
 }
-.showCalendar table{
+/*.showCalendar td{
+  text-align:center;
+  line-height:52px;
+}*/
+/* 日历主体 */
+.calendarMain{
+  padding:0 10px;
+  width:100%;
+  height:323px;
+  border:1px solid #eee;
+}
+/* 星期头 */
+.weekHead{
+  width:100%;
+  height:52px;
+  border-bottom:1px solid #eee;
+}
+.weekHead>td{
+  width:52px;
+  height:52px;
+  text-align:center;
+  line-height:52px;
+}
+/*.showCalendar table{
   width:100%;
   color:#333;
   border-collapse: separate;
@@ -262,4 +288,19 @@ span.year,span.month{
   border-bottom: 1px #eee solid;
   padding: 16px 0;
   text-align: center;
+}*/
+/*.dateTd span{
+  display:none;
 }
+.calendarMain tr td>div{
+  width:52px;
+  height:45px;
+  line-height:45px;
+}
+.calendarMain tr td>div>i{
+  font: 13px/1.5 'Microsoft YaHei',"\5b8b\4f53";
+}
+.weekHead{
+  width:368px;
+  height:52px;
+}*/
