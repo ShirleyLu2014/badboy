@@ -489,7 +489,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
     margin-left:652px;
   }
   .firstFloor>.upcoming>.titleBar>i{
-    background-position: -163px -335px; !important;
+    background-position: -163px -335px !important;
   }
   .firstFloor>.upcoming>.titlebar>h2{
     width:200px;
