@@ -34,3 +34,34 @@ $("#lab>.labList>ul>li>a:first-child").hover(function(){
 $("#news>.newsList>.newsLeft>a:first-child").hover(function(){
   $(this).next().toggleClass("in");
 });
+
+var audios = document.querySelectorAll("#popMusic audio");
+
+// console.log(audios,typeof(audios));
+
+// 但是! 不能直接当数组操作! !!! 原因未明
+
+
+
+
+
+
+
+var divs = document.getElementById("popMusic");
+divs.onclick = function(e){
+    // console.log(e.target.parentElement.children[1]);
+    if(e.target.parentElement.children[1].paused==true){
+        for (let i = 0; i < audios.length; i++) {
+            // console.log(audios[i]);
+            audios[i].play();
+        }
+        e.target.parentElement.children[1].play();
+        e.target.parentElement.children[2].innerHTML="II";
+    }else{
+        for (let i = 0; i < audios.length; i++) {
+            // console.log(audios[i]);
+            audios[i].pause();
+        }
+        e.target.parentElement.children[2].innerHTML="▶"
+    }
+}

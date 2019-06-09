@@ -18,6 +18,7 @@ section{
   margin:0 auto;
   height:220px;
   display:flex;
+  background:#F8F8F8;
 }
 .artHead>.artPhoto{
   width: 312px;
@@ -95,7 +96,6 @@ section{
   height:24px;
   line-height:24px;
   font-size:14px;
-  font-family:
 }
 .artHead>.artFans>.share>div>a{
   display:inline-block;
@@ -143,7 +143,11 @@ section{
   font-size:16px;
   text-align:center;
   color:#666666;
+}
+.detailWrap>.wrap-head>ul>li>a:hover{
   border-bottom:1px solid #333;
+  background-color:rgba(255,214,4,.9);
+  color:#e72f2f;
 }
 .detailWrap>.wrap-content{
   width:1200px;
@@ -159,8 +163,7 @@ section{
   width:320px;
   /* height:918px; */
 }
-/* tab1 演出 */
-#tab1>div>h2{
+.content>div>h2{
   padding-left: 10px;
   border-left: 4px #e72f2f solid;
   height: 20px;
@@ -169,9 +172,10 @@ section{
   font-size:18px;
   font-weight:normal;
 }
-#tab1>.group{
+.content>.group{
   width:820px;
 }
+/* tab1 演出 */
 ul.comingList{
   margin-top:20px;
   display:flex;
@@ -256,6 +260,38 @@ ul.comingList>li>a>p.gPlace{
   line-height:34px;
   font-size:13px;
   border-radius:5px;
+}
+/* tab2艺人详细简介 */
+#tab2>.group>p{
+  margin-top:20px;
+}
+#tab2>.group>h2.imgTitle{
+  margin-top:50px;
+  margin-bottom:30px;
+}
+#tab2>.group>ul{
+  width:820px;
+  list-style:none;
+  display:flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  padding:0;
+  margin:0;
+}
+#tab2>.group>ul>li{
+  width:158px;
+  height:158px;
+  margin-bottom:10px;
+}
+#tab2>.group>ul>li>a{
+  text-decoration:none;
+  display:inline-block;
+  width:100%;
+  height:100%;
+}
+#tab2>.group>ul>li>a>img{
+  width:100%;
+  height:100%;
 }
 /* 右侧 */
 .itemRight>.tag{
@@ -397,5 +433,6 @@ ul.comingList>li>a>p.gPlace{
 }
 .around>ul>li>a:hover{
   background-color:#f8f8f8;
-  background-color:rgba(255,214,4,.3);
+  background-color:#F8F8F8;
+  background-color:rgba(255,214,4,.9);
 }

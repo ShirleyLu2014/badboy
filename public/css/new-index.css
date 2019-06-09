@@ -756,3 +756,63 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem:hover>.top>.topDetail>p.artStyle{
   color:#e72f2f;
 }
+#popMusic{
+  display: flex;
+  flex-direction: column;
+}
+
+#popMusic>li{
+  position: relative;
+  height: 70px;
+}
+
+#popMusic>li>div{
+  display: inline-block;
+}
+
+#popMusic>li>div:first-child{
+  width: 15%;
+}
+
+#popMusic>li>div:first-child:hover{
+  cursor: pointer;
+}
+
+#popMusic>li>div:nth-child(2){
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%,-50%)
+}
+
+#popMusic>li>div:last-child{
+  font-size: 40px;
+  font-weight: 100;
+  position: absolute;
+  right: 10%;
+  transform: translateX(50%);
+}
+
+#popMusic>li>div>img{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 14%;
+  left: 3%;
+  border-radius: 50%;
+}
+#popMusic>li>div>p{
+  position: absolute;
+  top: 48%;
+  transform: translate(-50%,-50%);
+  width: 14%;
+  left: 25px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  opacity: 0;
+}
+
+#popMusic>li>div>p:hover{
+  opacity: 0.7;
+}
