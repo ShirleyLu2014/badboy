@@ -8,6 +8,7 @@ const tours=require("./routes/tours");
 const artists=require("./routes/artists");
 const venues=require("./routes/venues");
 const cities=require("./routes/cities");
+const styles=require("./routes/styles");
 
 var app = express();
 //新浪云要求只能监听5050
@@ -32,5 +33,6 @@ app.use("/tours",tours);
 app.use("/artists",artists);
 app.use("/venues",venues);
 app.use("/cities",cities);
+app.use("/styles",styles);
 
 
