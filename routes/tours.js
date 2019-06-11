@@ -101,4 +101,55 @@ function getHot(res,start, end, cid){
     }
   })
 }
+router.get("/list",(req,res)=>{
+  //cid vid sid starttime endtime
+  var {cid,vid,sid,starttime,endtime,pno,psize}=req.query;
+  var conds=[];
+  var params=[];
+  if(cid!==undefined&&cid!=0){
+    conds.push(" cid=? ");
+    params.push(cid);
+  }
+  if(vid!==undefined&&vid!=0){
+    conds.push(" vid=? ");
+    params.push(vid);
+  }
+  if(sid!==undefined&&sid!=0){
+    conds.push(" sid=? ");
+    params.push(sid);
+  }
+  if(starttime!==undefined&&starttime!=0){
+    conds.push(" time>=? ");
+    params.push(starttime);
+  }else{
+    conds.push(" time>=? ");
+    params.push(new Date().getTime());
+  }
+  if(endtime!==undefined&&endtime!=0){
+    conds.push(" time<=? ");
+    params.push(endtime);
+  }
+  pno=pno||0;
+  psize=psize||10;
+  params.push(pno*psize,psize);
+  var sql="select * from tours inner join venues using(vid) inner join shows using(sid) ";
+  var where=conds.length==0?"":` where ${conds.join(" and ")}`;
+  sql+=where;
+  sql+=" order by time ";
+  sql+=` limit ?,? `;
+  console.log(sql);
+  console.log(params);
+  pool.query(sql,params,(err,result)=>{
+    if(err){
+      res.send({code:0, msg:String(err)})
+    }else{
+      res.send({
+        pno,
+        psize,
+        pcount:Math.ceil(result.length/psize),
+        result
+      })
+    }
+  });
+})
 module.exports=router;
