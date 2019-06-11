@@ -129,27 +129,80 @@ router.get("/list",(req,res)=>{
     conds.push(" time<=? ");
     params.push(endtime);
   }
-  pno=pno||0;
-  psize=psize||10;
-  params.push(pno*psize,psize);
-  var sql="select * from tours inner join venues using(vid) inner join shows using(sid) ";
+  var sql="select count(*) as count from tours inner join venues using(vid) inner join shows using(sid) ";
   var where=conds.length==0?"":` where ${conds.join(" and ")}`;
   sql+=where;
-  sql+=" order by time ";
-  sql+=` limit ?,? `;
-  console.log(sql);
-  console.log(params);
   pool.query(sql,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)})
     }else{
-      res.send({
-        pno,
-        psize,
-        pcount:Math.ceil(result.length/psize),
-        result
+      var count=result[0]["count"];
+      var sql="select * from tours inner join venues using(vid) inner join shows using(sid) ";
+      sql+=where;
+      sql+=" order by time ";
+      sql+=" limit ?,?";
+      pno=pno||0;
+      psize=psize||10;
+      params.push(pno*psize,psize);
+      pool.query(sql,params,(err,result)=>{
+        if(err){
+          res.send({code:0, msg:String(err)})
+        }else{
+          res.send({
+            pno,
+            psize,
+            pcount:Math.ceil(count/psize),
+            count,
+            result
+          })
+        }
       })
     }
-  });
+  })
+})
+router.get("/kws",(req,res)=>{
+  var kws=req.query.kws;
+  var pno=req.query.pno;
+  var psize=req.query.psize;
+  if(kws!==""&&kws!==undefined){
+    kws=kws.split(/\s+/);
+    var arr=[];
+    for(var kw of kws){
+      arr.push(` ( stitle LIKE '%${kw}%' || aname like '%${kw}%' ) `);
+    }
+    var where=` where ${arr.join(" and ")} `;
+    var sql=`select count(*) as count from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using (sid) inner join artists using(aid) `;
+    sql+=where;
+    pool.query(sql,[],(err,result)=>{
+      if(err){
+        res.send({code:0, msg:String(err)})
+      }else{
+        var count=result[0]["count"];
+        var sql=`select * from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using (sid) inner join artists using(aid) `;
+        sql+=where;
+        sql+=" order by time ";
+        sql+=" limit ?,?";
+        pno=pno||0;
+        psize=psize||10;
+        var params=[];
+        params.push(pno*psize,psize);
+        pool.query(sql,params,(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            res.send({
+              pno,
+              psize,
+              pcount:Math.ceil(count/psize),
+              count,
+              result
+            })
+          }
+        })
+      }
+    })
+  }else{
+    res.send({code:0, msg:"没有关键词"})
+  }
 })
 module.exports=router;

@@ -22,19 +22,49 @@ router.get("/hot",(req,res)=>{
 });
 router.get("/",(req,res)=>{
   var cid=req.query.cid;
+  var kws=req.query.kws;
+  var pno=req.query.pno;
+  var psize=req.query.psize;
   var start=new Date().getTime();
   if(cid===undefined||cid==0){
-    var sql=`select vid, vname, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? group by vid order by tcount desc, time`;
+    var sql=`select vid, vname, vaddress, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? `;
     var params=[start];
   }else{
-    var sql=`select vid, vname, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where cid=? and time>=? group by vid order by tcount desc, time`;
-    var params=[cid, start];
+    var sql=`select vid, vname, vaddress, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? and cid=? `;
+    var params=[start,cid];
   }
-  pool.query(sql,params,(err,result)=>{
+  if(kws!==undefined){
+    kws=kws.split(/\s+/);
+    var arr=[];
+    for(var kw of kws){
+      arr.push(` ( vname like '%${kw}%' || vaddress like '%${kw}%' ) `)
+    }
+    sql += " and "+arr.join(" and ");
+  }
+  sql+=" group by vid order by tcount desc, time ";
+  var sql2=`select count(*) as count from (${sql}) as table1`;
+  pool.query(sql2,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)});
     }else{
-      res.send(result);
+      var count=result[0]["count"];
+      sql+=" limit ?,?";
+      pno=pno||0;
+      psize=psize||10;
+      params.push(pno*psize,psize);
+      pool.query(sql,params,(err,result)=>{
+        if(err){
+          res.send({code:0, msg:String(err)})
+        }else{
+          res.send({
+            pno,
+            psize,
+            pcount:Math.ceil(count/psize),
+            count,
+            result
+          })
+        }
+      })
     }
   })
 });
