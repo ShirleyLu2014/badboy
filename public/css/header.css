@@ -3,7 +3,7 @@ header{
   width:100%;
   position: fixed;
   top:0;
-  z-index:1;
+  z-index:990;
   background-color:rgba(23, 163, 184, 0.932);
 }
 #header1{
@@ -113,4 +113,124 @@ ul{
   border:0;
   border-radius:20px;
   font-size:12px;
+}
+/* 登陆框 */
+.login{
+  position: fixed;;
+  width: 497px;
+  height:auto;
+  z-index:999;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display:block;
+  background: #F8F8F8;
+  padding:15px;
+  display:none;
+}
+.loginBox{
+  width:456px;
+  height:auto;
+  padding:30px 60px;
+  margin:0;
+}
+.close{
+  display:inline-block;
+  width:15px;
+  height:20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  /* z-index: 8040; */
+  background: url("../image/index/close.png") no-repeat;
+}
+.loginTitle{
+  width:332px;
+  height:36px;
+  font-size: 24px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 10px;
+}
+.tableForm{
+  width:332px;
+  height:auto;
+}
+.tableForm>table{
+  width:100%;
+}
+.tableForm>table>tbody>tr>td{
+  padding:10px 0;
+}
+.inputStyle{
+  height:40px;
+  width:100%;
+  outline:0;
+  border:0;
+  padding-left:40px;
+  background:url("../image/index/icon.png") 10px -593px no-repeat;
+  border:1px solid #00f;
+  border-radius:3px;
+  border:1px solid rgba(23, 163, 184, 0.932);
+}
+.labelError{
+  color:#e72f2f;
+  font-size:13px;
+  margin-top:5px;
+  display:none;
+}
+#upwd.inputStyle{
+  background-position:10px -633px;
+}
+.rememberLabel{
+  vertical-align: middle;
+  float:right;
+  color:#999;
+  margin:0;
+}
+.loginBtn{
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0;
+  vertical-align:middele;
+  text-align:center;
+  border-radius:3px;
+  cursor: pointer;
+  outline:0;
+  height:40px;
+  background:#e72f2f;
+  color:#fff;
+}
+.forget a{
+  text-decoration:none;
+  color:rgba(23, 163, 184, 0.932);
+  outline:0;
+}
+.forget a:hover{
+  color:#e72f2f;
+}
+.otherLogin{
+  text-align:center;
+  margin-top:10px;
+}
+.otherLogin>a{
+  display: inline-block;
+  width: 47px;
+  height: 47px;
+  background: url("../image/index/icon.png") no-repeat;
+  margin: 0 10px;
+}
+.qq{
+  background-position: -95px -694px !important;
+}
+.sina{
+  background-position: -48px -695px !important;
+}
+.wechat{
+  background-position: -1px -695px !important;
+}
+.douban{
+  background-position: -142px -695px !important;
 }

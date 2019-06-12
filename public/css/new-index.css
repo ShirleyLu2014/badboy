@@ -13,6 +13,11 @@ section{
 section>.carousel>{
   margin-top:60px;
 }
+section>.carousel:after{
+  content:"";
+  display:block;
+  clear:both;
+}
 section>.carousel>.carousel-inner>.carousel-item>a>img{
   width:100%;
 }
