@@ -3,8 +3,7 @@ const router=express.Router();
 const pool=require("../pool");
 
 router.get("/hot",(req,res)=>{
-  var start=new Date().getTime();
-  var sql=`SELECT aid, aname, aphoto, stname, (select count(*) from fans where fans.aid=artists.aid) as fcount, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where aid=artists.aid and time>=${start}) as tcount FROM artists inner join styles using(stid) order by tcount desc,fcount desc limit 8`;
+  var sql=`SELECT aid, aname, aphoto, stname, (select count(*) from fans where fans.aid=artists.aid) as fcount, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where aid=artists.aid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM artists inner join styles using(stid) order by tcount desc,fcount desc limit 8`;
   pool.query(sql,[],(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)})
@@ -106,13 +105,38 @@ router.get("/details",(req,res)=>{
         var output={
           artist:result[0]
         };
-        var sql="select *, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 4";
+        var sql="select *, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
         pool.query(sql,[output.artist.aid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
             output.fans=result;
-            res.send(output);
+            var sql=`SELECT vid,vname,vaddress,vphone,vpic,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC`
+            params=[aid];
+            pool.query(sql,params,(err,result)=>{
+              if(err){
+                res.send({code:0,msg:String(err)})
+              }else{
+                output.venues=result;
+                var tasks=[];
+                for(var r of result){
+                  tasks.push(new Promise((function(r){return (open)=>{
+                    pool.query("select tid, stitle, sphoto from tours inner join shows using(sid) where vid=? limit 4",[r["vid"]],(err,result)=>{
+                      if(err){
+                        console.log(err);
+                      }else{
+                        r["tours"]=result;
+                        open();
+                      }
+                    })
+                  }})(r)))
+                }
+                Promise.all(tasks).then(()=>{
+                  output.result=result;
+                  res.send(output);
+                })
+              }
+            })
           }
         })
       }
