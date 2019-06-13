@@ -20,7 +20,7 @@ router.get("/hot",(req,res)=>{
     }
   })
 });
-router.get("/kws",(req,res)=>{
+router.get("/list",(req,res)=>{
   var cid=req.query.cid;
   var kws=req.query.kws;
   var pno=req.query.pno;
@@ -56,20 +56,34 @@ router.get("/kws",(req,res)=>{
         if(err){
           res.send({code:0, msg:String(err)})
         }else{
-          
-          res.send({
-            pno,
-            psize,
-            pcount:Math.ceil(count/psize),
-            count,
-            result
+          var tasks=[];
+          for(var r of result){
+            tasks.push(new Promise((function(r){return (open)=>{
+              pool.query("select sid,stitle,sphoto,time from tours inner join shows using(sid) where vid=? order by time limit 3 ",[r["vid"]],(err,result)=>{
+                if(err){
+                  console.log(err);
+                }else{
+                  r["shows"]=result;
+                  open();
+                }
+              })
+            }})(r)))
+          }
+          Promise.all(tasks).then(()=>{
+            res.send({
+              pno,
+              psize,
+              pcount:Math.ceil(count/psize),
+              count,
+              result
+            })
           })
         }
       })
     }
   })
 });
-router.get("/list",(req,res)=>{
+router.get("/",(req,res)=>{
   var cid=req.query.cid;
   var start=new Date().getTime();
   if(cid===undefined||cid==0){
@@ -88,6 +102,6 @@ router.get("/list",(req,res)=>{
   })
 });
 router.get("/details",(req,res)=>{
-
+  
 })
 module.exports=router;

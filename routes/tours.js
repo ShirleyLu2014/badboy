@@ -90,12 +90,52 @@ function getHot(res,start, end, cid){
     }else{
       if(result.length==4){
         result.sort((a,b)=>a["time"]-b["time"]);
-        res.send(result);
+        var tasks=[];
+        for(var r of result){
+          tasks.push(new Promise((function(r){return (open)=>{
+            pool.query("SELECT distinct(aname) FROM arshows inner join artists using(aid) where sid=?",[r["sid"]],(err,result)=>{
+              if(err){
+                console.log(err);
+              }else{
+                var as=[];
+                for(var re of result){
+                  as.push(re["aname"])
+                }
+                r["artists"]=as.join("/");
+                open();
+              }
+            })
+          }})(r)))
+        }
+        Promise.all(tasks).then(()=>{
+          console.log(result);
+          res.send(result);
+        })
       }else{
         if(end-start<=12*7*24*3600*1000){
           arguments.callee(res,start, end+7*24*3600*1000,cid)
         }else{
-          res.send(result);
+          var tasks=[];
+          for(var r of result){
+            tasks.push(new Promise((function(r){return (open)=>{
+              pool.query("SELECT distinct(aname) FROM arshows inner join artists using(aid) where sid=?",[r["sid"]],(err,result)=>{
+                if(err){
+                  console.log(err);
+                }else{
+                  var as=[];
+                  for(var re of result){
+                    as.push(re["aname"])
+                  }
+                  r["artists"]=as.join("/");
+                  open();
+                }
+              })
+            }})(r)))
+          }
+          Promise.all(tasks).then(()=>{
+            console.log(result);
+            res.send(result);
+          })
         }
       }
     }
@@ -148,12 +188,31 @@ router.get("/list",(req,res)=>{
         if(err){
           res.send({code:0, msg:String(err)})
         }else{
-          res.send({
-            pno,
-            psize,
-            pcount:Math.ceil(count/psize),
-            count,
-            result
+          var tasks=[];
+          for(var r of result){
+            tasks.push(new Promise((function(r){return (open)=>{
+              pool.query("SELECT distinct(aname) FROM arshows inner join artists using(aid) where sid=?",[r["sid"]],(err,result)=>{
+                if(err){
+                  console.log(err);
+                }else{
+                  var as=[];
+                  for(var re of result){
+                    as.push(re["aname"])
+                  }
+                  r["artists"]=as.join("/");
+                  open();
+                }
+              })
+            }})(r)))
+          }
+          Promise.all(tasks).then(()=>{
+            res.send({
+              pno,
+              psize,
+              pcount:Math.ceil(count/psize),
+              count,
+              result
+            })
           })
         }
       })
@@ -190,12 +249,31 @@ router.get("/kws",(req,res)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
-            res.send({
-              pno,
-              psize,
-              pcount:Math.ceil(count/psize),
-              count,
-              result
+            var tasks=[];
+            for(var r of result){
+              tasks.push(new Promise((function(r){return (open)=>{
+                pool.query("SELECT distinct(aname) FROM arshows inner join artists using(aid) where sid=?",[r["sid"]],(err,result)=>{
+                  if(err){
+                    console.log(err);
+                  }else{
+                    var as=[];
+                    for(var re of result){
+                      as.push(re["aname"])
+                    }
+                    r["artists"]=as.join("/");
+                    open();
+                  }
+                })
+              }})(r)))
+            }
+            Promise.all(tasks).then(()=>{
+              res.send({
+                pno,
+                psize,
+                pcount:Math.ceil(count/psize),
+                count,
+                result
+              })
             })
           }
         })
@@ -223,7 +301,7 @@ router.get("/details",(req,res)=>{
         res.send({code:0, msg:String(err)})
       }else{
         output.tour=result[0];
-        var sql=`SELECT *,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where sid=? order by tcount desc limit 4`;
+        var sql=`SELECT uid,wid,sid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where sid=? order by tcount desc limit 4`;
         pool.query(sql,[output.tour.sid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
@@ -238,7 +316,7 @@ router.get("/details",(req,res)=>{
                 output.wCount=result[0]["count"];
                 //再查询艺人列表
                 var start=new Date().getTime();
-                var sql=`SELECT *,(select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
+                var sql=`SELECT aid,aname,aphoto, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
                 pool.query(sql,[output.tour.sid],(err,result)=>{
                   if(err){
                     res.send({code:0, msg:String(err)})
