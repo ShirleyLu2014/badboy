@@ -102,6 +102,23 @@ router.get("/",(req,res)=>{
   })
 });
 router.get("/details",(req,res)=>{
-  
+  var vid=req.query.vid;
+  if(vid!==undefined&&vid!=0){
+    var output={
+      venue:{},
+      calendar:[]
+    }
+    var sql="SELECT * FROM venues inner join cities using(cid) where vid=?";
+    pool.query(sql,[vid],(err,result)=>{
+      if(err){
+        res.send({code:0, msg:String(err)})
+      }else{
+        output.venue=result[0];
+        
+      }
+    })
+  }else{
+    res.send({code:0, msg:"未提供现场编号"})
+  }
 })
 module.exports=router;

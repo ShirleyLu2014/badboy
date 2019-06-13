@@ -54,3 +54,6 @@ http://localhost:5050
 --/tours/details/?tid=n
 
 ****************************finished******************************
+
+音乐现场详情页: 
+--/venues/details/?vid=n
