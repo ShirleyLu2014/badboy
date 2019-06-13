@@ -20,17 +20,17 @@ router.get("/hot",(req,res)=>{
     }
   })
 });
-router.get("/",(req,res)=>{
+router.get("/kws",(req,res)=>{
   var cid=req.query.cid;
   var kws=req.query.kws;
   var pno=req.query.pno;
   var psize=req.query.psize;
   var start=new Date().getTime();
   if(cid===undefined||cid==0){
-    var sql=`select vid, vname, vaddress, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? `;
+    var sql=`select vid, vname, vaddress, vpic, city, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? `;
     var params=[start];
   }else{
-    var sql=`select vid, vname, vaddress, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? and cid=? `;
+    var sql=`select vid, vname, vaddress, vpic, city, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? and cid=? `;
     var params=[start,cid];
   }
   if(kws!==undefined){
@@ -56,6 +56,7 @@ router.get("/",(req,res)=>{
         if(err){
           res.send({code:0, msg:String(err)})
         }else{
+          
           res.send({
             pno,
             psize,
@@ -86,4 +87,7 @@ router.get("/list",(req,res)=>{
     }
   })
 });
+router.get("/details",(req,res)=>{
+
+})
 module.exports=router;

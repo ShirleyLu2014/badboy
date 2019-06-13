@@ -27,7 +27,7 @@ http://localhost:5050
 ----风格列表:
 ------/styles/
 --按城市/现场/时间/风格查询演出场次:
-----/tours/?cid=城市号&vid=现场号&sid=风格号&starttime=开始时间&endtime=结束时间&pno=页码&psize=每页条目数
+----/tours/list/?cid=城市号&vid=现场号&sid=风格号&starttime=开始时间&endtime=结束时间&pno=页码&psize=每页条目数
 --关键词查询演出场次:
 ----/tours/kws?kws=关键词1 关键词2&pno=页码&psize=每页条目
 
@@ -37,8 +37,8 @@ http://localhost:5050
 --演出城市列表:
 ----/cities/
 --按关键词查询现场:
-----/venues/?kws=关键词1 关键词2&pno=页码&psize=每页条目数  在全国范围内,按关键词搜索现场
-----/venues/?cid=城市号&kws=关键词1 关键词2&pno=页码&psize=每页条目数 在指定城市内，按关键词查询现场
+----/venues/kws/?kws=关键词1 关键词2&pno=页码&psize=每页条目数  在全国范围内,按关键词搜索现场
+----/venues/kws/?cid=城市号&kws=关键词1 关键词2&pno=页码&psize=每页条目数 在指定城市内，按关键词查询现场
 
 ****************************finished******************************
 
@@ -51,4 +51,4 @@ http://localhost:5050
 ****************************finished******************************
 
 演出详情页:
---/tours/?tid=n
+--/tours/details/?tid=n

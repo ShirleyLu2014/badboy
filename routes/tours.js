@@ -78,10 +78,10 @@ router.get("/hot",(req,res)=>{
 });
 function getHot(res,start, end, cid){
   if(cid===undefined){
-    var sql=`select tid,sid,vid, stitle, sphoto, city, vname, price, time, (select count(*) from wants where wants.sid=tours.sid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where time>=? and time<=? order by wants desc limit 4`;
+    var sql=`select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto, (select count(*) from wants where wants.sid=tours.sid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where time>=? and time<=? order by wants desc limit 4`;
     var params=[start,end];
   }else{
-    var sql=`select tid,sid,vid, stitle, sphoto, city, vname, price, time, (select count(*) from wants where wants.sid=tours.sid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where cid=? and time>=? and time<=? order by wants desc limit 4`;
+    var sql=`select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto, (select count(*) from wants where wants.sid=tours.sid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where cid=? and time>=? and time<=? order by wants desc limit 4`;
     var params=[cid, start, end];
   }
   pool.query(sql,params,(err,result)=>{
@@ -137,7 +137,7 @@ router.get("/list",(req,res)=>{
       res.send({code:0, msg:String(err)})
     }else{
       var count=result[0]["count"];
-      var sql="select * from tours inner join venues using(vid) inner join shows using(sid) ";
+      var sql="select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) ";
       sql+=where;
       sql+=" order by time ";
       sql+=" limit ?,?";
@@ -178,7 +178,7 @@ router.get("/kws",(req,res)=>{
         res.send({code:0, msg:String(err)})
       }else{
         var count=result[0]["count"];
-        var sql=`select * from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using (sid) inner join artists using(aid) `;
+        var sql=`select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using (sid) inner join artists using(aid) inner join cities using(cid) `;
         sql+=where;
         sql+=" order by time ";
         sql+=" limit ?,?";
@@ -205,48 +205,62 @@ router.get("/kws",(req,res)=>{
     res.send({code:0, msg:"没有关键词"})
   }
 })
-router.get("/",(req,res)=>{
+router.get("/details",(req,res)=>{
   var tid=req.query.tid;
   if(tid!==undefined&&tid!=0){
     var sql="select * from tours inner join venues using(vid) inner join cities using(cid) inner join shows using(sid) where tid=?";
     var output={
       tour:{},
-      tours:[],
-      wants:[],
-      artists:[],
-      styles:[]
+      wants:[],//想看的用户列表前4位
+      wCount:0,//想看的用户总数
+      artists:[],//艺人列表
+      styles:[],//风格列表
+      tours:[] //场次列表
     }
+    //先查询想看的用户列表前4位的
     pool.query(sql,[tid],(err,result)=>{
       if(err){
         res.send({code:0, msg:String(err)})
       }else{
         output.tour=result[0];
-        var sql=`SELECT *,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where sid=? order by tcount desc`;
+        var sql=`SELECT *,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where sid=? order by tcount desc limit 4`;
         pool.query(sql,[output.tour.sid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
             output.wants=result;
-            var start=new Date().getTime();
-            var sql=`SELECT *,(select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
+            //再查询想看的用户总数
+            var sql=`SELECT count(*) as count FROM wants where sid=? `;
             pool.query(sql,[output.tour.sid],(err,result)=>{
               if(err){
                 res.send({code:0, msg:String(err)})
               }else{
-                output.artists=result;
-                var sql="SELECT DISTINCT(stname) as stname FROM arshows inner join artists using(aid) inner join styles using(stid) where asid=?";
-                pool.query(sql,[output.tour.asid],(err,result)=>{
+                output.wCount=result[0]["count"];
+                //再查询艺人列表
+                var start=new Date().getTime();
+                var sql=`SELECT *,(select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
+                pool.query(sql,[output.tour.sid],(err,result)=>{
                   if(err){
                     res.send({code:0, msg:String(err)})
                   }else{
-                    output.styles=result;
-                    var sql="select * from tours inner join venues using(vid) inner join cities using (cid) where sid=?"
+                    output.artists=result;
+                    //再查询风格列表
+                    var sql="SELECT DISTINCT(stname) as stname FROM arshows inner join artists using(aid) inner join styles using(stid) where sid=?";
                     pool.query(sql,[output.tour.sid],(err,result)=>{
                       if(err){
                         res.send({code:0, msg:String(err)})
                       }else{
-                        output.tours=result;
-                        res.send(output);
+                        output.styles=result;
+                        //再查询场次列表
+                        var sql="select * from tours inner join venues using(vid) inner join cities using (cid) where sid=? order by time"
+                        pool.query(sql,[output.tour.sid],(err,result)=>{
+                          if(err){
+                            res.send({code:0, msg:String(err)})
+                          }else{
+                            output.tours=result;
+                            res.send(output);
+                          }
+                        })
                       }
                     })
                   }
