@@ -4,8 +4,8 @@ http://localhost:5050
 ----/tours/recent 全国范围内查询最近的四场演出场次
 ----/tours/recent?cid=n 在某一城市内查询最近的四场演出场次
 --演出日历:
-----/tours/bymonth?m=n 全国范围内查询指定月份中每天演出场数
-----/tours/bymonth?m=n&cid=i 在某一城市内查询指定月份中每天演出场数
+----/tours/bymonth?y=年&m=月 全国范围内查询指定月份中每天演出场数
+----/tours/bymonth?y=年&m=月&cid=城市编号 在某一城市内查询指定月份中每天演出场数
 --热门演出:
 ----/tours/hot 全国范围内查询时间最近的，想看的人最多的，最热的四场演出场次
 ----/tours/hot?cid=n 在某一城市内查询时间最近的，想看的人最多的，最热的四场演出场次
@@ -27,7 +27,7 @@ http://localhost:5050
 ----风格列表:
 ------/styles/
 --按城市/现场/时间/风格查询演出场次:
-----/tours/list/?cid=城市号&vid=现场号&sid=风格号&starttime=开始时间&endtime=结束时间&pno=页码&psize=每页条目数
+----/tours/list/?cid=城市号&vid=现场号&stid=风格号&starttime=开始时间&endtime=结束时间&pno=页码&psize=每页条目数
 --关键词查询演出场次:
 ----/tours/kws?kws=关键词1 关键词2&pno=页码&psize=每页条目
 
@@ -56,4 +56,21 @@ http://localhost:5050
 ****************************finished******************************
 
 音乐现场详情页: 
---/venues/details/?vid=n
+--查询现场的基本信息
+----/venues/details/?vid=现场编号
+--查询现场上方演出日历
+----/tours/bymv/?vid=现场编号&y=年份&m=月份
+--查询现场所有演出列表
+----/tours/list/?vid=现场编号&pno=页码&psize=每页条目数
+--查询现场的演出所涉及的所有艺人
+----/artists/byvenue/?vid=现场编号&pno=页码&psize=每页条目数
+
+****************************finished******************************
+
+音乐人详情页
+--查询音乐人基本信息
+----/artists/details?aid=音乐人编号
+--查询音乐人最近的演出
+----/tours/byartist?aid=音乐人编号
+
+****************************finished******************************

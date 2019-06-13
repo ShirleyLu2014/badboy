@@ -4,14 +4,13 @@ const pool=require("../pool");
 
 router.get("/hot",(req,res)=>{
   var cid=req.query.cid;
-  var start=new Date().getTime();
-  if(cid===undefined||cid==0){
-    var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? group by vid order by tcount desc, time limit 2`;
-    var params=[start];
-  }else{
-    var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where cid=? and time>=? group by vid order by tcount desc, time limit 2`;
-    var params=[cid, start];
+  var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=(select UNIX_TIMESTAMP(NOW()) * 1000) `;
+  var params=[]
+  if(cid!==undefined&&cid!=0){
+    sql+=` and cid=? `;
+    params.push(cid);
   }
+  sql+=` group by vid order by tcount desc, time limit 2 `
   pool.query(sql,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)});
@@ -26,12 +25,11 @@ router.get("/list",(req,res)=>{
   var pno=req.query.pno;
   var psize=req.query.psize;
   var start=new Date().getTime();
-  if(cid===undefined||cid==0){
-    var sql=`select vid, vname, vaddress, vpic, city, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? `;
-    var params=[start];
-  }else{
-    var sql=`select vid, vname, vaddress, vpic, city, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? and cid=? `;
-    var params=[start,cid];
+  var sql=`select vid, vname, vaddress, vpic, city, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? `;
+  var params=[start];
+  if(cid!==undefined&&cid!=0){
+    sql+=` and cid=? `;
+    params.push(cid);
   }
   if(kws!==undefined){
     kws=kws.split(/\s+/);
@@ -85,14 +83,13 @@ router.get("/list",(req,res)=>{
 });
 router.get("/",(req,res)=>{
   var cid=req.query.cid;
-  var start=new Date().getTime();
-  if(cid===undefined||cid==0){
-    var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=? group by vid order by tcount desc, time`;
-    var params=[start];
-  }else{
-    var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where cid=? and time>=? group by vid order by tcount desc, time`;
-    var params=[cid, start];
+  var sql=`select vid, city, vname, vaddress, vpic, count(*) as tcount from tours inner join venues using(vid) inner join cities using (cid) where time>=(select UNIX_TIMESTAMP(NOW()) * 1000) `;
+  var params=[];
+  if(cid!==undefined&&cid!=0){
+    sql+=` and cid=? `;
+    params.push(parseInt(cid));
   }
+  sql+=` group by vid order by tcount desc, time `
   pool.query(sql,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)});
@@ -106,7 +103,6 @@ router.get("/details",(req,res)=>{
   if(vid!==undefined&&vid!=0){
     var output={
       venue:{},
-      calendar:[]
     }
     var sql="SELECT * FROM venues inner join cities using(cid) where vid=?";
     pool.query(sql,[vid],(err,result)=>{
@@ -114,7 +110,7 @@ router.get("/details",(req,res)=>{
         res.send({code:0, msg:String(err)})
       }else{
         output.venue=result[0];
-        
+        res.send(output.venue);
       }
     })
   }else{

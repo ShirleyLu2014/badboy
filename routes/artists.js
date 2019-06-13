@@ -18,13 +18,11 @@ router.get("/list",(req,res)=>{
   var kws=req.query.kws;
   var pno=req.query.pno;
   var psize=req.query.psize;
-  var start=new Date().getTime();
-  if(stid===undefined||stid==0){
-    var sql=`SELECT aid, aname, aphoto, stname, (select count(*) from fans where fans.aid=artists.aid) as fcount, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where aid=artists.aid and time>=${start}) as tcount FROM artists inner join styles using(stid) `;
-    var params=[];
-  }else{
-    var sql=`SELECT aid, aname, aphoto, stname, (select count(*) from fans where fans.aid=artists.aid) as fcount, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where aid=artists.aid and time>=${start}) as tcount FROM artists inner join styles using(stid) where stid=? `;
-    var params=[stid];
+  var sql=`SELECT aid, aname, aphoto, stname, (select count(*) from fans where fans.aid=artists.aid) as fcount, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where aid=artists.aid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM artists inner join styles using(stid) `;
+  var params=[];
+  if(stid!==undefined&&stid!=0){
+    sql+=` where stid=? `;
+    params=[stid];
   }
   if(kws!==undefined){
     kws=kws.split(/\s+/);
@@ -61,4 +59,66 @@ router.get("/list",(req,res)=>{
     }
   })
 });
+router.get("/byvenue",(req,res)=>{
+  var vid=req.query.vid;
+  if(vid!==undefined&&vid!=0){
+    var sql=`SELECT aid,aname,aphoto, count(*) as tcount FROM tours inner join arshows using(sid) inner join artists using(aid) where vid=? and time>=unix_timestamp(now()) group by aid order by tcount desc, time `;
+    var params=[vid];
+    var sql2=`select count(*) as acount from (${sql}) as table2`;
+    pool.query(sql2,params,(err,result)=>{
+      if(err){
+        res.send({code:0, msg:String(err)})
+      }else{
+        var count=result[0]["acount"];
+        var pno=req.query.pno||0;
+        var psize=req.query.psize||8;
+        var output={
+          pno,
+          psize,
+          count,
+          pcount:Math.ceil(count/psize),
+          result:[]
+        };
+        params=[vid,pno*psize,parseInt(psize)];
+        sql+=` limit ?,? `;
+        pool.query(sql,params,(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.result=result;
+            res.send(output);
+          }
+        })
+      }
+    })
+  }else{
+    res.send({code:0, msg:"未提供"})
+  }
+})
+router.get("/details",(req,res)=>{
+  var aid=req.query.aid;
+  if(aid!==undefined&&aid!=0){
+    var sql=`SELECT *, (select count(*) from fans where fans.aid=artists.aid) as fcount FROM artists inner join styles using(stid) where aid=?`;
+    pool.query(sql,[aid],(err,result)=>{
+      if(err){
+        res.send({code:0, msg:String(err)})
+      }else{
+        var output={
+          artist:result[0]
+        };
+        var sql="select *, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 4";
+        pool.query(sql,[output.artist.aid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.fans=result;
+            res.send(output);
+          }
+        })
+      }
+    })
+  }else{
+    res.send({code:0, msg:String()})
+  }
+})
 module.exports=router;
