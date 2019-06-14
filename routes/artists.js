@@ -105,36 +105,20 @@ router.get("/details",(req,res)=>{
         var output={
           artist:result[0]
         };
-        var sql="select *, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
+        var sql="select uid,fid,aid,avatar, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
         pool.query(sql,[output.artist.aid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
             output.fans=result;
-            var sql=`SELECT vid,vname,vaddress,vphone,vpic,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC`
+            var sql=`SELECT vid,vname,vaddress,vphone,vpic,city,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join cities using(cid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC limit 3`
             params=[aid];
             pool.query(sql,params,(err,result)=>{
               if(err){
                 res.send({code:0,msg:String(err)})
               }else{
-                output.venues=result;
-                var tasks=[];
-                for(var r of result){
-                  tasks.push(new Promise((function(r){return (open)=>{
-                    pool.query("select tid, stitle, sphoto from tours inner join shows using(sid) where vid=? limit 4",[r["vid"]],(err,result)=>{
-                      if(err){
-                        console.log(err);
-                      }else{
-                        r["tours"]=result;
-                        open();
-                      }
-                    })
-                  }})(r)))
-                }
-                Promise.all(tasks).then(()=>{
-                  output.result=result;
-                  res.send(output);
-                })
+                output.recent_venues=result;
+                res.send(output);
               }
             })
           }

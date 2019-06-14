@@ -72,7 +72,7 @@ router.get("/bymv",(req,res)=>{
   if(m!==undefined&&m>=1&&m<=12){
     y=y||new Date().getFullYear();
     if(vid!==undefined&&vid!==0){
-      var sql=`SELECT tours.*, stitle, sphoto,  from_unixtime(time/1000,"%d") as date FROM tours inner join shows using(sid) where from_unixtime(time/1000,"%Y")=? and from_unixtime(time/1000,"%m")=? and vid=? order by date `;
+      var sql=`sELECT tours.*, stitle, sphoto, from_unixtime(time/1000,"%Y") as y, from_unixtime(time/1000,"%m") as m,  from_unixtime(time/1000,"%d") as d FROM tours inner join shows using(sid) where from_unixtime(time/1000,"%Y")=? and from_unixtime(time/1000,"%m")=? and vid=?  order by d `;
       var params=[parseInt(y),parseInt(m),parseInt(vid)];
       pool.query(sql,params,(err,result)=>{
         if(err){

@@ -117,4 +117,53 @@ router.get("/details",(req,res)=>{
     res.send({code:0, msg:"未提供现场编号"})
   }
 })
+router.get("/byartist",(req,res)=>{
+  var {aid,pno,psize}=req.query;
+  pno=pno||0;
+  psize=psize||8;
+  if(aid!==undefined&&aid!=0){
+    var sql=`SELECT vid,vname,vaddress,vphone,vpic,city,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join cities using(cid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC`;
+    var params=[aid];
+    var sql2=`select count(*) as vcount from (${sql}) as table2`;
+    pool.query(sql2,params,(err,result)=>{
+      if(err){
+        res.send({code:0, msg:String(err)})
+      }else{
+        var count=result[0]["vcount"];
+        sql+=` limit ?,? `;
+        params=[parseInt(aid),psize*pno,parseInt(psize)]
+        pool.query(sql,params,(err,result)=>{
+          if(err){
+            res.send({code:0,msg:String(err)})
+          }else{
+            var tasks=[];
+            for(var r of result){
+              tasks.push(new Promise((function(r){return (open)=>{
+                pool.query("SELECT tid,sphoto,stitle FROM tours inner join shows using(sid) where vid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) order by time limit 4",[r["vid"]],(err,result)=>{
+                  if(err){
+                    console.log(err);
+                  }else{
+                    r["tours"]=result;
+                    open();
+                  }
+                })
+              }})(r)))
+            }
+            Promise.all(tasks).then(()=>{
+              res.send({
+                pno,
+                psize,
+                pcount:Math.ceil(count/psize),
+                count,
+                result
+              })
+            })
+          }
+        })
+      }
+    })
+  }else{
+    res.send({code:0, msg:"未提供艺人编号"})
+  }
+})
 module.exports=router;
