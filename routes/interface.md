@@ -74,4 +74,5 @@ http://localhost:5050
 ----/tours/byartist?aid=音乐人编号
 --查询音乐人相关的现场列表
 ----/venues/byartist?aid=音乐人编号&pno=页码&psize=每页条目数
+
 ****************************finished******************************
