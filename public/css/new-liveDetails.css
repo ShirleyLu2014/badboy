@@ -238,16 +238,16 @@
   background: url("../image/index/share-icon.png") -171px 0 no-repeat;
 }
 .share>div>a.sina{
-  background-position:-1px  0;
+  background-position:-1px  0 !important;
 }
 .share>div>a.douban{
-  background-position:-137px 0 ;
+  background-position:-137px 0 !important;
 }
 .share>div>a.txwb{
-  background-position:-205px 0 ;
+  background-position:-205px 0 !important;
 }
 .share>div>a.qq{
-  background-position:-35px 0 ;
+  background-position:-35px 0 !important;
 }
 /* 演出详情内容 */
 .details{

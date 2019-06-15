@@ -106,16 +106,16 @@ section{
   background: url("../image/index/share-icon.png") -171px 0 no-repeat;
 }
 .artHead>.artFans>.share>div>a.sina{
-  background-position:-1px  0;
+  background-position:-1px  0 !important;
 }
 .artHead>.artFans>.share>div>a.douban{
-  background-position:-137px 0 ;
+  background-position:-137px 0 !important;
 }
 .artHead>.artFans>.share>div>a.txwb{
-  background-position:-205px 0 ;
+  background-position:-205px 0 !important;
 }
 .artHead>.artFans>.share>div>a.qq{
-  background-position:-35px 0 ;
+  background-position:-35px 0 !important;
 }
 /* 艺人详情页 */
 .detailWrap{
