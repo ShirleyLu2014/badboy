@@ -1,10 +1,10 @@
 $(function(){
   $.ajax({
-    url:"new-index.html",
+    url:"index.html",
     type:"get",
     success:function(html){
       //console.log(html);
-      $(`<link rel="stylesheet" href="css/new-index.css"/>`).appendTo("head");
+      $(`<link rel="stylesheet" href="css/index.css"/>`).appendTo("head");
     }
   })
 })
