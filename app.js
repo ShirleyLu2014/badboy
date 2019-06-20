@@ -15,7 +15,7 @@ var app = express();
 app.listen(5050);
 //统一伪装跨域，之后不用再res.writeHead
 app.use(cors({
-  origin:"http://127.0.0.1:5500",
+  origin:"http://localhost:8080",
   credentials:true
 }));
 //托管静态资源到public目录下
