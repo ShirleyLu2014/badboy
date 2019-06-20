@@ -20,7 +20,7 @@
             <p>地址：北京市朝阳区亮马桥路40号世纪剧院<a href="" style="margin-left:5px;">查看地图</a></p>
             <p>电话：400-188-6980</p>
             <p class="goodsPrice">价格：<span><b class="¥">¥</b>480</span></p>
-            <p class="count">数量：<button class="icon1"></button><input value="1" type="number" min="1"></input><button class="icon2"></button></p>
+            <p class="count">数量：<button class="icon1"></button><input value="1" type="number" min="1"/><button class="icon2"></button></p>
           </div>
           <a href="">购买</a>
         </div>
