@@ -3,9 +3,9 @@
     <div id="header1">
       <!--右侧logo-->
       <div class="logo">
-        <a href="index.html">
-          <img src="images/index/logo.png" alt="badboy" title="badboy">
-        </a>
+        <router-link to="/">
+          <img src="image/index/logo.png" alt="badboy" title="badboy">
+        </router-link>
       </div>
       <!--城市切换-->
       <div class="city">
@@ -36,9 +36,16 @@
       </div>
       <div class="list">
         <ul>
-          <li><a href="live.html">演出</a></li>
-          <li><a href="venue.html">音乐现场</a></li>
-          <li><a href="artist.html">音乐人</a></li>
+          <li>
+            <!--<a href="live.html">演出</a>-->
+            <router-link to="/Lives">演出</router-link>
+          </li>
+          <li>
+            <router-link to="/Venues">音乐现场</router-link>
+          </li>
+          <li>
+            <router-link to="Artists">音乐人</router-link>
+          </li>
           <li><a href="">音乐人服务</a></li>
           <li><a href="">音乐周边</a></li>
         </ul>

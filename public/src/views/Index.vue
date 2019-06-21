@@ -361,18 +361,18 @@
           <a href="live.html">MORE</a>
         </div>
         <div class="hotShow">
-          <a href="" class="hotList">
+          <router-link v-for="(t,i) of hot_tours" :key="i" :to="`/live_details/${t.tid}`" class="hotList">
             <div>
               <img src="images/index/hotshow1.jpg" alt="">
             </div>
             <div>
-              <p class="hotTitle">ONE THIRD X SMILEY派对</p>
-              <p class="hotArt">艺人： DJ A-DA</p>
-              <p class="hotTime">时间：2019-06-06 22:00</p>
-              <p class="hotSite">地点：北京 ONE THIRD酒吧</p>
-              <p class="hotPrice">¥120</p>
+              <p class="hotTitle">{{t.stitle}}</p>
+              <p class="hotArt">艺人： {{t.artists}}</p>
+              <p class="hotTime">时间：{{new Date(t.time).toLocaleString()}}</p>
+              <p class="hotSite">地点：{{t.city}} {{t.vname}}</p>
+              <p class="hotPrice">¥{{t.price.toFixed(2)}}</p>
             </div>
-          </a>
+          </router-link>
           <a href="" class="hotList">
             <div>
               <img src="images/index/hotshow1.jpg" alt="">
@@ -677,10 +677,12 @@ import carousel from "../components/Index/Carousel"
 export default {
   data(){
     return {
-      recent_tours:[]
+      recent_tours:[],   //即将上演列表
+      hot_tours:[]       //热门演出列表
     }
   },
   created(){
+    //即将上演
     this.axios.get(
       "http://localhost:5050/tours/recent"
     ).then(result=>{
