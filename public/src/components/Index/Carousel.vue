@@ -150,6 +150,9 @@ export default {
   }
 
   /*重写指示符的样式*/
+  .carousel-indicators{
+    bottom:130px;
+  }
   .carousel-indicators li{
     width:15px;height:15px;
     background-color:#fff;
@@ -189,7 +192,7 @@ export default {
   .carousel-control-prev,
   .carousel-control-next{
     width:40px;height:100px;
-    /* background-color:rgba(95, 95, 92, 0.3); */
+    background-color:rgba(95, 95, 92, 0.3);
     top:20%;
     margin-left:40px;
     border-radius:0.25rem;

@@ -4,7 +4,7 @@
       <!--右侧logo-->
       <div class="logo">
         <router-link to="/">
-          <img src="image/index/logo.png" alt="badboy" title="badboy">
+          <img src="/images/index/logo.png" alt="badboy" title="badboy">
         </router-link>
       </div>
       <!--城市切换-->
