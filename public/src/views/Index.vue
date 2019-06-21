@@ -443,42 +443,6 @@
               <p class="hotPrice">¥{{t.price.toFixed(2)}}</p>
             </div>
           </router-link>
-          <!--<a href="" class="hotList">
-            <div>
-              <img src="image/index/hotshow1.jpg" alt="">
-            </div>
-            <div>
-              <p class="hotTitle">ONE THIRD X SMILEY派对</p>
-              <p class="hotArt">艺人： DJ A-DA</p>
-              <p class="hotTime">时间：2019-06-06 22:00</p>
-              <p class="hotSite">地点：北京 ONE THIRD酒吧</p>
-              <p class="hotPrice">¥120</p>
-            </div>
-          </a>
-          <a href="" class="hotList">
-            <div>
-              <img src="image/index/hotshow1.jpg" alt="">
-            </div>
-            <div>
-              <p class="hotTitle">ONE THIRD X SMILEY派对</p>
-              <p class="hotArt">艺人： DJ A-DA</p>
-              <p class="hotTime">时间：2019-06-06 22:00</p>
-              <p class="hotSite">地点：北京 ONE THIRD酒吧</p>
-              <p class="hotPrice">¥120</p>
-            </div>
-          </a>
-          <a href="" class="hotList">
-            <div>
-              <img src="image/index/hotshow1.jpg" alt="">
-            </div>
-            <div>
-              <p class="hotTitle">ONE THIRD X SMILEY派对</p>
-              <p class="hotArt">艺人： DJ A-DA</p>
-              <p class="hotTime">时间：2019-06-06 22:00</p>
-              <p class="hotSite">地点：北京 ONE THIRD酒吧</p>
-              <p class="hotPrice">¥120</p>
-            </div>
-          </a>-->
         </div>
       </div>
       <!-- 四楼音乐现场 -->
