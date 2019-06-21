@@ -16,10 +16,10 @@
       </div>
     </div>
     <!--2.左右箭头-->
-    <a href="#demo" class="carousel-control-next">
+    <a href="javascript:;" @click="move(1)" class="carousel-control-next">
         <span class="carousel-control-next-icon"></span>
     </a>
-    <a href="#demo" class="carousel-control-prev">
+    <a href="javascript:;" @click="move(-1)" class="carousel-control-prev">
         <span class="carousel-control-prev-icon"></span>
     </a>
     <!--3.轮播指示符-->
@@ -75,7 +75,8 @@ export default {
           title:"李大奔的硬核浪漫：如果不是你，随便谁都一样",
           to:"javascript:;"
         }*/
-      ]
+      ],
+
     }
   },
   created(){
@@ -83,11 +84,16 @@ export default {
       this.innerWidth=window.innerWidth;
     })
   },
+  methods:{
+    move(i){
+      this.i+=i;
+    }
+  },
   computed:{
     ulStyle(){
       var width=this.innerWidth*(this.imgs.length+1)+"px";
       var transition="all .5s linear";
-      var marginLeft=0;
+      var marginLeft=-this.i*this.innerWidth+"px";
       console.log(width);
       return { transition, width, marginLeft }
     }
