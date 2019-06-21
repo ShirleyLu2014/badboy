@@ -10,21 +10,21 @@
       </div>
       <div class="map">
         <div class="code">
-          <img src="image/footer/ewm.png" alt="">
+          <img src="images/footer/ewm.png" alt="">
         </div>
         <div class="contact">
           <div class="con_title">
-            <img src="image/footer/contact.png" alt="">
+            <img src="images/footer/contact.png" alt="">
           </div>
           <div class="con_addr">
             <ul>
-              <li><img src="image/footer/address.png" alt=""></li>
+              <li><img src="images/footer/address.png" alt=""></li>
               <li><span>北京市朝阳区广渠路1号创1958园区3-12 badboy</span></li>
             </ul>  
           </div>
           <div class="con_tel">
             <ul>
-              <li><img src="image/footer/tel.png" alt=""></li>
+              <li><img src="images/footer/tel.png" alt=""></li>
               <li><span>电话：（8610）010-50972785</span></li>
               <li><span>客服咨询热线：4001-680-650</span></li>
             </ul>
@@ -34,7 +34,7 @@
         </div>
         <div class="about">
           <div class="about_title">
-            <img src="image/footer/about.png" alt="">
+            <img src="images/footer/about.png" alt="">
           </div>
           <div>
             <ul>
@@ -158,7 +158,7 @@ footer>div:first-child{
   margin-left:50px;
 }
 .about{
-  widtn:400px;
+  width:400px;
   padding-left:60px;
   padding-top:15px;
 }

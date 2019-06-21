@@ -6,7 +6,7 @@
         <ul>
           <li>
             <a href="Live.html">
-              <img src="image/index/title_shows.png" alt="">
+              <img src="images/index/title_shows.png" alt="">
             </a>
           </li>
           <!-- <li>
@@ -195,7 +195,7 @@
           <li>
             <a href="liveDetails.html">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -212,7 +212,7 @@
           <li>
               <a href="">
                 <div>
-                  <img src="image/live/nlive01.jpg" alt="">
+                  <img src="images/live/nlive01.jpg" alt="">
                 </div>
                 <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
                 <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -229,7 +229,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -246,7 +246,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -263,7 +263,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -280,7 +280,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -297,7 +297,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -314,7 +314,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -331,7 +331,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -348,7 +348,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -365,7 +365,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -382,7 +382,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -399,7 +399,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -416,7 +416,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -433,7 +433,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -450,7 +450,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -467,7 +467,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -484,7 +484,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -501,7 +501,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -518,7 +518,7 @@
           <li>
             <a href="">
               <div>
-                <img src="image/live/nlive01.jpg" alt="">
+                <img src="images/live/nlive01.jpg" alt="">
               </div>
               <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
               <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
@@ -763,7 +763,7 @@ section>div{
   vertical-align: middle;
   width: 19px;
   height: 19px;
-  background: url(/image/index/icon.png) 0 -343px no-repeat;
+  background: url(/images/index/icon.png) 0 -343px no-repeat;
 }
 #live>.liveList>ul>li>a>p.gPlace{
   color:#37a;
@@ -780,7 +780,7 @@ section>div{
   margin:0;
   width:28px;
   height:42px;
-  background: url("/image/index/icon.png") #fff -94px -500px no-repeat;
+  background: url("/images/index/icon.png") #fff -94px -500px no-repeat;
 }
 .page>a.page-next{
   background-position: -136px -503px;

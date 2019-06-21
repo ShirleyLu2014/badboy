@@ -1,77 +1,7 @@
 <template>
   <section style="margin-top:0px;">
       <!--轮播图 -->
-      <div id="demo" class="carousel" data-ride="carousel">
-          <!--1.轮播图片-->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <a href="">
-              <img src="image/carousel_item/carousel-1.jpg"/>
-            </a>
-            <a href="">《Ghost Mane》| STARR J与恶魔一起住在Dark Castle")</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-2.jpg"/>
-            </a>
-            <a href="">赐我们一首比“情歌而已”更值得唱的歌 声音碎片第三支预热单曲《送流水》首发</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-3.jpg"/>
-            </a>
-            <a href="">我眼里只有一个3号他永远昂着头 | 黄旭全新单曲《低位》致敬韦德</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-4.jpg"/>
-            </a>
-            <a href="">彭坦春晓携女率性玩音乐 Modern Sky Kids厂牌汇聚亲子市场新能量</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-5.jpg"/>
-            </a>
-            <a href="">曾轶可另类创作再出击 全新单曲《Truly》真心上线</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-6.jpg"/>
-            </a>
-            <a href="">16层新专辑先行单曲上线，精巧器乐铺排搭建诡异《失落园》</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-7.jpg"/>
-            </a>
-            <a href="">标题如歌” | OBi《爱你》温柔上线</a>
-          </div>
-          <div class="carousel-item">
-            <a href="">
-              <img src="image/carousel_item/carousel-8.jpg"/>
-            </a>
-            <a href="">李大奔的硬核浪漫：如果不是你，随便谁都一样</a>
-          </div>
-        </div>
-        <!--2.左右箭头-->
-        <a data-slide="next" href="#demo" class="carousel-control-next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-        <a data-slide="prev" href="#demo" class="carousel-control-prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <!--3.轮播指示符-->
-        <ul class="carousel-indicators">
-            <li data-target="#demo" data-slide-to="0" class="active"></li>
-            <li data-target="#demo" data-slide-to="1"></li>
-            <li data-target="#demo" data-slide-to="2"></li>
-            <li data-target="#demo" data-slide-to="3"></li>
-            <li data-target="#demo" data-slide-to="4"></li>
-            <li data-target="#demo" data-slide-to="5"></li>
-            <li data-target="#demo" data-slide-to="6"></li>
-            <li data-target="#demo" data-slide-to="7"></li>
-        </ul>
-      </div>
+      <carousel></carousel>
       <!-- 一楼近期演出 -->
       <div class="firstFloor">
         <div class="upcoming">
@@ -396,7 +326,7 @@
               <dt>
                 <span>混livehouse</span>感受音乐现场的魅力
               </dt>
-              <dd>戳这里发现你附近的livehouse>></dd></dd>
+              <dd>戳这里发现你附近的livehouse>></dd>
             </dl>
           </a>
         </div>
@@ -407,7 +337,7 @@
               <dt>
                 <span>关注badboy音乐人</span>给你好看
               </dt>
-              <dd>戳这里发现你喜爱的独立音乐人>></dd></dd>
+              <dd>戳这里发现你喜爱的独立音乐人>></dd>
             </dl>
           </a>
         </div>
@@ -418,7 +348,7 @@
               <dt>
                 <span>了解厂牌</span>大牌动态一手掌握
               </dt>
-              <dd>戳这里发现你喜爱的厂牌>></dd></dd>
+              <dd>戳这里发现你喜爱的厂牌>></dd>
             </dl>
           </a>
         </div>
@@ -433,7 +363,7 @@
         <div class="hotShow">
           <a href="" class="hotList">
             <div>
-              <img src="image/index/hotshow1.jpg" alt="">
+              <img src="images/index/hotshow1.jpg" alt="">
             </div>
             <div>
               <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -445,7 +375,7 @@
           </a>
           <a href="" class="hotList">
             <div>
-              <img src="image/index/hotshow1.jpg" alt="">
+              <img src="images/index/hotshow1.jpg" alt="">
             </div>
             <div>
               <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -457,7 +387,7 @@
           </a>
           <a href="" class="hotList">
             <div>
-              <img src="image/index/hotshow1.jpg" alt="">
+              <img src="images/index/hotshow1.jpg" alt="">
             </div>
             <div>
               <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -469,7 +399,7 @@
           </a>
           <a href="" class="hotList">
             <div>
-              <img src="image/index/hotshow1.jpg" alt="">
+              <img src="images/index/hotshow1.jpg" alt="">
             </div>
             <div>
               <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -491,7 +421,7 @@
           </div>
           <div class="liveHouse">
             <a href="venueDetails.html" class="liveList">
-              <img src="image/index/liovehouse01.jpg" alt="">
+              <img src="images/index/liovehouse01.jpg" alt="">
               <div class="liveDetail">
                 <p class="liveTitle">
                   <i></i>
@@ -502,7 +432,7 @@
               </div>
             </a>
             <a href="" class="liveList">
-              <img src="image/index/livehouse02.jpg" alt="">
+              <img src="images/index/livehouse02.jpg" alt="">
               <div class="liveDetail">
                 <p class="liveTitle">
                   <i></i>
@@ -520,42 +450,42 @@
           </div>
           <div class="fans">
             <a href="" class="fansItem bgImgFirst">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">1</b>
             </a>
             <a href="" class="fansItem bgImgSecond">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">2</b>
             </a>
             <a href="" class="fansItem bgImgThird">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">3</b>
             </a>
             <a href="" class="fansItem">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">4</b>
             </a>
             <a href="" class="fansItem">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">5</b>
             </a>
             <a href="" class="fansItem">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">6</b>
             </a>
             <a href="" class="fansItem">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">7</b>
             </a>
             <a href="" class="fansItem">
-              <img src="image/index/fans1.jpg" alt="">
+              <img src="images/index/fans1.jpg" alt="">
               <p>Gatsby</p>
               <b class="rankNum">8</b>
             </a>
@@ -574,7 +504,7 @@
             <ul>
               <li>
                 <a href="artDetail.html" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top1"></span>
@@ -588,7 +518,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top2"></span>
@@ -602,7 +532,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top3"></span>
@@ -616,7 +546,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top4"></span>
@@ -630,7 +560,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top5"></span>
@@ -644,7 +574,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top6"></span>
@@ -658,7 +588,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top7"></span>
@@ -672,7 +602,7 @@
               </li>
               <li>
                 <a href="" class="artItem">
-                  <img src="image/index/art01.jpg" alt="">
+                  <img src="images/index/art01.jpg" alt="">
                   <div class="top">
                     <div class="topBg">
                       <span class="top8"></span>
@@ -693,7 +623,7 @@
             <ul id="popMusic">
               <li>
                 <div>
-                  <img src="/image/news_picture/np25.jpg" alt="">
+                  <img src="/images/news_picture/np25.jpg" alt="">
                   <audio src="/audio/04 - 溺爱.mp3"></audio>
                   <p>▶</p>
                 </div>
@@ -708,7 +638,7 @@
               </li>
               <li>
                 <div>
-                  <img src="/image/news_picture/np25.jpg" alt="">
+                  <img src="/images/news_picture/np25.jpg" alt="">
                   <audio src="/audio/09 - 灰姑娘.mp3"></audio>
                   <p>▶</p>
                 </div>
@@ -723,7 +653,7 @@
               </li>
               <li>
                 <div>
-                  <img src="/image/news_picture/np25.jpg" alt="">
+                  <img src="/images/news_picture/np25.jpg" alt="">
                   <audio src="/audio/03 - 极乐世界.mp3"></audio>
                   <p>▶</p>
                 </div>
@@ -743,6 +673,7 @@
   </section>
 </template>
 <script>
+import carousel from "../components/Index/Carousel"
 export default {
   data(){
     return {
@@ -756,7 +687,8 @@ export default {
       this.recent_tours=result.data;
       console.log(result.data);
     })
-  }
+  },
+  components:{ carousel }
 }
 </script>
 <style scoped>
@@ -769,98 +701,7 @@ export default {
     width:100%;
     margin-top:60px;
   }
-  /* section>#carousel>.carousel-inner>div>a{
-    display:block;
-  } */
-  section>.carousel>{
-    margin-top:60px;
-  }
-  section>.carousel:after{
-    content:"";
-    display:block;
-    clear:both;
-  }
-  section>.carousel>.carousel-inner>.carousel-item>a>img{
-    width:100%;
-  }
-  section>.carousel>.carousel-inner>.carousel-item>a:last-child{
-    display:block;
-    width:100%;
-    height:50px;
-    color:#fff;
-    text-align:center;
-    font-size:15px;
-    line-height:50px;
-    text-decoration:none;
-    background-color:#f68cc6;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(2)>a:last-child{
-    background-color:#fa9c77;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(3)>a:last-child{
-    background-color:#ba4b5d;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(4)>a:last-child{
-    background-color:#02c0f0f5;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(5)>a:last-child{
-    background-color:#bc76dd;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(6)>a:last-child{
-    background-color:#539788;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(7)>a:last-child{
-    background-color:#c67ee79b;
-  }
-  section>.carousel>.carousel-inner>.carousel-item:nth-child(8)>a:last-child{
-    background-color:#2f49079b;
-  }
-
-  /*重写指示符的样式*/
-  .carousel-indicators li{
-    width:15px;height:15px;
-    background-color:#fff;
-    margin-left:6px;
-    margin-right:6px;
-    border-radius: 50%;
-    top:60px;
-  }
-  .carousel-indicators>li:first-child{
-    background-color:#f68cc6;
-  }
-  .carousel-indicators>li:nth-child(2){
-    background-color:#fa9c77;
-  }
-  .carousel-indicators>li:nth-child(3){
-    background-color:#ba4b5d;
-  }
-  .carousel-indicators>li:nth-child(4){
-    background-color:#02c0f0f5;
-  }
-  .carousel-indicators>li:nth-child(5){
-    background-color:#bc76dd;
-  }
-  .carousel-indicators>li:nth-child(6){
-    background-color:#539788;
-  }
-  .carousel-indicators>li:nth-child(7){
-    background-color:#c67ee79b;
-  }
-  .carousel-indicators>li:nth-child(8){
-    background-color:#2f49079b;
-  }
-  /*重写左右箭头的样式*/
-  .carousel-control-prev,
-  .carousel-control-next{
-    width:40px;height:100px;
-    /* background-color:rgba(95, 95, 92, 0.3); */
-    top:20%;
-    margin-left:40px;
-    border-radius:0.25rem;
-  }
-  .carousel-control-next{
-    margin-right:40px;
-  }
+  
   /*演出列表样式 */
   section>div{
     width:1200px;
@@ -899,7 +740,7 @@ export default {
     vertical-align: middle;
     width: 20px;
     height: 24px;
-    background: url("/image/index/icon.png") -239px -117px no-repeat;
+    background: url("/images/index/icon.png") -239px -117px no-repeat;
     margin: 0px 5px;
   }
   .firstFloor>.upcoming>.titleBar>a{*/
@@ -1001,7 +842,7 @@ export default {
     vertical-align: middle;
     width: 24px;
     height: 24px;
-    background-image: url("/image/index/droll-icon.png");
+    background-image: url("/images/index/droll-icon.png");
     background-position: -126px 0px;
     cursor: pointer;
   }
@@ -1010,7 +851,7 @@ export default {
     vertical-align: middle;
     width: 24px;
     height: 24px;
-    background-image: url("/image/index/droll-icon.png");
+    background-image: url("/images/index/droll-icon.png");
     background-position: -127px -39px;
     cursor: pointer;
   }
@@ -1101,7 +942,7 @@ export default {
     display:inline-block;
     width: 38px;
     height: 40px;
-    background: url("/image/index/icon.png") no-repeat;
+    background: url("/images/index/icon.png") no-repeat;
     margin: 0 20px 0 10px;
     background-position: -67px -439px;
   }
@@ -1141,7 +982,7 @@ export default {
     display:inline-block;
     width: 30px;
     height: 30px;
-    background: url("/image/index/icon.png") no-repeat;
+    background: url("/images/index/icon.png") no-repeat;
     background-position: -272px -336px;
   }
   .thirdFloor>.titlebar>h2{
@@ -1234,7 +1075,7 @@ export default {
       display:inline-block;
       width: 34px;
       height: 34px;
-      background: url("/image/index/icon.png") no-repeat;
+      background: url("/images/index/icon.png") no-repeat;
     }
     .titleBar>h2{
       width:100px;
@@ -1309,7 +1150,7 @@ export default {
       width: 27px;
       height: 27px;
       line-height:27px;
-      background: url("/image/index/icon.png") no-repeat;
+      background: url("/images/index/icon.png") no-repeat;
       background-position: -210px -442px;
     }
     .fourthFloor>.fourthLeft>.liveHouse>.liveList>.liveDetail>p.liveTitle>span{
@@ -1367,15 +1208,15 @@ export default {
       color:#e72f2f;
     }
     .fourthFloor>.fourthRight>.fans>.bgImgFirst{
-      background:url("/image/index/ranking.png")  no-repeat;
+      background:url("/images/index/ranking.png")  no-repeat;
       background-position:8px 0 ;
     }
     .fourthFloor>.fourthRight>.fans>.bgImgSecond{
-      background:url("/image/index/ranking.png")  no-repeat;
+      background:url("/images/index/ranking.png")  no-repeat;
       background-position:-64px 0 ;
     }
     .fourthFloor>.fourthRight>.fans>.bgImgThird{
-      background:url("/image/index/ranking.png")  no-repeat;
+      background:url("/images/index/ranking.png")  no-repeat;
       background-position:-131px 0 ;
     }
     .fourthFloor>.fourthRight>.fans>.fansItem>img{
@@ -1480,7 +1321,7 @@ export default {
     display:inline-block;
     width:22px;
     height:31px;
-    background:url("/image/index/artisthot.png") no-repeat;
+    background:url("/images/index/artisthot.png") no-repeat;
   }
   .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top2{
     background-position:-27px 0;

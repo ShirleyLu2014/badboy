@@ -6,7 +6,7 @@
       <div class="auto-width goodsItem">
         <!--演出图片-->
         <a href="" class="goodsImg">
-          <img src="image/live/list04.jpg" alt="">
+          <img src="images/live/list04.jpg" alt="">
         </a>
         <!-- 演出信息列表 -->
         <div class="goodsDetails">
@@ -31,25 +31,25 @@
           </div>
           <div class="fansWant">
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
             <a href="">
-              <img src="image/index/fans001.jpg" alt="">
+              <img src="images/index/fans001.jpg" alt="">
             </a>
           </div>
           <div class="attention">
@@ -168,7 +168,7 @@
                 <li>
                   <a href="">
                     <span>
-                      <img src="image/live/list05.jpg" alt="">
+                      <img src="images/live/list05.jpg" alt="">
                       <span class="icon artIcon"></span>
                     </span>
                     <div>
@@ -187,7 +187,7 @@
                 <li>
                   <a href="">
                     <span>
-                      <img src="image/live/list06.jpg" alt="">
+                      <img src="images/live/list06.jpg" alt="">
                       <span class="icon placeIcon"></span>
                     </span>
                     <div>
@@ -227,11 +227,11 @@
               <p class="desc3">座位图如下（仅供参考，座位以实际为准）</p>
               <br>
               <p class="desc1">平日场</p>
-              <img src="image/live/stage01.jpg" alt="">
+              <img src="images/live/stage01.jpg" alt="">
               <p class="desc1">周末场</p>
-              <img src="image/live/stage02.jpg" alt="">
+              <img src="images/live/stage02.jpg" alt="">
               <br>
-              <img src="image/live/stage03.jpg" alt="">
+              <img src="images/live/stage03.jpg" alt="">
               <br>
               <br>
               <div class="desc3">
@@ -247,12 +247,12 @@
                 <br>
                 <p>他们长久以来积怨极深，除了死亡，似乎没有什么可以抚平这两家仇恨的沟壑。</p>
                 <br>
-                <img src="image/live/stage04.jpg" alt="">
+                <img src="images/live/stage04.jpg" alt="">
                 <br>
                 <br>
                 <p>然而，一场舞会改变了一切。两个仇家的孩子——罗密欧与朱丽叶——无意间邂逅并相恋了。为了守护爱情，两人偷偷找到神父举行婚礼，岂料灾难接踵而至……</p>
                 <br>
-                <img src="image/live/stage05.jpg" alt="">
+                <img src="images/live/stage05.jpg" alt="">
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@
             <li>
               <a href="" class="hotList">
                 <div>
-                  <img src="image/index/hotshow1.jpg" alt="">
+                  <img src="images/index/hotshow1.jpg" alt="">
                 </div>
                 <div>
                   <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -280,7 +280,7 @@
             <li>
               <a href="" class="hotList">
                 <div>
-                  <img src="image/index/hotshow1.jpg" alt="">
+                  <img src="images/index/hotshow1.jpg" alt="">
                 </div>
                 <div>
                   <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -294,7 +294,7 @@
             <li>
               <a href="" class="hotList">
                 <div>
-                  <img src="image/index/hotshow1.jpg" alt="">
+                  <img src="images/index/hotshow1.jpg" alt="">
                 </div>
                 <div>
                   <p class="hotTitle">ONE THIRD X SMILEY派对</p>
@@ -430,7 +430,7 @@ export default {
   font-size:18px;
   font-weight: bold;
   outline:0;
-  background:url("/image/index/icon.png") no-repeat;
+  background:url("/images/index/icon.png") no-repeat;
   background-color:rgba(0,0,0,0,8);
   background-position:-34px -29px;
 }
@@ -487,7 +487,7 @@ export default {
   vertical-align: middle;
   width: 16px;
   height: 16px;
-  background: url("/image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   margin-right: 5px;
 }
 .tag>div{
@@ -542,7 +542,7 @@ export default {
   vertical-align: middle;
   width: 20px;
   height: 20px;
-  background: url("/image/index/icon.png") -65px 0px no-repeat;
+  background: url("/images/index/icon.png") -65px 0px no-repeat;
 }
 .attention>a>span.fansCount{
   margin-left:5px;
@@ -567,7 +567,7 @@ export default {
   height:24px;
   text-decoration: none;
   outline: 0;
-  background: url("/image/index/share-icon.png") -171px 0 no-repeat;
+  background: url("/images/index/share-icon.png") -171px 0 no-repeat;
 }
 .share>div>a.sina{
   background-position:-1px  0 !important;
@@ -631,7 +631,7 @@ export default {
   width: 17px;
   height: 17px;
   margin-right: 15px;
-  background: url("/image/index/icon.png") -177px 0 no-repeat;
+  background: url("/images/index/icon.png") -177px 0 no-repeat;
 }
 .leftContent>.tour>.tourHead>h3>span{
   margin-left:20px;
@@ -679,12 +679,12 @@ export default {
   position: absolute;
   width: 23px;
   height: 23px;
-  background: url("/image/index/icon.png") #fff -193px -387px no-repeat;
+  background: url("/images/index/icon.png") #fff -193px -387px no-repeat;
   left: 0;
   top: -11px;
 }
 .cityList>ul>li>a:hover>span.listIcon{
-  background: url("/image/index/icon.png") #fff -248px -386px no-repeat;
+  background: url("/images/index/icon.png") #fff -248px -386px no-repeat;
 }
 /* 左侧二层参演相关 */
 .group{
@@ -708,7 +708,7 @@ export default {
   width: 17px;
   height: 17px;
   margin-right: 15px;
-  background: url("/image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
 }
 .groupH3>i{
   background-position:-135px -35px;

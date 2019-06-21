@@ -4,7 +4,7 @@
       <!--右侧logo-->
       <div class="logo">
         <a href="index.html">
-          <img src="image/index/logo.png" alt="badboy" title="badboy">
+          <img src="images/index/logo.png" alt="badboy" title="badboy">
         </a>
       </div>
       <!--城市切换-->
@@ -56,7 +56,7 @@
           </li>
           <li>
             <a href="">
-                <img src="image/index/search.png" alt="">
+                <img src="images/index/search.png" alt="">
             </a>
           </li>
         </ul>
@@ -183,7 +183,7 @@ header{
 .city>div.city-select>a>i{
   /* position:absolute; */
   display: inline-block;
-  background-image: url("/image/index/icon.png");
+  background-image: url("/images/index/icon.png");
   background-position: -73px -901px;
   width: 12px;
   height: 15px;
@@ -268,7 +268,7 @@ ul{
   right: 10px;
   cursor: pointer;
   /* z-index: 8040; */
-  background: url("/image/index/close.png") no-repeat;
+  background: url("/images/index/close.png") no-repeat;
 }
 .loginTitle{
   width:332px;
@@ -294,7 +294,7 @@ ul{
   outline:0;
   border:0;
   padding-left:40px;
-  background:url("/image/index/icon.png") 10px -593px no-repeat;
+  background:url("/images/index/icon.png") 10px -593px no-repeat;
   border:1px solid #00f;
   border-radius:3px;
   border:1px solid rgba(23, 163, 184, 0.932);
@@ -344,7 +344,7 @@ ul{
   display: inline-block;
   width: 47px;
   height: 47px;
-  background: url("/image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   margin: 0 10px;
 }
 .qq{
