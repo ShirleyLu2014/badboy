@@ -92,7 +92,7 @@ section{
   margin-left:3px;
   width: 10px;
   height: 10px;
-  background: url(../image/index/icon.png) -103px 3px no-repeat;
+  background: url(/image/index/icon.png) -103px 3px no-repeat;
 }
 /*音乐人列表 */
 .artList{
@@ -109,7 +109,7 @@ section{
 }
 .artList>ul>li{
   width:200px;
-  height:247px;
+  height:274px;
   /* float:left; */
   margin:0 18px;
   /* padding:0 20px; */
@@ -137,6 +137,7 @@ section{
   color:#37a;
   font-size:14px;
 }
+.artList>ul>li>p.
 .artList>ul>li>a.artCount{
   color:#666666;
 }
@@ -158,7 +159,7 @@ section{
   margin:0;
   width:28px;
   height:42px;
-  background: url("../image/index/icon.png") #fff -94px -500px no-repeat;
+  background: url("/image/index/icon.png") #fff -94px -500px no-repeat;
 }
 .page>a.page-next{
   background-position: -136px -503px;

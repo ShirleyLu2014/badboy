@@ -40,7 +40,7 @@ router.get("/list",(req,res)=>{
       var count=result[0]["count"];
       sql+=" limit ?,?";
       pno=pno||0;
-      psize=psize||10;
+      psize=psize||20;
       params.push(pno*psize,psize);
       pool.query(sql,params,(err,result)=>{
         if(err){

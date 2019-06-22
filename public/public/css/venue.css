@@ -92,7 +92,7 @@ section{
   margin-left:3px;
   width: 10px;
   height: 10px;
-  background: url(../image/index/icon.png) -103px 3px no-repeat;
+  background: url(/image/index/icon.png) -103px 3px no-repeat;
 }
 /* 三楼地图 */
 .venue>.map{
@@ -179,7 +179,7 @@ section{
   margin:0;
   width:28px;
   height:42px;
-  background: url("../image/index/icon.png") #fff -94px -500px no-repeat;
+  background: url("/image/index/icon.png") #fff -94px -500px no-repeat;
 }
 .page>a.page-next{
   background-position: -136px -503px;

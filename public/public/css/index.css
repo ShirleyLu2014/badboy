@@ -7,98 +7,7 @@ section{
   width:100%;
   margin-top:60px;
 }
-/* section>#carousel>.carousel-inner>div>a{
-  display:block;
-} */
-section>.carousel>{
-  margin-top:60px;
-}
-section>.carousel:after{
-  content:"";
-  display:block;
-  clear:both;
-}
-section>.carousel>.carousel-inner>.carousel-item>a>img{
-  width:100%;
-}
-section>.carousel>.carousel-inner>.carousel-item>a:last-child{
-  display:block;
-  width:100%;
-  height:50px;
-  color:#fff;
-  text-align:center;
-  font-size:15px;
-  line-height:50px;
-  text-decoration:none;
-  background-color:#f68cc6;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(2)>a:last-child{
-  background-color:#fa9c77;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(3)>a:last-child{
-  background-color:#ba4b5d;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(4)>a:last-child{
-  background-color:#02c0f0f5;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(5)>a:last-child{
-  background-color:#bc76dd;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(6)>a:last-child{
-  background-color:#539788;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(7)>a:last-child{
-  background-color:#c67ee79b;
-}
-section>.carousel>.carousel-inner>.carousel-item:nth-child(8)>a:last-child{
-  background-color:#2f49079b;
-}
 
-/*重写指示符的样式*/
-.carousel-indicators li{
-  width:15px;height:15px;
-  background-color:#fff;
-  margin-left:6px;
-  margin-right:6px;
-  border-radius: 50%;
-  top:60px;
-}
-.carousel-indicators>li:first-child{
-  background-color:#f68cc6;
-}
-.carousel-indicators>li:nth-child(2){
-  background-color:#fa9c77;
-}
-.carousel-indicators>li:nth-child(3){
-  background-color:#ba4b5d;
-}
-.carousel-indicators>li:nth-child(4){
-  background-color:#02c0f0f5;
-}
-.carousel-indicators>li:nth-child(5){
-  background-color:#bc76dd;
-}
-.carousel-indicators>li:nth-child(6){
-  background-color:#539788;
-}
-.carousel-indicators>li:nth-child(7){
-  background-color:#c67ee79b;
-}
-.carousel-indicators>li:nth-child(8){
-  background-color:#2f49079b;
-}
-/*重写左右箭头的样式*/
-.carousel-control-prev,
-.carousel-control-next{
-  width:40px;height:100px;
-  /* background-color:rgba(95, 95, 92, 0.3); */
-  top:20%;
-  margin-left:40px;
-  border-radius:0.25rem;
-}
-.carousel-control-next{
-  margin-right:40px;
-}
 /*演出列表样式 */
 section>div{
   width:1200px;
@@ -121,9 +30,9 @@ section>div.carousel{
   width:388px;
   /* border:1px solid #f00; */
 }
-h2{ 
-  color:#666666;
-  font-size:20px;
+h2.h2{ 
+  color:#666666 ;
+  font-size:20px ;
 }
 .firstFloor>.upcoming>.titlebar{
   width:820px;
@@ -137,7 +46,7 @@ h2{
   vertical-align: middle;
   width: 20px;
   height: 24px;
-  background: url("/image/index/icon.png") -239px -117px no-repeat;
+  background: url("/images/index/icon.png") -239px -117px no-repeat;
   margin: 0px 5px;
 }
 .firstFloor>.upcoming>.titleBar>a{*/
@@ -239,7 +148,7 @@ span.year,span.month{
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background-image: url("/image/index/droll-icon.png");
+  background-image: url("/images/index/droll-icon.png");
   background-position: -126px 0px;
   cursor: pointer;
 }
@@ -248,7 +157,7 @@ span.year,span.month{
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background-image: url("/image/index/droll-icon.png");
+  background-image: url("/images/index/droll-icon.png");
   background-position: -127px -39px;
   cursor: pointer;
 }
@@ -339,7 +248,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
   display:inline-block;
   width: 38px;
   height: 40px;
-  background: url("/image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   margin: 0 20px 0 10px;
   background-position: -67px -439px;
 }
@@ -379,7 +288,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
   display:inline-block;
   width: 30px;
   height: 30px;
-  background: url("/image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   background-position: -272px -336px;
 }
 .thirdFloor>.titlebar>h2{
@@ -440,10 +349,10 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
   text-overflow: ellipsis;
 }
 .thirdFloor>.hotShow>.hotList>div>.hotArt{
+  margin-top:10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-top:10px;
 }
 .thirdFloor>.hotShow>.hotList>div>.hotPrice{
   margin-top:10px;
@@ -475,7 +384,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
     display:inline-block;
     width: 34px;
     height: 34px;
-    background: url("/image/index/icon.png") no-repeat;
+    background: url("/images/index/icon.png") no-repeat;
   }
   .titleBar>h2{
     width:100px;
@@ -550,7 +459,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
     width: 27px;
     height: 27px;
     line-height:27px;
-    background: url("/image/index/icon.png") no-repeat;
+    background: url("/images/index/icon.png") no-repeat;
     background-position: -210px -442px;
   }
   .fourthFloor>.fourthLeft>.liveHouse>.liveList>.liveDetail>p.liveTitle>span{
@@ -608,15 +517,15 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
     color:#e72f2f;
   }
   .fourthFloor>.fourthRight>.fans>.bgImgFirst{
-    background:url("/image/index/ranking.png")  no-repeat;
+    background:url("/images/index/ranking.png")  no-repeat;
     background-position:8px 0 ;
   }
   .fourthFloor>.fourthRight>.fans>.bgImgSecond{
-    background:url("/image/index/ranking.png")  no-repeat;
+    background:url("/images/index/ranking.png")  no-repeat;
     background-position:-64px 0 ;
   }
   .fourthFloor>.fourthRight>.fans>.bgImgThird{
-    background:url("/image/index/ranking.png")  no-repeat;
+    background:url("/images/index/ranking.png")  no-repeat;
     background-position:-131px 0 ;
   }
   .fourthFloor>.fourthRight>.fans>.fansItem>img{
@@ -692,7 +601,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
   height:225px;
   margin-bottom:30px;
 }
-.fifthFloor>.fifthLeft>.artList>ul>li>img{
+.fifthFloor>.fifthLeft>.artList>ul>li>.artItem>img{
   width:198px;
   height:170px;
 }
@@ -724,25 +633,25 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
   background:url("/image/index/artisthot.png") no-repeat;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top2{
-  background-position:-27px 0;
+  background-position:-27px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top3{
-  background-position:-54px 0;
+  background-position:-54px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top4{
-  background-position:-81px 0;
+  background-position:-81px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top5{
-  background-position:-108px 0;
+  background-position:-108px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top6{
-  background-position:-135px 0;
+  background-position:-135px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top7{
-  background-position:-162px 0;
+  background-position:-162px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>div.topBg>span.top8{
-  background-position:-189px 0;
+  background-position:-189px 0 !important;
 }
 .fifthFloor>.fifthLeft>.artList>ul>li>.artItem>.top>.topDetail{
   padding:5px;
