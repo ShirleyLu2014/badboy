@@ -558,7 +558,7 @@ export default {
   created(){
     //即将上演
     this.axios.get(
-      "http://localhost:5050/tours/list"
+      "tours/list"
     ).then(result=>{
       this.lives_list=result.data.result;
       console.log(result.data.result);
@@ -567,5 +567,5 @@ export default {
 }
 </script>
 <style scoped>
-  /*@import "../../public/css/lives.css"*/
+  @import "../../public/css/lives.css"
 </style>

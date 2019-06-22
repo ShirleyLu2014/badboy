@@ -246,7 +246,7 @@ export default {
   created(){
     //即将上演
     this.axios.get(
-      "http://localhost:5050/artists/list"
+      "artists/list"
     ).then(result=>{
       this.artists_list=result.data.result;
       console.log(result.data.result);

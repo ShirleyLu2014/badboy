@@ -544,25 +544,25 @@ export default {
   created(){
     //即将上演
     this.axios.get(
-      "http://localhost:5050/tours/recent"
+      "tours/recent"
     ).then(result=>{
       this.recent_tours=result.data;
       console.log(result.data);
     }),
   this.axios.get(
-      "http://localhost:5050/tours/hot"
+      "tours/hot"
     ).then(result=>{
       this.hot_tours=result.data;
       console.log(result.data);
     })
   this.axios.get(
-      "http://localhost:5050/venues/hot"
+      "venues/hot"
     ).then(result=>{
       this.hot_venues=result.data;
       console.log(result.data);
     })
     this.axios.get(
-      "http://localhost:5050/artists/hot"
+      "artists/hot"
     ).then(result=>{
       this.hot_artists=result.data;
       console.log(result.data);
