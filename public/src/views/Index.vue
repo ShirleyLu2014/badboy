@@ -384,7 +384,7 @@
             <a href="venue.html">MORE</a>
           </div>
           <div class="liveHouse">
-            <router-link v-for="(t,i) of hot_venues" :key="i" :to="`venue_details/${t.vid}`" class="liveList">
+            <router-link v-for="(t,i) of hot_venues" :key="i" :vid="vid" :to="`/venue_details/${t.vid}`" class="liveList">
              <!--<img :src="t.sphoto" alt="" :title="t.stitle">-->
               <img :src="t.vpic" alt="">
               <div class="liveDetail">
@@ -457,7 +457,7 @@
           <div class="artList">
             <ul>
               <li v-for="(t,i) of hot_artists" :key="i">
-                <router-link :to="`/artists/hot/${t.aid}`" class="artItem">
+                <router-link :to="`artist_details/${t.aid}`" class="artItem">
                   <!--<img :src="t.aphoto" alt="">-->
                   <img src="/image⁩s/artists/cw/hp.jpg" alt="">
                   <div class="top">
@@ -538,7 +538,8 @@ export default {
       hot_tours:[],       //热门演出列表
       hot_venues:[],      //热门现场
       hot_artists:[],   //热门音乐人列表
-      tid:""
+      tid:"",
+      vid:""
     }
   },
   created(){

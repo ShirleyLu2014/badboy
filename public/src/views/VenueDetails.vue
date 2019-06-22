@@ -651,16 +651,17 @@ export default {
   data(){
     return {
       venues_detail:[],   //现场详情
-      vid:40
+      vid:""
     }
   },
+  props:["vid"],
   created(){
     //即将上演
     this.axios.get(
-      "http://localhost:5050/venues/details",
-    //   params:{
-    //     vid:vid
-    //  }
+      "venues/details",
+      {
+        params:{vid:this.vid}
+      }
     ).then(result=>{
       this.venues_detail=result.data;
       console.log(result.data);
