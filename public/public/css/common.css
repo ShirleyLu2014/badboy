@@ -16,6 +16,8 @@ section{
   width:100%;
   margin:60px auto 0;
   margin-bottom:100px;
+  font: 13px/1.5 'Microsoft YaHei',"\5b8b\4f53";
+  color: #666;
 }
 .hr{
   border:1px solid rgba(23, 163, 184, 0.932);

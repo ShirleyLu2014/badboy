@@ -11,7 +11,7 @@
             <a href="live.html">MORE</a>
           </div>
           <div class="upcomingList">
-            <router-link v-for="(t,i) of recent_tours" :key="i" :to="`/live_details/${t.tid}`">
+            <router-link v-for="(t,i) of recent_tours" :tid="tid" :key="i" :to="`/live_details/${t.tid}`">
               <div class="showImg">
                 <img :src="t.sphoto" alt="" :title="t.stitle">
               </div>
@@ -471,104 +471,6 @@
                   </div>
                 </router-link>
               </li>
-              <!--<li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top2"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top3"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top4"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top5"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top6"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top7"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="" class="artItem">
-                  <img src="images/index/art01.jpg" alt="">
-                  <div class="top">
-                    <div class="topBg">
-                      <span class="top8"></span>
-                    </div>
-                    <div class="topDetail">
-                      <p class="artName"> 泥鳅Zinco</p>
-                      <p class="artStyle">HipHop</p>
-                    </div>
-                  </div>
-                </a>
-              </li>-->
             </ul>
           </div>
         </div>
@@ -635,7 +537,8 @@ export default {
       recent_tours:[],   //即将上演列表
       hot_tours:[],       //热门演出列表
       hot_venues:[],      //热门现场
-      hot_artists:[]      //热门音乐人列表
+      hot_artists:[],   //热门音乐人列表
+      tid:""
     }
   },
   created(){
@@ -644,7 +547,7 @@ export default {
       "http://localhost:5050/tours/recent"
     ).then(result=>{
       this.recent_tours=result.data;
-      //console.log(result.data);
+      console.log(result.data);
     }),
   this.axios.get(
       "http://localhost:5050/tours/hot"

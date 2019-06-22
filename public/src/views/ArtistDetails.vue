@@ -417,9 +417,9 @@
 </template>
 <script>
 export default {
-  
+ 
 }
 </script>
 <style scoped>
-  @import "../../public/css/artDetail.css"
-</style>
+  @import "../../public/css/artDetail.css";
+</style

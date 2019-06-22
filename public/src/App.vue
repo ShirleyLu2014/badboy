@@ -6,6 +6,6 @@
   </div>
 </template>
 
-<style> 
+<style scoped> 
   @import url("assets/css/common.css");
 </style>

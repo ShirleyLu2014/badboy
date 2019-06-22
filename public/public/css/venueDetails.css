@@ -40,7 +40,7 @@ section{
   margin-top: -2px;
   width: 24px;
   height: 24px;
-  background: url("../image/index/droll-icon.png") no-repeat;
+  background: url("/images/index/droll-icon.png") no-repeat;
 }
 .calendatPre{
   background-position: -127px 0;
@@ -64,19 +64,19 @@ tbody{
   vertical-align: middle;
   border-color: inherit;
 }
-.firstFloor .weekHead td {
+.venuDetails .firstFloor .weekHead td {
   padding: 0 0 16px 0;
   border: none;
   background-color: #fff;
   margin-right: -1px;
   vertical-align: middle;
 }
-.firstFloor td span {
+.venuDetails .firstFloor td span {
   display: block;
   height: 100%;
   width: 100%;
 }
-.firstFloor .weekHead td span {
+.venuDetails .firstFloor .weekHead td span {
   padding: 0;
   border: 0;
   height: 35px;
@@ -84,10 +84,10 @@ tbody{
   display: block;
   background-color: #f8f8f8;
 }
-.firstFloor .dateTd .twenty-seventh{
-  background: url("../image/show_performance/venue01.jpg");
+.venuDetails .firstFloor .dateTd .twenty-seventh{
+  background: url("/images/show_performance/venue01.jpg");
 }
-.firstFloor .dateTd td.preMonthDay{
+.venuDetails .firstFloor .dateTd td.preMonthDay{
   cursor: pointer;
   background-color: #f8f8f8;
   color: #999;
@@ -98,17 +98,17 @@ tbody{
   background-repeat: no-repeat;
   background-position: center center; 
 }
-.dateTd td i {
+.venuDetails .dateTd td i {
   font-size: 14px;
   font-style: normal;
   position: absolute;
   left: 10px;
   bottom: 10px;
 }
-.dateTd td .hasActivity>i{
+.venuDetails .dateTd td .hasActivity>i{
   color:#fff;
 }
-.firstFloor td div {
+.venuDetails .firstFloor td div {
   display: block;
   border-top: 1px #eee solid;
   border-left: 1px #eee solid;
@@ -117,12 +117,12 @@ tbody{
   margin-left: -1px;
   position: relative;
 }
-.firstFloor  td div span{
+.venuDetails .firstFloor  td div span{
   display: block;
   height: 100%;
   width: 100%;
 }
-.firstFloor  td .hasActivity span{
+.venuDetails .firstFloor  td .hasActivity span{
   color: #fff;
   background: #333;
   opacity: .7;
@@ -140,7 +140,7 @@ tbody{
   background-size: cover;
 }
 .logoImage{
-  background-image: url("../image/show_performance/01MoguSpace.jpg");
+  background-image: url("/images/show_performance/01MoguSpace.jpg");
 }
 .logoImage>img{
   width: 100px;
@@ -184,7 +184,7 @@ tbody{
   height: 25px;
   right: 0;
   bottom: 0;
-  background: url("../image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   vertical-align: middle;
 }
 .place-icon{
@@ -216,7 +216,7 @@ tbody{
   vertical-align: middle;
   width: 20px;
   height: 20px;
-  background: url("../image/index/icon.png") -245px -516px no-repeat;
+  background: url("/images/index/icon.png") -245px -516px no-repeat;
 }
 .profileCount>.share{
   margin-top:30px;
@@ -236,7 +236,7 @@ tbody{
   height:24px;
   text-decoration: none;
   outline: 0;
-  background: url("../image/index/share-icon.png") -171px 0 no-repeat;
+  background: url("/images/index/share-icon.png") -171px 0 no-repeat;
 }
 .profileCount>.share>div>a.sina{
   background-position:-1px  0 !important;
@@ -360,7 +360,7 @@ ul.comingList>li>a>p.gPlace>span{
   vertical-align: middle;
   width: 19px;
   height: 19px;
-  background: url(../image/index/icon.png) 0 -343px no-repeat;
+  background: url(/images/index/icon.png) 0 -343px no-repeat;
 }
 ul.comingList>li>a>p.gPlace{
   color:#37a;
@@ -472,7 +472,7 @@ ul.comingList>li>a>p.gPlace{
   height: 25px;
   right: 0;
   bottom: 0;
-  background: url("../image/index/icon.png") no-repeat;
+  background: url("/images/index/icon.png") no-repeat;
   background-position: 0 -79px;
 }
 .around>ul>li>a>span.aboutName{

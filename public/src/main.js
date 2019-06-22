@@ -11,8 +11,9 @@ Vue.component("my-header",MyHeader);
 Vue.component("my-footer",MyFooter);
 Vue.component("my-sidebar",MySideBar);
 axios.defaults.withCredentials=true;
-Vue.prototype.axios=axios;
 
+axios.defaults.baseURL="http://localhost:5050/";
+Vue.prototype.axios=axios;
 Vue.config.productionTip = false
 
 new Vue({
