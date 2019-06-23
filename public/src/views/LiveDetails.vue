@@ -209,7 +209,8 @@ export default {
       live_tours:{},
       live_wCount:" ",
       live_wants:{},
-      tid:""
+      tid:"",
+      comment_tour:{}    //推荐演出列表
     }
   },
   props:["tid"],

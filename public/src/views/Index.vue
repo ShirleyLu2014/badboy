@@ -320,7 +320,7 @@
       <!-- 二楼导航 -->
       <div class="secondFloor">
         <div>
-          <a href="venue.html">
+          <router-link to="/venues">
             <i></i>
             <dl>
               <dt>
@@ -328,10 +328,10 @@
               </dt>
               <dd>戳这里发现你附近的livehouse>></dd>
             </dl>
-          </a>
+          </router-link>
         </div>
         <div>
-          <a href="artist.html">
+          <router-link to="/artists">
             <i></i>
             <dl>
               <dt>
@@ -339,7 +339,7 @@
               </dt>
               <dd>戳这里发现你喜爱的独立音乐人>></dd>
             </dl>
-          </a>
+          </router-link>
         </div>
         <div>
           <a href="">
@@ -454,15 +454,15 @@
             <h2 class="h2">热门音乐人</h2>
             <a href="artist.html">MORE</a>
           </div>
-          <div class="artList">
+          <div class="artList5">
             <ul>
               <li v-for="(t,i) of hot_artists" :key="i">
                 <router-link :to="`artist_details/${t.aid}`" class="artItem">
-                  <!--<img :src="t.aphoto" alt="">-->
-                  <img src="/image⁩s/artists/cw/hp.jpg" alt="">
+                  <img :src="t.aphoto" alt="">
+                  <!--<img src="/image⁩s/artists/cw/hp.jpg" alt="">-->
                   <div class="top">
                     <div class="topBg">
-                      <span class="top1"></span>
+                      <span :class="`top${i+1}`"></span>
                     </div>
                     <div class="topDetail">
                       <p class="artName">{{t.aname}}</p>

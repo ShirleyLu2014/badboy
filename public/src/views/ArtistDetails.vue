@@ -1,15 +1,15 @@
 <template>
   <section>
-   <div class="hr"></div>
+    <div class="hr"></div>
     <!-- 一楼艺人简介 -->
     <div class="artHead">
       <div class="artPhoto">
-        <img src="images/artists/ty/hp.jpg" alt="">
+        <img :src="artist_details.aphoto" alt="">
       </div>
       <div class="artDesc">
         <i class="arrow"></i>
-        <h1>痛仰<span></span></h1>
-        <p>风格：摇滚</p>
+        <h1>{{artist_details.aname}}<span></span></h1>
+        <p>风格：{{artist_details.stname}}</p>
       </div>
       <div class="artFans">
         <div class="attention">
@@ -32,25 +32,25 @@
       <div class="wrap-head">
         <ul>
           <li>
-            <a href="">演出</a>
+            <a href="javascript:;" @click="liveShow()">演出</a>
           </li>
           <li>
-            <a href="">作品</a>
+            <a href="javascript:;">作品</a>
           </li>
           <li>
-            <a href="">简介</a>
+            <a href="javascript:;" @click="briefShow()">简介</a>
           </li>
         </ul>
       </div>
       <div class="wrap-content">
         <div class="itemLeft">
           <!-- 艺人相关演出 -->
-          <div class="content" id="tab1" style="display:none;">
+          <div class="content" v-show="shows">
             <div class="group">
               <h2>全部演出</h2>
               <ul class="comingList">
                 <li>
-                  <a href="">
+                  <router-link to="">
                     <div>
                       <img src="images/live/nlive01.jpg" alt="">
                     </div>
@@ -64,7 +64,7 @@
                       <span></span>
                       [北京]北京 世纪剧院
                     </p>
-                  </a>
+                  </router-link>
                 </li>
                 <li>
                   <a href="">
@@ -259,28 +259,11 @@
               </div>
             </div>
           </div>
-          <!-- 艺人作品 -->
-          <div class="content" id="tab2">
+          <!-- 艺人简介 -->
+          <div class="content" v-show="unshows">
             <div class="group">
               <h2>简介</h2>
-              <p>
-                风格：独立摇滚<br>
-                主唱：高虎<br>
-                吉它：宋捷<br>
-                贝司：张静<br>
-                鼓手：大伟<br>
-                <br>
-                成立于1999年的痛仰乐队（Miserable Faith）是当下中国享有最高声誉的摇滚乐队之一。组队至今发行专辑及EP共六张，参加各类专场、音乐节演出数百场，获得了覆盖不同年龄层和身份属性的庞大乐迷群。他们从未离开中国摇滚第一线，也是其中少有的始终保持旺盛创作精力并成功实现转型的摇滚劲旅。
-                <br>
-                2001年发行的首张专辑《这是个问题》和2006年独立发行的EP《不》以说唱金属、硬核与硬摇滚为主，因其极具感染力的现场表演而深受乐迷喜爱。此后，乐队成员开始寻求创作上的改变与突破，自2008年推出专辑《不要停止我的音乐》起，痛仰乐队的作品风格转向更加兼容并蓄的独立摇滚，并获得广泛的关注与赞誉。此后两年，乐队分别推出了不插电现场录音《改变你的生活》和EP《盛开》。睽违四年，痛仰乐队于2014年8月发行录音室专辑《愿爱无忧》，雷鬼乐和更多具有浓郁地域色彩的乐器的融入，标志着痛仰乐队在创作上又进入了崭新的阶段。
-                <br>
-                十五年间，痛仰由那个在匮乏的青春里，惯于用愤怒抵御周遭的呐喊者和发问者，成为了在自由的公路上，乐于去探寻更多可能的践行者和分享者，说到底，他们把视线的焦点从于外部、于身体的躁动和碰撞，逐渐的调转向度，变为向内心冷暖和生命体验的关注。但在痛仰的这种巨变的背后，是一种不变，——始终只遵循内心的、自然生发而出的音符和律动。
-                <br>
-                如果说摇滚乐是一种真实的声音，那么首先，这种真实势必是创作者对自我内心状态的正视与忠诚。没有刻意为之的批判或煽情，没有扭捏作态的悲戚或欣喜，音乐里的那些率真、坦然和勇敢，来源于乐队每个成员的自然成长，他们不想肆意地滞留在原地，也没想要超脱到不可企及，痛仰与被他们所感染、触动的听者们，一路相互陪伴和见证了彼此的成长。
-                <br>
-                脱去被定义的外壳，撕掉被赋予的标签，决心蜕变的痛仰无心顾及那些概念与形式之争，在一路体验和学习中，奔向在表达上更加自由开阔的天地。所以正如我们所见，这支绝不固步自封的公路摇滚乐队，无论是作品还是状态都渐入佳境般愈发成熟，源源不断地焕发出新的光彩和能量。
-                2015年4月痛仰乐队签约中国最大的独立音乐公司摩登天空，在用音乐改变世界的征程中迈出了坚实的一步，对于未来的企图和野心痛仰乐队从来没有改变，现在的这一切仅仅是一个前奏。
-              </p>
+              <div v-html="artist_details.profile" class="artistProfile"></div>
               <h2 class="imgTitle">相关图片</h2>
               <ul>
                 <li>
@@ -341,12 +324,15 @@
         <div class="itemRight">
           <div class="tag">
             <h3><i></i>标签</h3>
-            <div><a href="">摇滚</a></div>
+            <div><a href="">{{artist_details.stname}}</a></div>
           </div>
           <div class="fans">
             <div class="fansHead">乐迷(<span>28853</span>)</div>
             <div class="fansList">
-              <a href="">
+              <a href="javascript:;" v-for="(t,i) of artist_fans">
+                <img :src="t.avatar" alt="">
+              </a>
+              <!--<a href="">
                 <img src="images/index/fans001.jpg" alt="">
               </a>
               <a href="">
@@ -372,10 +358,7 @@
               </a>
               <a href="">
                 <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
+              </a>-->
             </div>
           </div>
           <div class="around">
@@ -417,9 +400,48 @@
 </template>
 <script>
 export default {
- 
+  data(){
+    return {
+      aid:"",
+      artist_item:{},
+      artist_details:{},
+      artist_fans:{},
+      artist_venues:{},
+      shows:true,
+      unshows:false,
+    }
+  },
+  methods: {   
+  liveShow:function(){
+      this.shows=true;
+      this.unshows=false;
+    },
+    briefShow:function(){
+      this.shows=false;
+      this.unshows=true;
+    },
+  },
+  props:["aid"],
+  created(){
+    //艺人详情页
+    this.axios.get(
+      "artists/details",
+      {
+         params:{aid:this.aid}
+      }
+    ).then(result=>{
+      this.artist_item=result.data;
+      this.artist_details=result.data.artist;
+      this.artist_fans=result.data.fans;
+      this.artist_venues=result.data.recent_venues;
+      console.log(result.data);
+      console.log(this.artist_details);
+      console.log(this.artist_fans);
+      console.log(this.artist_venues);
+    })
+  }
 }
 </script>
 <style scoped>
   @import "../../public/css/artDetail.css";
-</style
+</style>
