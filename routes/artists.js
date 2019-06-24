@@ -118,7 +118,16 @@ router.get("/details",(req,res)=>{
                 res.send({code:0,msg:String(err)})
               }else{
                 output.recent_venues=result;
-                res.send(output);
+                var sql=`select * from art_pics where aid=?`
+                params=[aid];
+                pool.query(sql,params,(err,result)=>{
+                  if(err){
+                    res.send({code:0,msg:String(err)})
+                  }else{
+                    output.art_pics=result;
+                    res.send(output);
+                  }
+                })
               }
             })
           }
