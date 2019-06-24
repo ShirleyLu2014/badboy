@@ -107,106 +107,20 @@
     </div>
     <!-- 四楼音乐现场列表 -->
     <div class="venueList">
-      <div class="listItem">
+      <div class="listItem" v-for="(t,i) of venue_list" :key="i">
         <div class="item">
-          <a href="venueDetails.html">
-            <img src="images/show_performance/01MoguSpace.jpg" alt="">
-          </a>
+          <router-link :to="`/venue_details/${t.vid}`">
+            <img :src="t.vpic" alt="">
+          </router-link>
           <div class="itemDetail">
-            <a href="" class="venueName">蘑菇空间.MoguSpace</a>
-            <p class="venuePlace">北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店</p>
-            <a href="" class="venueCount">最近有<span>19</span>场演出</a>
+            <router-link :to="`/venue_details/${t.vid}`" class="venueName">{{t.vname}}</router-link>
+            <p class="venuePlace">{{t.vaddress}}</p>
+            <router-link :to="`/venue_details/${t.vid}`" class="venueCount">最近有<span>{{t.shows.length}}</span>场演出</router-link >
             <div class="aboutList">
-              <a href="">
-                <img src="images/live/list01.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list02.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list03.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list03.jpg" alt="">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="listItem">
-          <div class="item">
-            <a href="">
-              <img src="images/show_performance/01MoguSpace.jpg" alt="">
-            </a>
-            <div class="itemDetail">
-              <a href="" class="venueName">蘑菇空间.MoguSpace</a>
-              <p class="venuePlace">北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店</p>
-              <a href="" class="venueCount">最近有<span>19</span>场演出</a>
-              <div class="aboutList">
-                <a href="">
-                  <img src="images/live/list01.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list02.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list03.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list03.jpg" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="listItem">
-          <div class="item">
-            <a href="">
-              <img src="images/show_performance/01MoguSpace.jpg" alt="">
-            </a>
-            <div class="itemDetail">
-              <a href="" class="venueName">蘑菇空间.MoguSpace</a>
-              <p class="venuePlace">北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店</p>
-              <a href="" class="venueCount">最近有<span>19</span>场演出</a>
-              <div class="aboutList">
-                <a href="">
-                  <img src="images/live/list01.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list02.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list03.jpg" alt="">
-                </a>
-                <a href="">
-                  <img src="images/live/list03.jpg" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="listItem">
-        <div class="item">
-          <a href="">
-            <img src="images/show_performance/01MoguSpace.jpg" alt="">
-          </a>
-          <div class="itemDetail">
-            <a href="" class="venueName">蘑菇空间.MoguSpace</a>
-            <p class="venuePlace">北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店</p>
-            <a href="" class="venueCount">最近有<span>19</span>场演出</a>
-            <div class="aboutList">
-              <a href="">
-                <img src="images/live/list01.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list02.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list03.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/live/list03.jpg" alt="">
-              </a>
+              <router-link v-for="(t,i) of t.shows" :key="i" 
+              :to="`/live_details/${t.sid}`">
+                <img :src="t.sphoto" alt="">
+              </router-link>
             </div>
           </div>
         </div>
@@ -229,9 +143,33 @@
 </template>
 <script>
 export default {
-  
+  data(){
+    return {
+      venue_list:{},
+      venue_live:{},
+      vid:""
+    }
+  },
+  created(){
+    this.axios.get(
+      "venues/list"
+    ).then(result=>{
+      this.venue_list=result.data.result;
+      console.log(result.data);
+    })
+    this.axios.get(
+      "tours/list",
+      {
+        params:{
+          vid:this.vid,
+          }
+      }
+    ).then(result=>{
+      this.venue_live=result.data;
+      console.log(result.data);
+    })
+  }
 }
 </script>
-<style scoped>
-  @import "../../public/css/venue.css"
+<style scoped src="../../public/css/venue.css">
 </style>

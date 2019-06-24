@@ -238,11 +238,10 @@ export default {
       "tours/list"
     ).then(result=>{
       this.lives_list=result.data.result;
-      console.log(result.data.result);
+      //console.log(result.data.result);
     })
   }
 }
 </script>
-<style scoped>
-  @import "../../public/css/lives.css"
+<style scoped src="../../public/css/lives.css">
 </style>

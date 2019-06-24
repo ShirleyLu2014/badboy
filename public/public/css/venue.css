@@ -129,6 +129,10 @@ section{
   width:260px;
   height:160px;
 }
+.venue>.venueList>.listItem>.item>a>img{
+  width:260px;
+  height:160px;
+}
 .venue>.venueList>.listItem>.item>.itemDetail{
   margin-left:20px;
 }

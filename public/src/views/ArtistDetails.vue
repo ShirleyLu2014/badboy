@@ -49,209 +49,22 @@
             <div class="group">
               <h2>全部演出</h2>
               <ul class="comingList">
-                <li>
-                  <router-link to="">
+                <li v-for="(t,i) of artist_tours" :key="i">
+                  <router-link :to="`/tour_details/${t.tid}`">
                     <div>
-                      <img src="images/live/nlive01.jpg" alt="">
+                      <img :src="t.sphoto" alt="">
                     </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
+                    <p class="gTitle">{{t.stitle}}--{{t.city}}站</p>
+                    <p class="gName">艺人：{{t.artists}}</p>
                     <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
+                      价格：<b>¥{{t.price.toFixed(2)}}</b> 
                     </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
+                    <p class="gTime">时间：{{new Date(t.time).toLocaleString()}}</p>
                     <p class="gPlace">
                       <span></span>
-                      [北京]北京 世纪剧院
+                      [{{t.city}}]{{t.vname}}
                     </p>
                   </router-link>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <div>
-                      <img src="images/live/nlive01.jpg" alt="">
-                    </div>
-                    <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                    <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                    <p class="gPrice">
-                      价格：<b>¥480-1180</b> 
-                    </p>
-                    <p class="gTime">时间：2019/06/15 14:30</p>
-                    <p class="gPlace">
-                      <span></span>
-                      [北京]北京 世纪剧院
-                    </p>
-                  </a>
                 </li>
               </ul>
               <div class="more">
@@ -260,60 +73,15 @@
             </div>
           </div>
           <!-- 艺人简介 -->
-          <div class="content" v-show="unshows">
+          <div class="content" v-show="unshows" id="tab2">
             <div class="group">
               <h2>简介</h2>
               <div v-html="artist_details.profile" class="artistProfile"></div>
               <h2 class="imgTitle">相关图片</h2>
               <ul>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty01.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty02.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty03.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty04.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty05.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty06.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty07.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty08.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty09.jpg" alt="">
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <img src="images/artists/ty/ty10.jpg" alt="">
+                <li v-for="(t,i) of artist_pics" :key="i">
+                  <a href="javascript:;">
+                    <img :src="t.pic" alt="">
                   </a>
                 </li>
               </ul>
@@ -329,36 +97,9 @@
           <div class="fans">
             <div class="fansHead">乐迷(<span>28853</span>)</div>
             <div class="fansList">
-              <a href="javascript:;" v-for="(t,i) of artist_fans">
+              <a href="javascript:;" v-for="(t,i) of artist_fans" :key="i">
                 <img :src="t.avatar" alt="">
               </a>
-              <!--<a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>
-              <a href="">
-                <img src="images/index/fans001.jpg" alt="">
-              </a>-->
             </div>
           </div>
           <div class="around">
@@ -409,6 +150,8 @@ export default {
       artist_venues:{},
       shows:true,
       unshows:false,
+      artist_pics:[],
+      artist_tours:{}
     }
   },
   methods: {   
@@ -434,14 +177,24 @@ export default {
       this.artist_details=result.data.artist;
       this.artist_fans=result.data.fans;
       this.artist_venues=result.data.recent_venues;
+      this.artist_pics=result.data.art_pics;
       console.log(result.data);
       console.log(this.artist_details);
       console.log(this.artist_fans);
       console.log(this.artist_venues);
+      console.log(this.artist_pics);
+    })
+    this.axios.get(
+      "tours/byartist",
+      {
+         params:{aid:this.aid}
+      }
+    ).then(result=>{
+      this.artist_tours=result.data.result;
+      console.log(result.data.result);
     })
   }
 }
 </script>
-<style scoped>
-  @import "../../public/css/artDetail.css";
+<style scoped src="../../public/css/artDetail.css">
 </style>

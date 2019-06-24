@@ -53,10 +53,10 @@
       <div class="user"><!--右边登录 注册 搜索-->
         <ul>
           <li>
-            <a href="login.html">登录</a>
+            <a href="javascript:;" @click="open()">登录</a>
           </li>
           <li>
-            <a href="register.html">注册</a>
+            <a href="javascript:;">注册</a>
           </li>
           <li>
             <input type="text" placeholder="请输入搜索内容">
@@ -69,7 +69,7 @@
         </ul>
       </div>
     </div>
-    <div class="login">
+    <div class="login" v-show="show">
       <div class="loginBox">
         <div class="loginForm">
           <div class="loginTitle">登录badboy</div>
@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <button type="submit" class="loginBtn" id="loginBtn">登 录</button>
+                    <button type="button" class="loginBtn" id="loginBtn" @click="login">登 录</button>
                   </td>
                 </tr>
                 <tr>
@@ -119,13 +119,28 @@
           </div>
         </div>
       </div>
-      <a href="javacript:;" class="close"></a>
+      <a href="javacript:;" class="close" @click="close()"></a>
     </div>
   </header>
 </template>
 <script>
 export default {
-  
+  data(){
+    return {
+      show:false
+    }
+  },
+  methods:{
+    open(){
+      this.show=true;
+    },
+    close(){
+      this.show=false;
+    },
+    login(){
+      console.log(this.$route.path);
+    }
+  }
 }
 </script>
 

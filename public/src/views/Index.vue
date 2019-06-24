@@ -548,30 +548,30 @@ export default {
       "tours/recent"
     ).then(result=>{
       this.recent_tours=result.data;
-      console.log(result.data);
+      //console.log(result.data);
     }),
   this.axios.get(
       "tours/hot"
     ).then(result=>{
       this.hot_tours=result.data;
-      console.log(result.data);
+      //console.log(result.data);
     })
   this.axios.get(
       "venues/hot"
     ).then(result=>{
       this.hot_venues=result.data;
-      console.log(result.data);
+      //console.log(result.data);
     })
     this.axios.get(
       "artists/hot"
     ).then(result=>{
       this.hot_artists=result.data;
-      console.log(result.data);
+      //console.log(result.data);
     })
   },
   components:{ carousel },
 }
 </script>
-<style scoped>
-  @import "../../public/css/index.css"
+
+<style src="../../public/css/index.css" scoped>
 </style>

@@ -102,6 +102,5 @@ export default {
   }
 }
 </script>
-<style scoped>
-  @import "../../public/css/artist.css"
+<style scoped src="../../public/css/artist.css">
 </style>

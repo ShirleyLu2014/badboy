@@ -235,6 +235,5 @@ export default {
   }
 }
 </script>
-<style scoped>
-  @import "../../public/css/liveDetails.css"
+<style scoped src="../../public/css/liveDetails.css">
 </style>

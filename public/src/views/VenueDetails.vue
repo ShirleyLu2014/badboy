@@ -294,17 +294,17 @@
         </div>
         <!--一楼右侧演出现场简介 -->
         <div class="right">
-          <div class="profileimages logoimages">
-            <img src="images/show_performance/01mogus.jpg" alt="">
+          <div class="profileimages logoimages" :style="{backgroundImage:`url(${venues_detail.vpic})`}">
+            <img :src="venues_detail.vpic" alt="">
           </div>
-          <div class="profileInfo clearfix">
+          <div class="profileInfo">
             <i class="i-arrow"></i>
             <div class="name">
-                蘑菇空间.MoguSpace 
+                {{venues_detail.vname}}
                 <span class="c-icon place-icon"></span>
             </div>
-            <p class="proCity">城市： 北京</p>
-            <p class="add">地址： 北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店</p>
+            <p class="proCity">城市： {{venues_detail.city}}</p>
+            <p class="add">地址： {{venues_detail.vaddress}}</p>
           </div>
           <div class="profileCount">
             <div class="attention">
@@ -328,23 +328,40 @@
         <div class="wrap-head">
           <ul>
             <li>
-              <a href="">演出</a>
+              <a href="javascript:;">演出</a>
             </li>
             <li>
-              <a href="">作品</a>
+              <a href="javascript:;">作品</a>
             </li>
             <li>
-              <a href="">简介</a>
+              <a href="javascript:;">简介</a>
             </li>
           </ul>
         </div>
-        <div class="secondFloor wrap-content">
+        <div class="secondFloor wrap-content clearfix">
           <div class="left">
             <div class="content" id="tab1">
-              <div class="group">
+              <div class="group clearfix">
                 <h2>全部演出</h2>
-                <ul class="comingList">
-                  <li>
+                <ul class="comingLists">
+                  <li v-for="(t,i) of live_list" :key="i">
+                    <router-link :to="`/live_details/${t.tid}`">
+                      <div>
+                        <img :src="t.sphoto" alt="">
+                      </div>
+                      <p class="gTitle">{{t.stitle}}--{{t.city}}</p>
+                      <p class="gName">艺人：{{t.artists}}</p>
+                      <p class="gPrice">
+                        价格：<b>¥{{t.price.toFixed(2)}}</b> 
+                      </p>
+                      <p class="gTime">时间：{{new Date(t.time).toLocaleString()}}</p>
+                      <p class="gPlace">
+                        <span></span>
+                        [{{t.city}}]{{t.vname}}
+                      </p>
+                    </router-link>
+                  </li>
+                  <!--<li>
                     <a href="">
                       <div>
                         <img src="images/live/nlive01.jpg" alt="">
@@ -530,24 +547,7 @@
                         [北京]北京 世纪剧院
                       </p>
                     </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <div>
-                        <img src="images/live/nlive01.jpg" alt="">
-                      </div>
-                      <p class="gTitle">【聚橙】世界经典法语音乐剧《罗密欧与朱丽叶》--北京站</p>
-                      <p class="gName">艺人：音乐剧《罗密欧与朱丽叶》剧组</p>
-                      <p class="gPrice">
-                        价格：<b>¥480-1180</b> 
-                      </p>
-                      <p class="gTime">时间：2019/06/15 14:30</p>
-                      <p class="gPlace">
-                        <span></span>
-                        [北京]北京 世纪剧院
-                      </p>
-                    </a>
-                  </li>
+                  </li>-->
                 </ul>
                 <div class="more">
                   <a href="">查看更多</a>
@@ -621,7 +621,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="" class="clearfix">
                     <span class="bg">
                       <img src="images/index/fans002.jpg" alt="">
                       <span></span>
@@ -650,8 +650,11 @@
 export default {
   data(){
     return {
-      venues_detail:[],   //现场详情
-      vid:""
+      venues_detail:{},   //现场详情
+      vid:"",
+      pno:"",
+      psize:"",
+      live_list:{}   //现场相关演出列表
     }
   },
   props:["vid"],
@@ -665,10 +668,23 @@ export default {
     ).then(result=>{
       this.venues_detail=result.data;
       console.log(result.data);
+    }),
+    // /tours/list/?vid=现场编号&pno=页码&psize=每页条目数
+    this.axios.get(
+      "tours/list",
+      {
+        params:{
+          vid:this.vid,
+          pno:this.pno,
+          psize:this.psize
+          }
+      }
+    ).then(result=>{
+      this.live_list=result.data.result;
+      console.log(result.data.result);
     })
   }
 }
 </script>
-<style scoped>
-  @import "../../public/css/venueDetails.css"
+<style scoped src="../../public/css/venueDetails.css">
 </style>

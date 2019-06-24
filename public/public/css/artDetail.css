@@ -204,7 +204,7 @@ ul.comingList>li>a{
   width:195px; 
   height:430px;
   box-sizing:border-box;
-  border: 1px #ddd solid;
+  /* border: 1px #ddd solid; */
   border-radius: 4px;
   padding: 10px;
   color:#666666;
@@ -394,13 +394,13 @@ ul.comingList>li>a>p.gPlace{
   padding:12px 2px;
   vertical-align: middle;
   /* background-color:#f8f8f8; */
-  margin-bottom:5px;
+  margin-bottom:26px;
 }
 .around>ul>li>a{
   text-decoration:none;
   text-align:none;
   display:inline-block;
-  height:60px;
+  height:83px;
   width:100%;
   padding:10px 0;
   line-height:60px;
