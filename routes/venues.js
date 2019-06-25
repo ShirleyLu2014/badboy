@@ -57,7 +57,7 @@ router.get("/list",(req,res)=>{
           var tasks=[];
           for(var r of result){
             tasks.push(new Promise((function(r){return (open)=>{
-              pool.query("select sid,stitle,sphoto,time from tours inner join shows using(sid) where vid=? order by time limit 3 ",[r["vid"]],(err,result)=>{
+              pool.query("select tid, sid,stitle,sphoto,time from tours inner join shows using(sid) where vid=? order by time limit 3 ",[r["vid"]],(err,result)=>{
                 if(err){
                   console.log(err);
                 }else{
