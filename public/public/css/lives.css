@@ -13,11 +13,16 @@ section>div{
   /* justify-content: space-between; */
   /* float:left; */
   width:1200px;
-  height:60px;
   line-height:60px;
   color:#555555;
   font-size:14px;
   border-bottom:1px dotted #b2b2b2;
+}
+#live>.liveCity.hide,#live>.liveHouse.hide,#live>.liveTime.hide,#live>.liveStyle.hide{
+  height:60px;
+}
+#live>.liveCity.hide>div>ul,#live>.liveHouse.hide>div>ul,#live>.liveTime.hide>div>ul,#live>.liveStyle.hide>div>ul{
+  overflow:hidden;
 }
 #live>.liveCity>div,
 #live>.liveHouse>div,
@@ -38,7 +43,6 @@ section>div{
   display:flex;
   margin-left:0;
   /* justify-content: space-between; */
-  overflow:hidden;
   flex-wrap: wrap;
 }
 #live>.liveCity>div>ul>li,
@@ -88,15 +92,14 @@ section>div{
 #live>.liveCity>div>ul>li>a:hover,
 #live>.liveHouse>div>ul>li>a:hover,
 #live>.liveTime>div>ul>li>a:hover,
-#live>.liveStyle>div>ul>li>a:hover{
+#live>.liveStyle>div>ul>li>a:hover,
+#live>.liveCity>div>ul>li>a.active,
+#live>.liveHouse>div>ul>li>a.active,
+#live>.liveTime>div>ul>li>a.active,
+#live>.liveStyle>div>ul>li>a.active{
   color:#e72f2f;
 }
-#live>.liveCity>div>ul>li:first-child>a,
-#live>.liveHouse>div>ul>li:first-child>a,
-#live>.liveTime>div>ul>li:first-child>a,
-#live>.liveStyle>div>ul>li:first-child>a{
-  color:#e72f2f;
-}
+
 #live>.liveCity>span>a,
 #live>.liveHouse>span>a,
 #live>.liveTime>span>a,

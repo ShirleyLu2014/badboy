@@ -17,20 +17,20 @@
         </ul>
       </div>
       <!-- 演出城市 -->
-      <div class="liveCity">
+      <div class="liveCity" :class="{hide:cityHide}">
         <span>演出城市</span>
         <div>
           <ul>
             <li>
-              <a href="javascript:;" @click="allLives">全国</a>
+              <a :class="{active:cid==0}" href="javascript:;" @click="citySelect(0)">全国</a>
             </li>
             <li v-for="(t,i) of cities" :key="i">
-              <a href="javascript:;" @click="citySelect(t.cid)" :cid="t.cid">{{t.city}}</a>
+              <a :class="{active:cid==t.cid}" href="javascript:;" @click="citySelect(t.cid)" :cid="t.cid">{{t.city}}</a>
             </li>
           </ul>
         </div>
         <span>
-          <a href="javascript:;">展开</a> 
+          <a href="javascript:;" @click="toggleCity">展开</a> 
         </span>
       </div>
       <!-- 演出现场 -->
@@ -39,41 +39,11 @@
           <div>
             <ul>
               <li>
-                <a href="javascript:;">全国</a>
+                <a :class="{active:vid==0}" href="javascript:;" @click="venueSelect(0)">全国</a>
               </li>
               <li v-for="(t,i) of venues" :key="i">
-                <a href="">{{t.vname}}</a>
+                <a :class="{active:vid==t.vid}" href="javascript:;" @click="venueSelect(t.vid)">{{t.vname}}</a>
               </li>
-              <!--<li>
-                <a href="">PINKMOON.樂暮</a>
-              </li>
-              <li>
-                <a href="">MAO Livehouse北京</a>
-              </li>
-              <li>
-                <a href="">疆进酒·OMNI SPACE</a>
-              </li>
-              <li>
-                <a href="">上海 MAO Livehouse</a>
-              </li>
-              <li>
-                <a href="">育音堂音乐公园</a>
-              </li>
-              <li>
-                <a href="">上海 MODERNSKY LAB</a>
-              </li>
-              <li>
-                <a href="">育音堂</a>
-              </li>
-              <li>
-                <a href="">MAO Livehouse广州</a>
-              </li>
-              <li>
-                <a href="">TU凸空间</a>
-              </li>
-              <li>
-                <a href="">SDlivehouse</a>
-              </li>-->
             </ul>
           </div>
           <span>
@@ -199,48 +169,64 @@
 export default {
   data(){
     return {
+      cityHide:true,
+      cid:0,
+      vid:0,
+      startime:0,
+      endtime:0,
+      stid:0,
       lives_list:[],   //演出列表
       cities:[],       //演出城市列表
       venues:[]
     }
   },
   methods:{
-    allLives(){
-      this.axios.get(
-      "tours/list"
-    ).then(result=>{
-      this.lives_list=result.data.result;
-      //console.log(result.data.result);
-    })
+    toggleCity(){
+      this.cityHide=!this.cityHide;
     },
-    citySelect(cid){
-      //根据演出城市查询
+    allLives(){
+      var {cid,vid,starttime,endtime,stid}=this;
       this.axios.get(
         "tours/list",
         {
           params:{
-            cid:cid
+            cid,vid,starttime,endtime,stid
           }
         }
       ).then(result=>{
         this.lives_list=result.data.result;
-        console.log(result.data);
+        //console.log(result.data.result);
       })
     },
-    venuesSelect(){
+    citySelect(cid){
+      this.cid=cid;
+    },
+    venueSelect(vid){
+      this.vid=vid;
+    },
+    styleSelect(stid){
+      this.stid=stid;
+    },
+    allVenues(){
+      //演出场地请求
       this.axios.get(
-      "venues"
-    ).then(result=>{
-      this.venues=result.data;
-      console.log(result.data);
-    })
+        "venues",
+        {
+          params:{
+            cid:this.cid
+          }
+        }
+      ).then(result=>{
+        this.venues=result.data;
+        //console.log(this.cities);
+      })
     }
   },
   created(){
     //演出列表请求
     this.allLives()
-    //演出现场列表
-    this.venuesSelect()
+    //演出场次请求
+    this.allVenues()
     //演出城市请求
     this.axios.get(
       "cities"
@@ -248,6 +234,13 @@ export default {
       this.cities=result.data;
       //console.log(this.cities);
     })
+  },
+  watch:{
+    cid(){ this.allLives(); this.allVenues() },
+    vid(){ this.allLives(); },
+    stid(){ this.allLives() },
+    starttime(){ this.allLives() },
+    endtime(){ this.allLives() },
   }
 }
 </script>
