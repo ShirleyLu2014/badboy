@@ -22,45 +22,15 @@
         <div>
           <ul>
             <li>
-              <a href="">全国</a>
+              <a href="javascript:;" @click="allLives">全国</a>
             </li>
-            <li>
-              <a href="">北京</a>
-            </li>
-            <li>
-              <a href="">上海</a>
-            </li>
-            <li>
-              <a href="">广州</a>
-            </li>
-            <li>
-              <a href="">成都</a>
-            </li>
-            <li>
-              <a href="">深圳</a>
-            </li>
-            <li>
-              <a href="">杭州</a>
-            </li>
-            <li>
-              <a href="">武汉</a>
-            </li>
-            <li>
-              <a href="">西安</a>
-            </li>
-            <li>
-              <a href="">重庆</a>
-            </li>
-            <li>
-              <a href="">长沙</a>
-            </li>
-            <li>
-              <a href="">南京</a>
+            <li v-for="(t,i) of cities" :key="i">
+              <a href="javascript:;" @click="citySelect(t.cid)" :cid="t.cid">{{t.city}}</a>
             </li>
           </ul>
         </div>
         <span>
-          <a href="">展开</a> 
+          <a href="javascript:;">展开</a> 
         </span>
       </div>
       <!-- 演出现场 -->
@@ -69,12 +39,12 @@
           <div>
             <ul>
               <li>
-                <a href="">全国</a>
+                <a href="javascript:;">全国</a>
               </li>
-              <li>
-                <a href="">蘑菇空间</a>
+              <li v-for="(t,i) of venues" :key="i">
+                <a href="">{{t.vname}}</a>
               </li>
-              <li>
+              <!--<li>
                 <a href="">PINKMOON.樂暮</a>
               </li>
               <li>
@@ -103,11 +73,11 @@
               </li>
               <li>
                 <a href="">SDlivehouse</a>
-              </li>
+              </li>-->
             </ul>
           </div>
           <span>
-            <a href="">展开</a> 
+            <a href="javascript:;">展开</a> 
           </span>
       </div>
       <!-- 演出时间 -->
@@ -229,16 +199,54 @@
 export default {
   data(){
     return {
-      lives_list:[],   //音乐人列表
+      lives_list:[],   //演出列表
+      cities:[],       //演出城市列表
+      venues:[]
     }
   },
-  created(){
-    //即将上演
-    this.axios.get(
+  methods:{
+    allLives(){
+      this.axios.get(
       "tours/list"
     ).then(result=>{
       this.lives_list=result.data.result;
       //console.log(result.data.result);
+    })
+    },
+    citySelect(cid){
+      //根据演出城市查询
+      this.axios.get(
+        "tours/list",
+        {
+          params:{
+            cid:cid
+          }
+        }
+      ).then(result=>{
+        this.lives_list=result.data.result;
+        console.log(result.data);
+      })
+    },
+    venuesSelect(){
+      this.axios.get(
+      "venues"
+    ).then(result=>{
+      this.venues=result.data;
+      console.log(result.data);
+    })
+    }
+  },
+  created(){
+    //演出列表请求
+    this.allLives()
+    //演出现场列表
+    this.venuesSelect()
+    //演出城市请求
+    this.axios.get(
+      "cities"
+    ).then(result=>{
+      this.cities=result.data;
+      //console.log(this.cities);
     })
   }
 }

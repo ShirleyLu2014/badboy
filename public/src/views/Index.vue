@@ -8,7 +8,7 @@
           <div class="titleBar">
             <i></i>
             <h2 class="h2">即将上演</h2>
-            <a href="live.html">MORE</a>
+            <router-link to="/lives">MORE</router-link>
           </div>
           <div class="upcomingList">
             <router-link v-for="(t,i) of recent_tours" :tid="tid" :key="i" :to="`/live_details/${t.tid}`">
@@ -358,7 +358,7 @@
         <div class="titlebar">
           <i></i>
           <h2 class="h2">热门演出</h2>
-          <a href="live.html">MORE</a>
+           <router-link to="/lives">MORE</router-link>
         </div>
         <div class="hotShow">
           <router-link v-for="(t,i) of hot_tours" :key="i" :to="`/live_details/${t.tid}`" class="hotList">
@@ -381,7 +381,7 @@
           <div class="titleBar">
             <i></i>  
             <h2 class="h2">音乐现场</h2>
-            <a href="venue.html">MORE</a>
+             <router-link to="/venues">MORE</router-link>
           </div>
           <div class="liveHouse">
             <router-link v-for="(t,i) of hot_venues" :key="i" :vid="vid" :to="`/venue_details/${t.vid}`" class="liveList">
@@ -452,7 +452,7 @@
           <div class="titleBar">
             <i></i>  
             <h2 class="h2">热门音乐人</h2>
-            <a href="artist.html">MORE</a>
+            <router-link to="/artists">MORE</router-link>
           </div>
           <div class="artList5">
             <ul>

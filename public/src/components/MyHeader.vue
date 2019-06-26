@@ -59,7 +59,7 @@
             <a href="javascript:;">注册</a>
           </li>
           <li>
-            <input type="text" placeholder="请输入搜索内容">
+            <input type="text" placeholder="搜索演出">
           </li>
           <li>
             <a href="">

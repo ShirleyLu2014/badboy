@@ -72,7 +72,7 @@
           <div class="cityList">
             <ul>
               <li v-for="(t,i) of live_tours" :key="i">
-                <router-link :to="`/live_details/${t.tid}`" :tid="tid">
+                <router-link :to="`/live_details/${t.tid}`">
                   <p>
                     <span>{{t.city}}</span>{{new Date(t.time).toLocaleDateString()}}
                   </p>
@@ -230,7 +230,8 @@ export default {
       this.live_tours=result.data.tours;
       this.live_wCount=result.data.wCount;
       this.live_wants=result.data.wants;
-      console.log(result.data);
+      //console.log(result.data);
+      console.log(result.data.tours);
     })
   }
 }
