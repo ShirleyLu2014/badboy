@@ -34,7 +34,7 @@
         </span>
       </div>
       <!-- 演出现场 -->
-      <div class="liveHouse">
+      <div class="liveHouse" :class="{hide:venueHide}">
           <span>音乐现场</span>
           <div>
             <ul>
@@ -47,7 +47,7 @@
             </ul>
           </div>
           <span>
-            <a href="javascript:;">展开</a> 
+            <a href="javascript:;" @click="toggleVenue">展开</a> 
           </span>
       </div>
       <!-- 演出时间 -->
@@ -170,6 +170,7 @@ export default {
   data(){
     return {
       cityHide:true,
+      venueHide:true,
       cid:0,
       vid:0,
       startime:0,
@@ -183,6 +184,9 @@ export default {
   methods:{
     toggleCity(){
       this.cityHide=!this.cityHide;
+    },
+    toggleVenue(){
+      this.venueHide=!this.venueHide;
     },
     allLives(){
       var {cid,vid,starttime,endtime,stid}=this;
