@@ -16,15 +16,15 @@
       </div>
     </div>
     <!--2.左右箭头-->
-    <a href="javascript:;" @click="move(1)" class="carousel-control-next">
+    <a href="javascript:;" class="carousel-control-next">
         <span class="carousel-control-next-icon"></span>
     </a>
-    <a href="javascript:;" @click="move(-1)" class="carousel-control-prev">
+    <a href="javascript:;" class="carousel-control-prev">
         <span class="carousel-control-prev-icon"></span>
     </a>
     <!--3.轮播指示符-->
     <ul class="carousel-indicators">
-        <li v-for="(img,idx) of imgs" :key="idx" :class="idx==i?'active':''" @click="moveTo(idx)"></li>
+        <li v-for="(img,idx) of imgs" :key="idx" :class="idx==i?'active':''"></li>
     </ul>
   </div>
 </template>
@@ -75,8 +75,7 @@ export default {
           title:"李大奔的硬核浪漫：如果不是你，随便谁都一样",
           to:"javascript:;"
         }*/
-      ],
-      canClick:true
+      ]
     }
   },
   created(){
@@ -85,31 +84,13 @@ export default {
     })
   },
   methods:{
-    move(i){
-      if(this.canClick){
-        this.i+=i;
-        this.canClick=false;
-        setTimeout(()=>{
-          this.canClick=true;
-        },600)
-      }
-    },
-    moveTo(i){
-      if(this.canClick){
-        this.i=i;
-        this.canClick=false;
-        setTimeout(()=>{
-          this.canClick=true;
-        },600)
-      }
-    }
+
   },
   computed:{
     ulStyle(){
       var width=this.innerWidth*(this.imgs.length+1)+"px";
       var transition="all .5s linear";
       var marginLeft=-this.i*this.innerWidth+"px";
-      console.log(width);
       return { transition, width, marginLeft }
     }
   }
