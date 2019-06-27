@@ -116,21 +116,17 @@
           </li>
         </ul>
       </div>
-      <div class="page">
+      <!-- <div class="page">
         <a href="" class="page-prve"></a>
-        <a href="" class="active">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
-        <a href="">4</a>
-        <a href="">5</a>
-        <a href="">6</a>
-        <a href="">7</a>
+        <a href="javascript:;" v-for="(pNum,i) of pcount" :key="i" :class="{active:pno==pNum}">{{pNum}}</a>
         <a href="" class="page-next"></a>
-      </div>
+      </div> -->
+      <page :pcount=pcount :pno=pno @pageChange="pageChange" @pageUp="pageUp"></page>
     </div>
 </section>
 </template>
 <script>
+import page from '@/components/page/page'
 export default {
   data(){
     return {
@@ -144,7 +140,10 @@ export default {
       lives_list:[],   //演出列表
       cities:[],       //演出城市列表
       venues:[],       //演出现场
-      styles:[]       //演出风格
+      styles:[],       //演出风格
+      pno:"",
+      psize:"",
+      pcount:""
     }
   },
   methods:{
@@ -154,17 +153,34 @@ export default {
     toggleVenue(){
       this.venueHide=!this.venueHide;
     },
+    pageChange(e){
+      this.pno=e;
+      this.allLives()
+    },
+    pageUp(e){
+      this.pno=e;
+      this.allLives();
+    },
+    pageDown(e){
+      this.pno=e;
+      this.allLives();
+    },
     allLives(){
-      var {cid,vid,starttime,endtime,stid}=this;
+      var {cid,vid,starttime,endtime,stid,pno,psize}=this;
       this.axios.get(
         "tours/list",
         {
           params:{
-            cid,vid,starttime,endtime,stid
+            cid,vid,starttime,endtime,stid,pno,psize
           }
         }
       ).then(result=>{
         this.lives_list=result.data.result;
+        this.pcount=result.data.pcount;
+        this.pno=result.data.pno;
+        console.log(this.pno);
+        console.log(this.pcount);
+        console.log(result.data);
         console.log(result.data.result);
       })
     },
@@ -209,15 +225,18 @@ export default {
       "styles"
     ).then(result=>{
       this.styles=result.data;
-      console.log(this.styles);
+     //console.log(this.styles);
     })
   },
   watch:{
-    cid(){ this.allLives(); this.allVenues();this.venueSelect(0) },
-    vid(){ this.allLives(); },
+    cid(){ this.allLives(); this.allVenues();this.venueSelect(0);},
+    vid(){ this.allLives();},
     stid(){ this.allLives();},
     starttime(){ this.allLives() },
     endtime(){ this.allLives() },
+  },
+  components:{
+    page
   }
 }
 </script>

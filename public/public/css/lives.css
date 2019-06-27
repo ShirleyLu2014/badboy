@@ -150,7 +150,7 @@ section>div{
 #live>.liveList{
   margin-top:30px;
   width:1200px; 
-  height:1859px;
+  height:auto;
   /* border:1px solid #f00; */
 }
 #live>.liveList>ul{

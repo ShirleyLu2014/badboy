@@ -7,8 +7,8 @@
       <h2>音乐现场</h2>
       <div class="userSearch">
         <form action="">
-          <input type="text" name="searchKeyword" placeholder="搜索音乐现场">
-          <button>搜索</button>
+          <input type="text" name="searchKeyword" placeholder="搜索音乐现场" v-model="kws">
+          <button @click="search(kws)">搜索</button>
         </form>
       </div>
     </div>
@@ -16,93 +16,18 @@
     <div class="citySelect">
       <ul>
         <li>
-          <a href="">全国</a>
+          <a href="javascript:;" :class="{active:cid==0}" @click="citySelect(0)">全国</a>
         </li>
-        <li>
-          <a href="">北京</a>
-        </li>
-        <li>
-          <a href="">上海</a>
-        </li>
-        <li>
-          <a href="">广州</a>
-        </li>
-        <li>
-          <a href="">成都</a>
-        </li>
-        <li>
-          <a href="">深圳</a>
-        </li>
-        <li>
-          <a href="">杭州</a>
-        </li>
-        <li>
-          <a href="">武汉</a>
-        </li>
-        <li>
-          <a href="">重庆</a>
-        </li>
-        <li>
-          <a href="">西安</a>
-        </li>
-        <li>
-          <a href="">长沙</a>
-        </li>
-        <li>
-          <a href="">南京</a>
-        </li>
-        <li>
-          <a href="">全国</a>
-        </li>
-        <li>
-          <a href="">北京</a>
-        </li>
-        <li>
-          <a href="">上海</a>
-        </li>
-        <li>
-          <a href="">广州</a>
-        </li>
-        <li>
-          <a href="">成都</a>
-        </li>
-        <li>
-          <a href="">深圳</a>
-        </li>
-        <li>
-          <a href="">杭州</a>
-        </li>
-        <li>
-          <a href="">武汉</a>
-        </li>
-        <li>
-          <a href="">重庆</a>
-        </li>
-        <li>
-          <a href="">西安</a>
-        </li>
-        <li>
-          <a href="">长沙</a>
-        </li>
-        <li>
-          <a href="">南京</a>
-        </li>
-        <li>
-          <a href="">西安</a>
-        </li>
-        <li>
-          <a href="">长沙</a>
-        </li>
-        <li>
-          <a href="">南京</a>
+        <li v-for="(t,i) of cities" :key="i">
+          <a href="javascript:;" :class="{active:cid==t.cid}" @click="citySelect(t.cid)">{{t.city}}</a>
         </li>
       </ul>
-      <span>
+     <!-- <span>
         展开<i></i>
-      </span>
+      </span>-->
     </div>
     <!-- 三楼地图 -->
-    <div class="map">
+    <div class="map" style="display:none">
       地图
     </div>
     <!-- 四楼音乐现场列表 -->
@@ -127,57 +52,85 @@
       </div>
     </div>
     <!--四楼分页-->
-    <div class="page">
-      <a href="" class="page-prve"></a>
-      <a href="" class="active">1</a>
-      <a href="">2</a>
-      <a href="">3</a>
-      <a href="">4</a>
-      <a href="">5</a>
-      <a href="">6</a>
-      <a href="">7</a>
-      <a href="" class="page-next"></a>
-    </div>
+    <page :pcount=pcount :pno=pno @pageChange="pageChange" @pageUp="pageUp"></page>
   </div>
 </section>
 </template>
 <script>
+import page from '@/components/page/page'
 export default {
   data(){
     return {
       venue_list:[],
+      cities:[],
+      cid:0,
+      kws:"",
+      pno:"",
+      psize:"",
+      pcount:"",
+      start:new Date().getTime()
     }
   },
- /*created(){
-    // 获取现场列表
-    this.axios.get(
-      "venues/list"
+  methods:{
+    citySelect(cid){
+      this.cid=cid;
+    },
+    pageChange(e){
+      this.pno=e;
+      this.getList();
+    },
+    pageUp(e){
+      this.pno=e;
+      this.getList();
+    },
+    pageDown(e){
+      this.pno=e;
+      this.getList();
+    },
+    getList(){
+      console.log(this.cid+"#########");
+      this.axios.get(
+      "venues/list",
+      {
+        params:{
+          cid:this.cid,
+          kws:this.kws,
+          pno:this.pno,
+          psize:this.psize,
+          start:this.start
+        }
+      }
     ).then(result=>{
       this.venue_list=result.data.result;
-      console.log(this.venue_list)
-    
-    // console.log(Array.isArray(this.venue_live));
-    // this.venue_live = this.venue_live.slice(0,3)
-      // console.log(111);
-      // console.log(result.data);
-    })//.then(()=>{
-    //     console.log(this.venue_live[0]);
-    //     }
-    // )
-        // this.venue_live=this.venue_live.slice(0,3);
-           
-          
-  },*/
-
+      this.pcount=result.data.pcount;
+      console.log(result.data);
+      console.log(this.venue_list);
+      //console.log(this.pcount);
+    })
+    },
+    search(kws){
+      // this.cid=0;
+      this.kws=kws;
+      this.getList();
+    },
+  },
  created(){
     // 获取现场列表
-    this.axios.get(
-      "venues/list"
-    ).then(result=>{
-      this.venue_list=result.data.result;
-      console.log(this.venue_list)
-    })
+  this.getList(),
+  this.axios.get(
+    "cities"
+  ).then(result=>{
+    this.cities=result.data;
+    console.log(this.cities);
+  })
   },
+  watch:{
+    kws(){this.cid=0;this.getList()},
+    cid(){this.getList();this.kws=""}
+  },
+  components:{
+    page
+  }
 }
 </script>
 <style scoped src="../../public/css/venue.css">
