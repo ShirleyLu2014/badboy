@@ -7,49 +7,19 @@
         <h2>音乐人</h2>
         <div class="userSearch">
           <form action="">
-            <input type="text" name="searchKeyword" placeholder="搜索艺人">
-            <button>搜索</button>
+            <input type="text" name="searchKeyword" placeholder="搜索艺人" v-model="kws">
+            <button @click="search(kws)">搜索</button>
           </form>
         </div>
       </div>
-      <!-- 二楼城市切换 -->
+      <!-- 二楼音乐风格切换 -->
       <div class="citySelect">
         <ul>
           <li>
-            <a href="">全部</a>
+            <a href="javascript:;" @click="styleSelect(0)">全部</a>
           </li>
-          <li>
-            <a href="">摇滚</a>
-          </li>
-          <li>
-            <a href="">后摇滚</a>
-          </li>
-          <li>
-            <a href="">流行</a>
-          </li>
-          <li>
-            <a href="">朋克</a>
-          </li>
-          <li>
-            <a href="">后朋克</a>
-          </li>
-          <li>
-            <a href="">民谣</a>
-          </li>
-          <li>
-            <a href="">独立</a>
-          </li>
-          <li>
-            <a href="">Disco</a>
-          </li>
-          <li>
-            <a href="">跳舞</a>
-          </li>
-          <li>
-            <a href="">金属</a>
-          </li>
-          <li>
-            <a href="">世界音乐</a>
+          <li v-for="(t,i) of styles" :key="i">
+            <a href="javascript:;" @click="styleSelect(t.stid)">{{t.stname}}</a>
           </li>
         </ul>
         <!-- <span>
@@ -88,17 +58,52 @@
 export default {
   data(){
     return {
+      stid:0,
+      kws:"",
+      pno:"",
+      psize:"",
       artists_list:[],   //音乐人列表
+      styles:[]
     }
   },
-  created(){
-    //即将上演
-    this.axios.get(
-      "artists/list"
+  methods:{
+    styleSelect(stid){
+      this.stid=stid;
+    },
+    search(kws){
+      this.kws=kws;
+      this.allArtists();
+    },
+    allArtists(){
+      this.axios.get(
+      "artists/list",
+      {
+        params:{
+          stid:this.stid,
+          kws:this.kws,
+          pno:this.pno,
+          psize:this.psize
+        }
+      }
     ).then(result=>{
       this.artists_list=result.data.result;
       console.log(result.data.result);
     })
+    }
+  },
+  created(){
+    //即将上演
+    this.allArtists(),
+    this.axios.get(
+       "styles"
+    ).then(result=>{
+      this.styles=result.data;
+     // console.log(this.styles);
+    })
+  },
+  watch:{
+    stid(){this.allArtists()},
+    kws(){this.allArtists()}
   }
 }
 </script>

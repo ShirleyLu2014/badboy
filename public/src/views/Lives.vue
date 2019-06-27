@@ -5,15 +5,10 @@
       <div class="title">
         <ul>
           <li>
-            <a href="Live.html">
+            <a href="javascript:;">
               <img src="images/index/title_shows.png" alt="">
             </a>
           </li>
-          <!-- <li>
-            <a href="Live.html">
-              more >
-            </a>
-          </li> -->
         </ul>
       </div>
       <!-- 演出城市 -->
@@ -29,9 +24,9 @@
             </li>
           </ul>
         </div>
-        <span>
+        <!--<span>
           <a href="javascript:;" @click="toggleCity">展开</a> 
-        </span>
+        </span>-->
       </div>
       <!-- 演出现场 -->
       <div class="liveHouse" :class="{hide:venueHide}">
@@ -91,40 +86,10 @@
         <div>
           <ul>
             <li>
-              <a href="">全部</a>
+              <a :class="{active:stid==0}" href="javascript:;" @click="styleSelect(0)">全部</a>
             </li>
-            <li>
-              <a href="">摇滚</a>
-            </li>
-            <li>
-              <a href="">后摇滚</a>
-            </li>
-            <li>
-              <a href="">流行</a>
-            </li>
-            <li>
-              <a href="">朋克</a>
-            </li>
-            <li>
-              <a href="">后朋克</a>
-            </li>
-            <li>
-              <a href="">民谣</a>
-            </li>
-            <li>
-              <a href="">电子</a>
-            </li>
-            <li>
-              <a href="">独立</a>
-            </li>
-            <li>
-              <a href="">Disco</a>
-            </li>
-            <li>
-              <a href="">金属</a>
-            </li>
-            <li>
-              <a href="">世界音乐</a>
+            <li v-for="(t,i) of styles" :key="i">
+              <a href="javascript:;" :class="{active:stid==t.stid}"  @click="styleSelect(t.stid)">{{t.stname}}</a>
             </li>
           </ul>
         </div>
@@ -178,7 +143,8 @@ export default {
       stid:0,
       lives_list:[],   //演出列表
       cities:[],       //演出城市列表
-      venues:[]
+      venues:[],       //演出现场
+      styles:[]       //演出风格
     }
   },
   methods:{
@@ -199,7 +165,7 @@ export default {
         }
       ).then(result=>{
         this.lives_list=result.data.result;
-        //console.log(result.data.result);
+        console.log(result.data.result);
       })
     },
     citySelect(cid){
@@ -208,7 +174,7 @@ export default {
     venueSelect(vid){
       this.vid=vid;
     },
-    styleSelect(stid){
+   styleSelect(stid){
       this.stid=stid;
     },
     allVenues(){
@@ -237,12 +203,19 @@ export default {
     ).then(result=>{
       this.cities=result.data;
       //console.log(this.cities);
+    }),
+    //演出风格
+    this.axios.get(
+      "styles"
+    ).then(result=>{
+      this.styles=result.data;
+      console.log(this.styles);
     })
   },
   watch:{
-    cid(){ this.allLives(); this.allVenues() },
+    cid(){ this.allLives(); this.allVenues();this.venueSelect(0) },
     vid(){ this.allLives(); },
-    stid(){ this.allLives() },
+    stid(){ this.allLives();},
     starttime(){ this.allLives() },
     endtime(){ this.allLives() },
   }

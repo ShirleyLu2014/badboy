@@ -45,6 +45,15 @@ section>div{
   /* justify-content: space-between; */
   flex-wrap: wrap;
 }
+#live>.liveStyle>div{
+  width:100%;
+}
+#live>.liveStyle>span{
+  width:61px;
+}
+#live>.liveStyle>div>ul{
+  width:100%;
+}
 #live>.liveCity>div>ul>li,
 #live>.liveHouse>div>ul>li,
 #live>.liveTime>div>ul>li,
