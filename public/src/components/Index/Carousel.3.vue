@@ -1,7 +1,7 @@
 <template>
   <div id="demo" class="carousel" :style="{width:innerWidth+'px'}">
       <!--1.轮播图片-->
-    <div class="carousel-inner" :style="ulStyle">
+    <div class="carousel-inner" :class="ulClass" :style="ulStyle">
       <div v-for="(img,i) of imgs" :key="i" class="carousel-item" :style="{width:innerWidth+'px'}">
         <router-link :to="img.to" :title="img.title">
           <img :src="img.src" :style="{width:innerWidth+'px'}"/>
@@ -33,6 +33,9 @@ export default {
   data(){
     return {
       innerWidth:window.innerWidth,
+      ulClass:{
+        hasTrans:true
+      },
       i:0,
       imgs:[
         {
@@ -107,10 +110,8 @@ export default {
   computed:{
     ulStyle(){
       var width=this.innerWidth*(this.imgs.length+1)+"px";
-      var transition="all .5s linear";
       var marginLeft=-this.i*this.innerWidth+"px";
-      console.log(width);
-      return { transition, width, marginLeft }
+      return { width, marginLeft }
     }
   }
 }
@@ -127,6 +128,9 @@ export default {
     content:"";
     display:block;
     clear:both;
+  }
+  section>.carousel>.carousel-inner.hasTrans{
+    transition:all .5s linear;
   }
   section>.carousel>.carousel-inner>.carousel-item{
     display:block;

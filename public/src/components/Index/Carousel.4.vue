@@ -1,5 +1,5 @@
 <template>
-  <div id="demo" class="carousel" :style="{width:innerWidth+'px'}" @mouseenter="stop" @mouseleave="start">
+  <div id="demo" class="carousel" :style="{width:innerWidth+'px'}">
       <!--1.轮播图片-->
     <div class="carousel-inner" :class="ulClass" :style="ulStyle">
       <div v-for="(img,i) of imgs" :key="i" class="carousel-item" :style="{width:innerWidth+'px'}">
@@ -77,25 +77,15 @@ export default {
           to:"javascript:;"
         }*/
       ],
-      canClick:true,
-      timer:null
+      canClick:true
     }
   },
   created(){
     window.addEventListener("resize",()=>{
       this.innerWidth=window.innerWidth;
     })
-    this.start();
   },
   methods:{
-    stop(){
-      clearInterval(this.timer);
-    },
-    start(){
-      this.timer=setInterval(()=>{
-        this.move(1);
-      },3000)
-    },
     move(i){
       if(this.canClick){
         this.canClick=false;
