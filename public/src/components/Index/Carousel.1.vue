@@ -2,29 +2,26 @@
   <div id="demo" class="carousel" :style="{width:innerWidth+'px'}">
       <!--1.轮播图片-->
     <div class="carousel-inner" :style="ulStyle">
-      <div v-for="(img,i) of imgs" :key="i" class="carousel-item" :style="{width:innerWidth+'px'}">
-        <router-link :to="img.to" :title="img.title">
-          <img :src="img.src" :style="{width:innerWidth+'px'}"/>
-        </router-link>
-        <router-link :to="img.to" v-text="img.title"></router-link>
-      </div>
-      <div class="carousel-item" :style="{width:innerWidth+'px'}">
-        <router-link :to="imgs[0].to" :title="imgs[0].title">
-          <img :src="imgs[0].src" :style="{width:innerWidth+'px'}"/>
-        </router-link>
-        <router-link :to="imgs[0].to" v-text="imgs[0].title"></router-link>
+      <div class="carousel-item">
+        <a href="javascript:;" title="《Ghost Mane》| STARR J与恶魔一起住在Dark Castle">
+          <img src="/images/carousel_item/carousel-1.jpg" :style="{width:innerWidth+'px'}"/>
+        </a>
+        <a to="javascript:;">《Ghost Mane》| STARR J与恶魔一起住在Dark Castle</a>
       </div>
     </div>
     <!--2.左右箭头-->
-    <a href="javascript:;" @click="move(1)" class="carousel-control-next">
+    <a href="javascript:;" class="carousel-control-next">
         <span class="carousel-control-next-icon"></span>
     </a>
-    <a href="javascript:;" @click="move(-1)" class="carousel-control-prev">
+    <a href="javascript:;" class="carousel-control-prev">
         <span class="carousel-control-prev-icon"></span>
     </a>
     <!--3.轮播指示符-->
     <ul class="carousel-indicators">
-        <li v-for="(img,idx) of imgs" :key="idx" :class="idx==i?'active':''" @click="moveTo(idx)"></li>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
   </div>
 </template>
@@ -33,7 +30,6 @@ export default {
   data(){
     return {
       innerWidth:window.innerWidth,
-      i:0,
       imgs:[
         {
           src:"/images/carousel_item/carousel-1.jpg",
@@ -75,8 +71,7 @@ export default {
           title:"李大奔的硬核浪漫：如果不是你，随便谁都一样",
           to:"javascript:;"
         }*/
-      ],
-      canClick:true
+      ]
     }
   },
   created(){
@@ -85,33 +80,10 @@ export default {
     })
   },
   methods:{
-    move(i){
-      if(this.canClick){
-        this.i+=i;
-        this.canClick=false;
-        setTimeout(()=>{
-          this.canClick=true;
-        },600)
-      }
-    },
-    moveTo(i){
-      if(this.canClick){
-        this.i=i;
-        this.canClick=false;
-        setTimeout(()=>{
-          this.canClick=true;
-        },600)
-      }
-    }
+    
   },
   computed:{
-    ulStyle(){
-      var width=this.innerWidth*(this.imgs.length+1)+"px";
-      var transition="all .5s linear";
-      var marginLeft=-this.i*this.innerWidth+"px";
-      console.log(width);
-      return { transition, width, marginLeft }
-    }
+    
   }
 }
 </script>
