@@ -206,16 +206,15 @@ router.get("/list",(req,res)=>{
     conds.push(" time<=? ");
     params.push(endtime);
   }
-  var sql="select count(*) as count from tours inner join venues using(vid) inner join shows using(sid) ";
+  var sql="select DISTINCT cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using(sid) inner join artists using(aid) inner join cities using (cid) ";
   var where=conds.length==0?"":` where ${conds.join(" and ")}`;
   sql+=where;
-  pool.query(sql,params,(err,result)=>{
+  var sql2=`select count(*) as count from (${sql}) as table1`
+  pool.query(sql2,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)})
     }else{
       var count=result[0]["count"];
-      var sql="select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) ";
-      sql+=where;
       sql+=" order by time ";
       sql+=" limit ?,?";
       pno=pno||0;

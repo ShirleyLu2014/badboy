@@ -24,7 +24,7 @@
     </a>
     <!--3.轮播指示符-->
     <ul class="carousel-indicators">
-        <li v-for="(img,idx) of imgs" :key="idx" :class="idx==i?'active':''"></li>
+        <li v-for="(img,idx) of imgs" :key="idx" :class="idx==i?'active':''" @click="moveTo(idx)"></li>
     </ul>
   </div>
 </template>
@@ -76,7 +76,7 @@ export default {
           to:"javascript:;"
         }*/
       ],
-
+      canClick:true
     }
   },
   created(){
@@ -86,7 +86,22 @@ export default {
   },
   methods:{
     move(i){
-      this.i+=i;
+      if(this.canClick){
+        this.i+=i;
+        this.canClick=false;
+        setTimeout(()=>{
+          this.canClick=true;
+        },600)
+      }
+    },
+    moveTo(i){
+      if(this.canClick){
+        this.i=i;
+        this.canClick=false;
+        setTimeout(()=>{
+          this.canClick=true;
+        },600)
+      }
     }
   },
   computed:{
