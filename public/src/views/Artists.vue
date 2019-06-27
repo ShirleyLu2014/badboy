@@ -16,10 +16,10 @@
       <div class="citySelect">
         <ul>
           <li>
-            <a href="javascript:;" @click="styleSelect(0)">全部</a>
+            <a :class="{active:stid==0}" href="javascript:;" @click="styleSelect(0)">全部</a>
           </li>
           <li v-for="(t,i) of styles" :key="i">
-            <a href="javascript:;" @click="styleSelect(t.stid)">{{t.stname}}</a>
+            <a href="javascript:;" :class="{active:stid==t.stid}" @click="styleSelect(t.stid)">{{t.stname}}</a>
           </li>
         </ul>
         <!-- <span>
@@ -40,21 +40,12 @@
         </ul>
       </div>
       <!--四楼分页-->
-      <div class="page">
-        <a href="" class="page-prve"></a>
-        <a href="" class="active">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
-        <a href="">4</a>
-        <a href="">5</a>
-        <a href="">6</a>
-        <a href="">7</a>
-        <a href="" class="page-next"></a>
-      </div>
+      <page :pcount=pcount :pno=pno @pageChange="pageChange" @pageUp="pageUp"></page>
     </div>
   </section>
 </template>
 <script>
+import page from '@/components/page/page'
 export default {
   data(){
     return {
@@ -63,7 +54,8 @@ export default {
       pno:"",
       psize:"",
       artists_list:[],   //音乐人列表
-      styles:[]
+      styles:[],
+      pcount:""
     }
   },
   methods:{
@@ -72,6 +64,18 @@ export default {
     },
     search(kws){
       this.kws=kws;
+      this.allArtists();
+    },
+    pageChange(e){
+      this.pno=e;
+      this.allArtists();
+    },
+    pageUp(e){
+      this.pno=e;
+      this.allArtists();
+    },
+    pageDown(e){
+      this.pno=e;
       this.allArtists();
     },
     allArtists(){
@@ -87,6 +91,7 @@ export default {
       }
     ).then(result=>{
       this.artists_list=result.data.result;
+      this.pcount=result.data.pcount;
       console.log(result.data.result);
     })
     }
@@ -102,8 +107,11 @@ export default {
     })
   },
   watch:{
-    stid(){this.allArtists()},
-    kws(){this.allArtists()}
+    stid(){this.allArtists();this.kws=""},
+    kws(){this.allArtists();}
+  },
+  components:{
+    page
   }
 }
 </script>

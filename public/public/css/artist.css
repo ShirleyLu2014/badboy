@@ -81,6 +81,9 @@ section{
   color:#666666;
   margin-right:20px;
 }
+.venue>.citySelect>ul>li>a.active{
+  color:#e72f2f;
+}
 .venue>.citySelect>ul>li>a:hover{
   color:#e72f2f;
 }
@@ -97,7 +100,7 @@ section{
 /*音乐人列表 */
 .artList{
   width:1200px;
-  height:1231px;
+  /* height:1231px; */
   margin-top:50px;
 }
 .artList>ul{

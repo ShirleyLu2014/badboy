@@ -53,7 +53,7 @@
   box-sizing:border-box;
 }
 .userNav a i {
-  background: transparent url("../image/index/usecenter_sprite.png") no-repeat;
+  background: transparent url("/images/index/usecenter_sprite.png") no-repeat;
   width: 24px;
   height: 24px;
   margin-right: 20px;
@@ -353,7 +353,7 @@ p>select{
   vertical-align: middle;
   width: 19px;
   height: 19px;
-  background: url(../image/index/icon.png) 0 -343px no-repeat;
+  background: url(/images/index/icon.png) 0 -343px no-repeat;
 }
 .g-list-wrap>li>a>p.gPlace{
   color:#37a;
