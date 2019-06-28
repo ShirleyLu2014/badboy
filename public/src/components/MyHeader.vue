@@ -10,27 +10,15 @@
       <!--城市切换-->
       <div class="city">
         <div class="city-title">
-          全国站
+          {{city}}
         </div>
         <div class="city-select">
-            <a href="" class="size">
-              <i></i> 
-              切换城市</a>
-            <div class="over" style="display:none">
-              <ul>
-                <li><a href="">全国</a></li>
-                <li><a href="">北京</a></li>
-                <li><a href="">上海</a></li>
-                <li><a href="">广州</a></li>
-                <li><a href="">成都</a></li>
-                <li><a href="">深圳</a></li>
-                <li><a href="">杭州</a></li>
-                <li><a href="">武汉</a></li>
-                <li><a href="">重庆</a></li>
-                <li><a href="">西安</a></li>
-                <li><a href="">长沙</a></li>
-                <li><a href="">南京</a></li>
-              </ul>
+            <a href="javascript:;" class="size cityActive" @click="cityChange">
+              <i></i>切换城市
+              </a>
+            <div class="cityList" v-show="!cityShow">
+              <a href="javascript:;" @click="citySelect(0)">全国</a>
+              <a href="javascript:;" v-for="(t,i) of cities" :key="i" @click="citySelect(t.city)">{{t.city}} </a>
             </div>
         </div>
       </div>
@@ -127,7 +115,10 @@
 export default {
   data(){
     return {
-      show:false
+      show:false,
+      cities:{},
+      cityShow:true,
+      city:"全国"
     }
   },
   methods:{
@@ -139,11 +130,35 @@ export default {
     },
     login(){
       console.log(this.$route.path);
-    }
-  }
+    },
+    // 切换城市事件
+    cityChange(){
+      if(this.cityShow){
+        this.cityShow=false;
+      }else{
+        this.cityShow=true;
+      }
+    },
+    // 城市选择事件
+    citySelect(a){
+      if(a==0){
+        this.city="全国";
+      }else{
+        this.city=a;
+      }
+    },
+  },
+  created(){
+    this.axios.get(
+      'cities'
+    ).then(result=>{
+      this.cities=result.data;
+      console.log(this.cities);
+    })
+  },
 }
 </script>
 
-<style scoped>
-  @import "../../public/css/header.css"
+<style scoped src="../../public/css/header.css">
+  /* @import "../../public/css/header.css" */
 </style>

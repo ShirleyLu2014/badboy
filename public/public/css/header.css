@@ -12,7 +12,7 @@ header{
   line-height:60px;
   margin:0 auto;
 }
-#header1 a{
+a{
   display:inline-block;
   text-decoration:none;
   color:#fff;
@@ -51,9 +51,16 @@ header{
 }
 .size{
   font-size:14px;
+  display: block;
+  cursor: pointer;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 6px;
+  margin-top:20px;
 }
 .city>div.city-select{
   margin-left:10px;
+  position: relative;
 }
 .city>div.city-select>a>i{
   /* position:absolute; */
@@ -63,25 +70,53 @@ header{
   width: 12px;
   height: 15px;
 }
-.city-select>.over{
+.city-select>.cityList{
+  position: absolute;
+  left: 0;
+  top: 41px;
+  border:5px solid rgba(215, 66, 91, 0.932);
+  background: #fff;
+  padding: 10px;
+  width: 390px;
+  overflow: hidden;
+  background-image: url(/images/index/music.jpeg);
+  background-position: -133px -720px;
+}
+.cityList>a{
+  display: inline-block;
+  width: 60px;
+  height:30px;
+  font-size: 13px;
+  color:rgba(23, 163, 184, 0.932);
+  font-weight:bold;
+  text-decoration: none;
+  padding:0;
+  margin:0;
+  outline: 0;
+  line-height:30px;
+}
+/*.city-select>.cityList{
   display:none;
   position:absolute;
   top:45px;
-  width:0px;
+  width:412px;
   height:0px;
-  background-color: #fff;
-  /* border-top:1px solid red; */
-  transition:1.5s;
+  background-image: url(/images/index/music.jpeg);
+  background-position: -133px -720px;
+  transition:10s;
 }
-.city-select:hover>.over{
+.city-select:hover>.cityList{
   display:block;
   height:120px;
   width:412px;
   border:1px solid red;
 }
-.city-select>.over>ul>li>a{
-  color:#2d2d2d;
+.city-select>.cityList>ul>li>a{
+   color:rgba(23, 163, 184, 0.932);
 }
+.city-select:hover>.cityList>ul>li>a{
+  color:#e72f2f;
+}*/
 #header1>.list{
   width:420;
   margin-left:20px;

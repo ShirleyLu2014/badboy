@@ -50,7 +50,7 @@
               <h2>全部演出</h2>
               <ul class="comingList">
                 <li v-for="(t,i) of artist_tours" :key="i">
-                  <router-link :to="`/tour_details/${t.tid}`">
+                  <router-link :to="`/live_details/${t.tid}`">
                     <div>
                       <img :src="t.sphoto" alt="">
                     </div>
@@ -164,7 +164,7 @@ export default {
       this.unshows=true;
     },
   },
-  props:["aid"],
+  props:{aid:{default:0}},
   created(){
     //艺人详情页
     this.axios.get(
@@ -179,10 +179,10 @@ export default {
       this.artist_venues=result.data.recent_venues;
       this.artist_pics=result.data.art_pics;
       console.log(result.data);
-      console.log(this.artist_details);
-      console.log(this.artist_fans);
-      console.log(this.artist_venues);
-      console.log(this.artist_pics);
+      //console.log(this.artist_details);
+      //console.log(this.artist_fans);
+      //console.log(this.artist_venues);
+      //console.log(this.artist_pics);
     })
     this.axios.get(
       "tours/byartist",

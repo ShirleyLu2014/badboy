@@ -291,7 +291,7 @@
 }
 .rightContent{
   width:350px;
-  height:1000px;
+  height:auto;
 }
 .leftContent>.tour>.tourHead>h3{
   height:24px;
@@ -342,11 +342,19 @@
   padding-top:10px;
   /* margin-right:15px; */
   border-top:2px solid #333333;
+  cursor: pointer;
 }
 .cityList>ul>li>a:hover{
   color:#e72f2f;
   border-top:2px solid #e72f2f;
 }
+.cityList>ul>li>a.active{
+  color:#e72f2f;
+  border-top:2px solid #e72f2f;
+}
+.cityList>ul>li>a.active>span.listIcon{
+  background: url("/images/index/icon.png") #fff -248px -386px no-repeat;
+} 
 .cityList>ul>li>a>p{
   width:59px;
   height:18px;

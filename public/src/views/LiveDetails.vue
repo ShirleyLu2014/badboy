@@ -12,10 +12,10 @@
         <h1 class="goodsName">{{live_tour.stitle}}&nbsp;{{live_tour.city}}站</h1>
         <!-- 详情信息列表 -->
         <div class="detailsList">
-          <p>演出时间：{{new Date(live_tour.time).toLocaleString()}}</p>
-          <p class="artistsList">艺人：<a href="" v-for="(t,i) of artists_details" :key="i" :to="`/artist_details/${t.aid}`">{{t.aname}}&nbsp;</a></p>
-          <p>场地：<a href="">{{live_tour.city}} {{live_tour.vname}}</a></p>
-          <p>地址：{{live_tour.vaddress}}<a href="" style="margin-left:5px;">查看地图</a></p>
+          <p>演出时间：{{new Date(live_tour.time).toLocaleString()}}-{{new Date(live_tour.endtime).toLocaleString()}}</p>
+          <p class="artistsList">艺人：<router-link  v-for="(t,i) of artists_details" :key="i" :to="`/artist_details/${t.aid}`">{{t.aname}}&nbsp;</router-link></p>
+          <p>场地：<router-link :to="`/venue_details/${live_tour.vid}`">{{live_tour.city}} {{live_tour.vname}}</router-link></p>
+          <p style="height:auto">地址：{{live_tour.vaddress}}<a href="" style="margin-left:5px;">查看地图</a></p>
           <p>电话：{{live_tour.vphone}}</p>
           <p class="goodsPrice">价格：<span><b class="¥">¥</b>{{(live_tour.price).toFixed(2)}}</span></p>
           <p class="count">数量：<button class="icon1"></button><input value="1" type="number" min="1"/><button class="icon2"></button></p>
@@ -28,7 +28,7 @@
           <div><a href="" v-for="(t,i) of live_styles" :key="i">{{t.stname}}&nbsp;</a></div>
         </div>
         <div class="fansWant">
-          <a href="" v-for="(t,i) of live_wants">
+          <a href="" v-for="(t,i) of live_wants" :key="i">
             <img :src="t.avatar" alt="">
           </a>
         </div>
@@ -65,14 +65,14 @@
             <h3>
               <i class="tourIcon"></i>巡演城市
               <span>|
-                <a href="">查看更多</a>
+                <a href="javascript:;">查看更多</a>
               </span>
             </h3>
           </div>
           <div class="cityList">
             <ul>
               <li v-for="(t,i) of live_tours" :key="i">
-                <router-link :to="`/live_details/${t.tid}`">
+                <router-link :to="`/live_details/${t.tid}`" :class="{active:tid==t.tid}" @click="tourSelect(t.tid)">
                   <p>
                     <span>{{t.city}}</span>{{new Date(t.time).toLocaleDateString()}}
                   </p>
@@ -109,7 +109,7 @@
             </h3>
             <ul>
               <li>
-                <a href="">
+                <router-link :to="`/venue_details/${live_tour.vid}`">
                   <span>
                     <img :src="live_tour.vpic" alt="">
                     <span class="icon placeIcon"></span>
@@ -119,7 +119,7 @@
                     <p class="place">{{live_tour.vaddress}}</p>
                     <p class="phone">{{live_tour.vphone}}</p>
                   </div>
-                </a>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -209,20 +209,19 @@ export default {
       live_tours:{},
       live_wCount:" ",
       live_wants:{},
-      tid:"",
+      // tid:"",
       comment_tour:{}    //推荐演出列表
     }
   },
-  props:["tid"],
-  created(){
-    //即将上演
-    console.log(this.tid);
-    this.axios.get(
+  methods:{
+    getList(){
+      this.axios.get(
       "tours/details",
       {
          params:{tid:this.tid}
       }
     ).then(result=>{
+      console.log(this.tid)
       this.tour_details=result.data;
       this.artists_details=result.data.artists;
       this.live_styles=result.data.styles;
@@ -230,9 +229,21 @@ export default {
       this.live_tours=result.data.tours;
       this.live_wCount=result.data.wCount;
       this.live_wants=result.data.wants;
-      //console.log(result.data);
-      console.log(result.data.tours);
+      console.log(result.data);
+      //console.log(result.data.tours);
     })
+    },
+    tourSelect(tid){
+      this.tid=a;
+    }
+  },
+  props:{tid:{default:0}},
+  created(){
+    //即将上演
+    this.getList();
+  },
+  watch:{
+    tid(){this.getList();}
   }
 }
 </script>
