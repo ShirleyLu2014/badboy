@@ -13,7 +13,7 @@
         </div>
       </div>
       <!-- 二楼音乐风格切换 -->
-      <div class="citySelect">
+      <div class="citySelect" style="display:block">
         <ul>
           <li>
             <a :class="{active:stid==0}" href="javascript:;" @click="styleSelect(0)">全部</a>
@@ -22,9 +22,6 @@
             <a href="javascript:;" :class="{active:stid==t.stid}" @click="styleSelect(t.stid)">{{t.stname}}</a>
           </li>
         </ul>
-        <!-- <span>
-          展开<i></i>
-        </span> -->
       </div>
       <!-- 四楼音乐现场列表 -->
       <div class="artList">
@@ -50,6 +47,7 @@ export default {
   data(){
     return {
       stid:0,
+      aid:"",
       kws:"",
       pno:"",
       psize:"",
@@ -103,7 +101,7 @@ export default {
        "styles"
     ).then(result=>{
       this.styles=result.data;
-     // console.log(this.styles);
+     console.log(this.styles);
     })
   },
   watch:{

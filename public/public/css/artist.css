@@ -67,6 +67,8 @@ section{
 }
 .venue>.citySelect>ul{
   width:1080px;
+  display:flex;
+  list-style:none;
   overflow: hidden;
   height: 20px;
 }
@@ -106,8 +108,8 @@ section{
 .artList>ul{
   /* height:247px; */
   list-style:none;
-  /* display:flex;
-  justify-content: space-between; */
+  display:flex;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 .artList>ul>li{

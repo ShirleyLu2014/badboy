@@ -66,6 +66,8 @@ section{
   line-height:20px;
 }
 .venue>.citySelect>ul{
+  display:flex;
+  list-style:none;
   width:1080px;
   overflow: hidden;
   height: 20px;
