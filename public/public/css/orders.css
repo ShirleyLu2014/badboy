@@ -15,10 +15,12 @@ h2{
   border-bottom: 1px solid #eee;
   height: 50px;
   display:flex;
+  margin-top:60px;
 }
 .tabs-wrap{
   width:100%;
   background-color: #fff;
+  list-style:none;
 }
 .mt20{
   margin-top: 20px;

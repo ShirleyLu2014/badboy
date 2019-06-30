@@ -44,17 +44,17 @@ CREATE TABLE users(
 -- 1~12
 INSERT INTO users VALUES
     (1,"Sunny","123456ab","1090165836@qq.com","18818218069","images/avatar/default.jpg","吴雅丽","1",1,"摩羯","A"),
-    (2,"Shirley","12345678","1090165835@qq.com","18818218067","images/avatar/default.jpg","韩梅梅","1",3,"白羊","B"),
-    (3,"Alan","123456ab","1090165834@qq.com","18818218066","images/avatar/default.jpg","李雷","0",5,"巨蟹","AB"),
-    (4,"Edward","123456ab","1090165833@qq.com","18818218065","images/avatar/default.jpg","徐亮","0",7,"狮子","O"),
-    (5,"liang","12345678","liang@qq.com","18818218067","images/avatar/default.jpg","亮亮","1",3,"白羊","B"),
-    (6,"ran","123456ab","ran@qq.com","18818218066","images/avatar/default.jpg","然然","0",5,"巨蟹","AB"),
-    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/default.jpg","东东","0",7,"狮子","O"),
-    (8,"tao","123456ab","tao@qq.com","18818218065","images/avatar/default.jpg","涛涛","0",7,"狮子","O"),
-    (9,"tom","12345678","tom@qq.com","18818218067","images/avatar/default.jpg","汤姆","1",3,"白羊","B"),
-    (10,"jerry","123456ab","jerry@qq.com","18818218066","images/avatar/default.jpg","杰瑞","0",5,"巨蟹","AB"),
-    (11,"jack","123456ab","jack@qq.com","18818218065","images/avatar/default.jpg","杰克","0",7,"狮子","O"),
-    (12,"rose","123456ab","rose@qq.com","18818218065","images/avatar/default.jpg","萝丝","0",7,"狮子","O");
+    (2,"Shirley","12345678","1090165835@qq.com","18818218067","images/avatar/avatar01.jpg","韩梅梅","1",3,"白羊","B"),
+    (3,"Alan","123456ab","1090165834@qq.com","18818218066","images/avatar/avatar02.jpg","李雷","0",5,"巨蟹","AB"),
+    (4,"Edward","123456ab","1090165833@qq.com","18818218065","images/avatar/avatar03.jpg","徐亮","0",7,"狮子","O"),
+    (5,"liang","12345678","liang@qq.com","18818218067","images/avatar/avatar04.jpg","亮亮","1",3,"白羊","B"),
+    (6,"ran","123456ab","ran@qq.com","18818218066","images/avatar/avatar05.jpg","然然","0",5,"巨蟹","AB"),
+    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/avatar06.jpg","东东","0",7,"狮子","O"),
+    (8,"tao","123456ab","tao@qq.com","18818218065","images/avatar/avatar07.jpg","涛涛","0",7,"狮子","O"),
+    (9,"tom","12345678","tom@qq.com","18818218067","images/avatar/avatar08.jpg","汤姆","1",3,"白羊","B"),
+    (10,"jerry","123456ab","jerry@qq.com","18818218066","images/avatar/avatar09.jpg","杰瑞","0",5,"巨蟹","AB"),
+    (11,"jack","123456ab","jack@qq.com","18818218065","images/avatar/avatar10.jpg","杰克","0",7,"狮子","O"),
+    (12,"rose","123456ab","rose@qq.com","18818218065","images/avatar/avatar11.jpg","萝丝","0",7,"狮子","O");
 
 -- 演出风格
 CREATE TABLE styles(
@@ -311,7 +311,7 @@ INSERT INTO venues VALUES
     (1,"蘑菇空间.MoguSpace","13651253655","北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店","images/show_performance/01MoguSpace.jpg",1),
     (2,"PINKMOON.樂暮","13651253655","东城区南锣鼓巷雨儿胡同2号{非遗博物馆}2楼{靠近中央戏剧学院}","images/show_performance/02PINKMOON.jpg",1),
     (3,"MAO Livehouse北京","010-68156770","海淀区复兴路69号院2号136-G23Mao livehouse","images/show_performance/03MAOLivehouse.jpg",1),
-    (4,"疆进酒·OMNI SPACE","13241688210","北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店",
+    (4,"疆进酒·OMNI SPACE","13241688210","北京市西城区天桥南大街9号天桥艺术中心b103疆进酒OMNI SPACE",
    "⁨images/show_performance/04OMNI SPACE.jpg",1),
     (5,"上海 MAO Livehouse","021-64450086","上海市黄浦区重庆南路308号3楼","images/show_performance/06shanghaiMao.jpg",2),
     (6,"育音堂音乐公园","021—52378662","上海市长宁区愚园路1398号地下一层B1-02","images/show_performance/07yyt.jpg",2),

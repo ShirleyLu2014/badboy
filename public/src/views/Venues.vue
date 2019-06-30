@@ -27,8 +27,9 @@
       </span>-->
     </div>
     <!-- 三楼地图 -->
-    <div class="map" id="containe">
-    </div>
+    <geog></geog>
+    <!-- <div class="map" id="containe">
+    </div> -->
     <!-- 四楼音乐现场列表 -->
     <div class="venueList">
       <div class="listItem" v-for="(v,i) of venue_list" :key="i">
@@ -56,6 +57,7 @@
 </section>
 </template>
 <script>
+import geog from '@/components/map/map'
 import page from '@/components/page/page'
 export default {
   data(){
@@ -114,30 +116,6 @@ export default {
       this.$router.push({path:'venues/list'});
     },
   },
-  mounted(){
-    //创建Map实例
-    var map = new BMap.Map("containe");
-    // 初始化地图坐标  
-    var point = new BMap.Point(116.4035,39.915); 
-    // 初始化地图，设置中心点坐标和地图级别  
-    map.centerAndZoom(point, 15);
-    var marker = new BMap.Marker(point);        // 创建标注    
-    map.addOverlay(marker);  //将标注添加到地图
-    //添加地图类型控件
-    map.addControl(new BMap.MapTypeControl());
-    //设置地图显示的城市，
-    map.setCurrentCity("杭州");
-    //开启鼠标滚轮缩放
-    map.enableScrollWheelZoom(true);
-    // 设置定时器，对地图进行自动移动
-    /*setTimeout(function(){
-        map.panTo(new BMap.Point(113.262232,23.154345));
-    }, 2000);
-    setTimeout(function(){
-        map.setZoom(14);
-    },4000);*/
-  // 创建点坐标  
-  },
  created(){
     // 获取现场列表
   this.getList(),
@@ -153,7 +131,8 @@ export default {
     cid(){this.getList();this.kws=""}
   },
   components:{
-    page
+    page,
+    geog
   }
 }
 </script>
