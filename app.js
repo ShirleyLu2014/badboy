@@ -10,6 +10,7 @@ const venues=require("./routes/venues");
 const cities=require("./routes/cities");
 const styles=require("./routes/styles");
 const user=require("./routes/user");
+const orders=require("./routes/orders");
 /*引入token的模块*/
 const jwt=require("./jwt.js")
 
@@ -33,10 +34,9 @@ app.use(bodyParser.urlencoded({extended:false}));
   saveUninitialized: false
 }));*/
 app.use((req, res, next)=>{ 
-  if (req.url != '/user/signin' && req.url.startsWith("/user")) {
+  if (req.url != '/user/signin' && (req.url.startsWith("/user") || req.url.startsWith("/orders"))) {
     let token = req.headers.token;
     let result = jwt.verifyToken(token);
-    console.log(result);
     // 如果考验通过就next，否则就返回登陆信息不正确
     if(result===undefined){
       res.send({status:403, msg:"未提供证书"})
@@ -59,5 +59,6 @@ app.use("/venues",venues);
 app.use("/cities",cities);
 app.use("/styles",styles);
 app.use("/user",user);
+app.use("/orders",orders);
 
 

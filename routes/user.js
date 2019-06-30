@@ -39,9 +39,9 @@ router.get("/profile",(req,res)=>{
 router.get("/favs",(req,res)=>{
   var user=req.user;
   var {pno,psize}=req.query;
-  var sql="select DISTINCT cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using(sid) inner join artists using(aid) inner join cities using (cid) inner join wants using(tid) where uid=? ";
+  var sql="select DISTINCT cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using(sid) inner join artists using(aid) inner join cities using (cid) inner join wants using(tid) where uid=?  and time>=? ";
   var sql2=`select count(*) as count from (${sql}) as table1`;
-  var params=[user.uid];
+  var params=[user.uid, new Date().getTime()];
   pool.query(sql2,params,(err,result)=>{
     if(err){
       res.send({code:0, msg:String(err)})
@@ -86,16 +86,5 @@ router.get("/favs",(req,res)=>{
       })
     }
   })
-})
-router.get("/orders",(req,res)=>{
-  var user=req.user;
-  var {status=0}=req.query;
-  var sql="select uid,tid,tkid,tickets.time as ttime,tickets.count as tcount,status,vid,sid,tours.count as totalCount,price,tours.time as starttime,endtime,uname,email,phone,avatar,rname,gender,cid,const ,blood from tickets inner join tours using(tid) inner join users using (uid) where uid=? ";
-  if(status==0){
-    var params=[user.uid];
-  }else{
-    var params=[user.uid,status]
-  }
-  
 })
 module.exports=router;
