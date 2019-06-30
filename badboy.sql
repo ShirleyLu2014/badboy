@@ -44,17 +44,17 @@ CREATE TABLE users(
 -- 1~12
 INSERT INTO users VALUES
     (1,"Sunny","123456ab","1090165836@qq.com","18818218069","images/avatar/default.jpg","吴雅丽","1",1,"摩羯","A"),
-    (2,"Shirley","12345678","1090165835@qq.com","18818218067","images/avatar/default.jpg","韩梅梅","1",3,"白羊","B"),
-    (3,"Alan","123456ab","1090165834@qq.com","18818218066","images/avatar/default.jpg","李雷","0",5,"巨蟹","AB"),
-    (4,"Edward","123456ab","1090165833@qq.com","18818218065","images/avatar/default.jpg","徐亮","0",7,"狮子","O"),
-    (5,"liang","12345678","liang@qq.com","18818218067","images/avatar/default.jpg","亮亮","1",3,"白羊","B"),
-    (6,"ran","123456ab","ran@qq.com","18818218066","images/avatar/default.jpg","然然","0",5,"巨蟹","AB"),
-    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/default.jpg","东东","0",7,"狮子","O"),
-    (8,"tao","123456ab","tao@qq.com","18818218065","images/avatar/default.jpg","涛涛","0",7,"狮子","O"),
-    (9,"tom","12345678","tom@qq.com","18818218067","images/avatar/default.jpg","汤姆","1",3,"白羊","B"),
-    (10,"jerry","123456ab","jerry@qq.com","18818218066","images/avatar/default.jpg","杰瑞","0",5,"巨蟹","AB"),
-    (11,"jack","123456ab","jack@qq.com","18818218065","images/avatar/default.jpg","杰克","0",7,"狮子","O"),
-    (12,"rose","123456ab","rose@qq.com","18818218065","images/avatar/default.jpg","萝丝","0",7,"狮子","O");
+    (2,"Shirley","12345678","1090165835@qq.com","18818218067","images/avatar/avatar01.jpg","韩梅梅","1",3,"白羊","B"),
+    (3,"Alan","123456ab","1090165834@qq.com","18818218066","images/avatar/avatar02.jpg","李雷","0",5,"巨蟹","AB"),
+    (4,"Edward","123456ab","1090165833@qq.com","18818218065","images/avatar/avatar03.jpg","徐亮","0",7,"狮子","O"),
+    (5,"liang","12345678","liang@qq.com","18818218067","images/avatar/avatar04.jpg","亮亮","1",3,"白羊","B"),
+    (6,"ran","123456ab","ran@qq.com","18818218066","images/avatar/avatar05.jpg","然然","0",5,"巨蟹","AB"),
+    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/avatar06.jpg","东东","0",7,"狮子","O"),
+    (8,"tao","123456ab","tao@qq.com","18818218065","images/avatar/avatar07.jpg","涛涛","0",7,"狮子","O"),
+    (9,"tom","12345678","tom@qq.com","18818218067","images/avatar/avatar08.jpg","汤姆","1",3,"白羊","B"),
+    (10,"jerry","123456ab","jerry@qq.com","18818218066","images/avatar/avatar09.jpg","杰瑞","0",5,"巨蟹","AB"),
+    (11,"jack","123456ab","jack@qq.com","18818218065","images/avatar/avatar10.jpg","杰克","0",7,"狮子","O"),
+    (12,"rose","123456ab","rose@qq.com","18818218065","images/avatar/avatar11.jpg","萝丝","0",7,"狮子","O");
 
 -- 演出风格
 CREATE TABLE styles(
