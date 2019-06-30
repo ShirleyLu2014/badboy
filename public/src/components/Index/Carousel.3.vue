@@ -33,10 +33,12 @@ export default {
   data(){
     return {
       innerWidth:window.innerWidth,
-      ulClass:{
-        hasTrans:true
+      ulClass:{//定义所有图片的容器div上是否有transition
+        hasTrans:true //在css中提前定义好的样式类，其中包含transition属性
+          //如果值为true，则当前图片容器的div上就有过渡属性
+          //如果不想让图片容器的div上有过渡属性，则设置该值为false
       },
-      i:0,
+      i:0,//控制当前正在选中第几张图片
       imgs:[
         {
           src:"/images/carousel_item/carousel-1.jpg",
@@ -89,10 +91,11 @@ export default {
   },
   methods:{
     move(i){
-      if(this.canClick){
-        this.i+=i;
-        this.canClick=false;
-        setTimeout(()=>{
+      //如果可以单击
+      if(this.canClick){//防抖/节流
+        this.i+=i;//才i+1 或 i-1
+        this.canClick=false;//立刻禁止单击，即使再单击，if也不成立了
+        setTimeout(()=>{//等动画播放后，再允许单击
           this.canClick=true;
         },600)
       }
