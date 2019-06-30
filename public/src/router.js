@@ -11,6 +11,7 @@ import User from './views/User'
 import Profile from './views/Profile'
 import Favs from './views/Favs'
 import Orders from './views/Orders'
+import Map from './views/map'
 import NotFound from './views/NotFound'
 
 Vue.use(Router)
@@ -76,6 +77,11 @@ export default new Router({
           component: Orders
         }
       ]
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: Map
     },
     {
       path: '/not_found',

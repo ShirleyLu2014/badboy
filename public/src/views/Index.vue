@@ -459,6 +459,7 @@
               <li v-for="(t,i) of hot_artists" :key="i">
                 <router-link :to="`artist_details/${t.aid}`" class="artItem">
                   <img :src="t.aphoto" alt="">
+                  <span class="bg"></span>
                   <!--<img src="/image⁩s/artists/cw/hp.jpg" alt="">-->
                   <div class="top">
                     <div class="topBg">
@@ -530,6 +531,10 @@
   </section>
 </template>
 <script>
+// var Event=new Vue();
+// Event.$on('citySelect',data=>{
+//   this.cid;
+// })
 import carousel from "../components/Index/Carousel"
 export default {
   data(){
@@ -539,29 +544,70 @@ export default {
       hot_venues:[],      //热门现场
       hot_artists:[],   //热门音乐人列表
       tid:"",
-      vid:""
+      vid:"",
+      cid:0
     }
   },
-  created(){
-    //即将上演
-    this.axios.get(
-      "tours/recent"
+  methods:{
+     //获取最近的四场演出列表
+    getRecentTour(){
+      this.axios.get(
+      "tours/recent",
+      {params:{
+        // cid:localStorage.getItem("cid")
+        cid:this.myCid
+      }}
     ).then(result=>{
       this.recent_tours=result.data;
+      //console.log(this.recent_tours);
+       //console.log(this.cid)
+       console.log("#3######333");
       //console.log(result.data);
-    }),
-  this.axios.get(
-      "tours/hot"
+    })
+    },
+    //获取最热门的演出列表
+    getHotTour(){
+      this.axios.get(
+      "tours/hot",
+      {params:{
+        // cid:localStorage.getItem("cid")
+        cid:this.myCid
+      }}
     ).then(result=>{
       this.hot_tours=result.data;
       //console.log(result.data);
     })
-  this.axios.get(
-      "venues/hot"
+    },
+    //获取演出场次最多的现场列表
+    getVenuesHot(){
+      this.axios.get(
+      "venues/hot",
+      {
+        params:{
+          cid:this.myCid
+        }
+      }
     ).then(result=>{
       this.hot_venues=result.data;
       //console.log(result.data);
     })
+    }
+  },
+  computed:{
+    myCid:function(){
+      // return this.$store.getters.cid;
+      return this.$store.state.cid;
+    }
+  },
+    created(){
+    console.log(this.$store.getters.cid);
+    // this.cid=this.$store.cid;
+    console.log("index"+this.cid);
+    // this.cid=localStorage.getItem("cid");
+    //console.log(this.cid)
+    this.getRecentTour()
+    this.getHotTour()
+    this.getVenuesHot()
     this.axios.get(
       "artists/hot"
     ).then(result=>{
@@ -570,6 +616,14 @@ export default {
     })
   },
   components:{ carousel },
+  watch:{
+    myCid(){
+      this.getRecentTour(),
+      this.getHotTour(),
+      this.getVenuesHot()
+      // console.log(this.myCid)
+    }
+  }
 }
 </script>
 

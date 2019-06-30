@@ -143,7 +143,8 @@ export default {
       styles:[],       //演出风格
       pno:"",
       psize:"",
-      pcount:""
+      pcount:"",
+      kws:""
     }
   },
   methods:{
@@ -206,9 +207,30 @@ export default {
         this.venues=result.data;
         //console.log(this.cities);
       })
+    },
+    search(){
+      this.axios.get(
+        'lives/kws?kws=宋冬野',
+        /*{
+          params:{
+            kws:this.myKws,
+            pno:this.pno,
+            psize:this.psize
+          }
+        }*/
+      ).then(result=>{
+       this.lives_list=result.data.result;
+      })
+    },
+  },
+   computed:{
+    myKws:function(){
+      // return this.$store.getters.cid;
+      return this.$store.state.searchKws;
     }
   },
   created(){
+    this.search();
     //演出列表请求
     this.allLives()
     //演出场次请求
@@ -234,6 +256,7 @@ export default {
     stid(){ this.allLives();},
     starttime(){ this.allLives() },
     endtime(){ this.allLives() },
+    myKws(){this.search()}
   },
   components:{
     page

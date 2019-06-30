@@ -17,8 +17,8 @@
               <i></i>切换城市
               </a>
             <div class="cityList" v-show="!cityShow">
-              <a href="javascript:;" @click="citySelect(0)">全国</a>
-              <a href="javascript:;" v-for="(t,i) of cities" :key="i" @click="citySelect(t.city)">{{t.city}} </a>
+              <a href="javascript:;" @click="citySelect(0,0)">全国</a>
+              <a href="javascript:;" v-for="(t,i) of cities" :key="i" @click="citySelect(t.city,t.cid)">{{t.city}} </a>
             </div>
         </div>
       </div>
@@ -47,10 +47,10 @@
             <a href="javascript:;">注册</a>
           </li>
           <li>
-            <input type="text" placeholder="搜索演出">
+            <input type="text" placeholder="搜索演出" v-model="searchKws">
           </li>
           <li>
-            <a href="">
+            <a href="javascript:;" @click="search(searchKws)">
                 <img src="images/index/search.png" alt="">
             </a>
           </li>
@@ -118,7 +118,9 @@ export default {
       show:false,
       cities:{},
       cityShow:true,
-      city:"全国"
+      city:"全国",
+      cid:0,
+      searchKws:""
     }
   },
   methods:{
@@ -129,7 +131,17 @@ export default {
       this.show=false;
     },
     login(){
-      console.log(this.$route.path);
+      //console.log(this.$route.path);
+    },
+    //搜索演出
+    search(searchKws){
+      this.searchKws=searchKws;
+      console.log(this.searchKws);
+      this.$store.commit('search',this.searchKws);
+      this.$router.push({
+      　　　　path: 'lives/kws', query:{kws: searchKws}
+
+       　　 });
     },
     // 切换城市事件
     cityChange(){
@@ -140,22 +152,38 @@ export default {
       }
     },
     // 城市选择事件
-    citySelect(a){
+    citySelect(a,b){
       if(a==0){
         this.city="全国";
+        localStorage.setItem("city",this.city)
+        this.cid=b;
+        // this.$store.getters.cidd=b;
+        this.$store.commit('cityAlert',this.cid);
       }else{
         this.city=a;
+        localStorage.setItem("city",this.city);
+        this.cid=b;
+        this.$store.commit('cityAlert',this.cid);
       }
-    },
+      //localStorage.setItem("cid",this.cid);
+      // this.$router.go(0);
+      //console.log("header---->"+this.$store.getters.cid);
+    }
   },
   created(){
+    this.city=localStorage.getItem("city");
+     this.$store.commit('cityAlert',localStorage.getItem("cid"));
+     console.log("store"+localStorage.getItem("cid"));
+     //this.citySelect(this.city,this.cid);
+    // console.log(this);
+    // console.log(this.$store.getters.cidd)
     this.axios.get(
       'cities'
     ).then(result=>{
       this.cities=result.data;
-      console.log(this.cities);
+      //console.log(this.cities);
     })
-  },
+  }
 }
 </script>
 
