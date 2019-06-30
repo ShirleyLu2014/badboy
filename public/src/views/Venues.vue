@@ -118,7 +118,7 @@ export default {
     //创建Map实例
     var map = new BMap.Map("containe");
     // 初始化地图坐标  
-    var point = new BMap.Point(116.4035,39.915); 
+    var point = new BMap.Point(116.412498 ,39.883448); 
     // 初始化地图，设置中心点坐标和地图级别  
     map.centerAndZoom(point, 15);
     var marker = new BMap.Marker(point);        // 创建标注    
@@ -126,7 +126,7 @@ export default {
     //添加地图类型控件
     map.addControl(new BMap.MapTypeControl());
     //设置地图显示的城市，
-    map.setCurrentCity("杭州");
+    // map.setCurrentCity("杭州");
     //开启鼠标滚轮缩放
     map.enableScrollWheelZoom(true);
     // 设置定时器，对地图进行自动移动
@@ -137,6 +137,21 @@ export default {
         map.setZoom(14);
     },4000);*/
   // 创建点坐标  
+  // 编写自定义函数,创建标注
+	function addMarker(point){
+	  var marker = new BMap.Marker(point);
+	  map.addOverlay(marker);
+	}
+	// 随机向地图添加25个标注
+	var bounds = map.getBounds();
+	var sw = bounds.getSouthWest();
+	var ne = bounds.getNorthEast();
+	var lngSpan = Math.abs(sw.lng - ne.lng);
+	var latSpan = Math.abs(ne.lat - sw.lat);
+	for (var i = 0; i < 25; i ++) {
+		var point = new BMap.Point(sw.lng + lngSpan * (Math.random() * 0.7), ne.lat - latSpan * (Math.random() * 0.7));
+		addMarker(point);
+	}
   },
  created(){
     // 获取现场列表

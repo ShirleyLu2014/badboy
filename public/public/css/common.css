@@ -30,3 +30,6 @@ section{
 .clearfix::after{
   clear: both;
 }
+ul{
+  list-style:none;
+}

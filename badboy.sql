@@ -322,7 +322,7 @@ INSERT INTO venues VALUES
     (1,"蘑菇空间.MoguSpace","13651253655","北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店","images/show_performance/01MoguSpace.jpg",1),
     (2,"PINKMOON.樂暮","13651253655","东城区南锣鼓巷雨儿胡同2号{非遗博物馆}2楼{靠近中央戏剧学院}","images/show_performance/02PINKMOON.jpg",1),
     (3,"MAO Livehouse北京","010-68156770","海淀区复兴路69号院2号136-G23Mao livehouse","images/show_performance/03MAOLivehouse.jpg",1),
-    (4,"疆进酒·OMNI SPACE","13241688210","北京市海淀区北下关交大东路66号钻河中心2号楼102号蘑菇商店",
+    (4,"疆进酒·OMNI SPACE","13241688210","北京市西城区天桥南大街9号天桥艺术中心b103疆进酒OMNI SPACE",
    "⁨images/show_performance/04OMNI SPACE.jpg",1),
     (5,"上海 MAO Livehouse","021-64450086","上海市黄浦区重庆南路308号3楼","images/show_performance/06shanghaiMao.jpg",2),
     (6,"育音堂音乐公园","021—52378662","上海市长宁区愚园路1398号地下一层B1-02","images/show_performance/07yyt.jpg",2),
