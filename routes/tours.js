@@ -145,7 +145,6 @@ function getHot(res,start, end, cid){
           }})(r)))
         }
         Promise.all(tasks).then(()=>{
-          console.log(result);
           res.send(result);
         })
       }else{
@@ -170,7 +169,6 @@ function getHot(res,start, end, cid){
             }})(r)))
           }
           Promise.all(tasks).then(()=>{
-            console.log(result);
             res.send(result);
           })
         }

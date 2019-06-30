@@ -36,5 +36,55 @@ router.get("/profile",(req,res)=>{
     }
   })
 })
-
+router.get("/favs",(req,res)=>{
+  var user=req.user;
+  var {pno,psize}=req.query;
+  var sql="select DISTINCT cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto from tours inner join venues using(vid) inner join shows using(sid) inner join arshows using(sid) inner join artists using(aid) inner join cities using (cid) inner join wants using(tid) where uid=?  and time>=? ";
+  var sql2=`select count(*) as count from (${sql}) as table1`;
+  var params=[user.uid, new Date().getTime()];
+  pool.query(sql2,params,(err,result)=>{
+    if(err){
+      res.send({code:0, msg:String(err)})
+    }else{
+      var count=result[0]["count"];
+      sql+=" order by time ";
+      sql+=" limit ?,?";
+      pno=pno||0;
+      psize=psize||20;
+      params.push(pno*psize,psize);
+      pool.query(sql,params,(err,result)=>{
+        if(err){
+          res.send({code:0, msg:String(err)})
+        }else{
+          var tasks=[];
+          for(var r of result){
+            tasks.push(new Promise((function(r){return (open)=>{
+              pool.query("SELECT distinct(aname) FROM arshows inner join artists using(aid) where sid=?",[r["sid"]],(err,result)=>{
+                if(err){
+                  console.log(err);
+                }else{
+                  var as=[];
+                  for(var re of result){
+                    as.push(re["aname"])
+                  }
+                  r["artists"]=as.join("/");
+                  open();
+                }
+              })
+            }})(r)))
+          }
+          Promise.all(tasks).then(()=>{
+            res.send({
+              pno,
+              psize,
+              pcount:Math.ceil(count/psize),
+              count,
+              result
+            })
+          })
+        }
+      })
+    }
+  })
+})
 module.exports=router;
