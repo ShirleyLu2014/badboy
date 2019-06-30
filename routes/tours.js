@@ -114,7 +114,7 @@ router.get("/hot",(req,res)=>{
   getHot(res,start,end,cid);
 });
 function getHot(res,start, end, cid){
-  var sql=`select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto, (select count(*) from wants where wants.sid=tours.sid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where time>=? and time<=? `;
+  var sql=`select cid,sid,vid,tid,count,price,time,endtime,vname,vpic,city,stitle,sphoto, (select count(*) from wants where wants.tid=tours.tid) as wants from tours inner join venues using(vid) inner join shows using(sid) inner join cities using (cid) where time>=? and time<=? `;
   var params=[start,end];
   if(cid!==undefined&cid!=0){
     sql+=` and cid=? `;
@@ -337,15 +337,15 @@ router.get("/details",(req,res)=>{
         res.send({code:0, msg:String(err)})
       }else{
         output.tour=result[0];
-        var sql=`SELECT uid,wid,sid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where sid=? order by tcount desc limit 4`;
-        pool.query(sql,[output.tour.sid],(err,result)=>{
+        var sql=`SELECT uid,wid,sid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where tid=? order by tcount desc limit 4`;
+        pool.query(sql,[tid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
             output.wants=result;
             //再查询想看的用户总数
-            var sql=`SELECT count(*) as count FROM wants where sid=? `;
-            pool.query(sql,[output.tour.sid],(err,result)=>{
+            var sql=`SELECT count(*) as count FROM wants where tid=? `;
+            pool.query(sql,[tid],(err,result)=>{
               if(err){
                 res.send({code:0, msg:String(err)})
               }else{

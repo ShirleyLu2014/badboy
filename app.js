@@ -33,14 +33,17 @@ app.use(bodyParser.urlencoded({extended:false}));
   saveUninitialized: false
 }));*/
 app.use((req, res, next)=>{ 
-  if (req.url != '/user/login' && req.url.startsWith("/user")) {
+  if (req.url != '/user/signin' && req.url.startsWith("/user")) {
     let token = req.headers.token;
     let result = jwt.verifyToken(token);
+    console.log(result);
     // 如果考验通过就next，否则就返回登陆信息不正确
-    if (result == 'exp') {
+    if(result===undefined){
+      res.send({status:403, msg:"未提供证书"})
+    }else if (result.name == 'TokenExpiredError') {
       res.send({status: 403, msg: '登录超时，请重新登录'});
-    } else if (result.hasOwnProperty("JsonWebTokenError")){
-      res.send({status: 400, msg: '证书出错'})
+    } else if (result.name=="JsonWebTokenError"){
+      res.send({status: 403, msg: '证书出错'})
     } else{
       req.user=result;
       next();

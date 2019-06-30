@@ -9,7 +9,7 @@ function generateToken(data){
     let cert = fs.readFileSync(path.join(__dirname, './pem/rsa_private_key.pem'));//私钥 可以自己生成
     let token = jwt.sign({
         data,
-        exp: created + 60 * 30,
+        exp: created + 60 * 60,
     }, cert, {algorithm: 'RS256'});
     return token;
 }
@@ -21,12 +21,7 @@ function verifyToken(token) {
     try {
         if(token!==undefined){
             let result = jwt.verify(token, cert, {algorithms: ['RS256']}) || {};
-            let {exp = 0} = result, current = Math.floor(Date.now() / 1000);
-            if (current <= exp) {
-                res = result.data || {};
-            }else{
-                res="exp";
-            }
+            res = result.data || {};
         }
     } catch (e) {
         res = e;
