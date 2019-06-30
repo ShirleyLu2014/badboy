@@ -337,7 +337,7 @@ router.get("/details",(req,res)=>{
         res.send({code:0, msg:String(err)})
       }else{
         output.tour=result[0];
-        var sql=`SELECT uid,wid,sid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where tid=? order by tcount desc limit 4`;
+        var sql=`SELECT uid,wid,tid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where tid=? order by tcount desc limit 4`;
         pool.query(sql,[tid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
