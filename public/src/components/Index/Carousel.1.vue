@@ -1,7 +1,7 @@
 <template>
   <div id="demo" class="carousel" :style="{width:innerWidth+'px'}">
       <!--1.轮播图片-->
-    <div class="carousel-inner" :style="ulStyle">
+    <div class="carousel-inner">
       <div class="carousel-item">
         <a href="javascript:;" title="《Ghost Mane》| STARR J与恶魔一起住在Dark Castle">
           <img src="/images/carousel_item/carousel-1.jpg" :style="{width:innerWidth+'px'}"/>
@@ -29,6 +29,7 @@
 export default {
   data(){
     return {
+      //在初始时，设置默认宽度为当前窗口的宽度
       innerWidth:window.innerWidth,
       imgs:[
         {

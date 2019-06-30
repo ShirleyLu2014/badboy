@@ -33,7 +33,7 @@ export default {
   data(){
     return {
       innerWidth:window.innerWidth,
-      i:0,
+      i:0,//当前正在播放的是第几张图片
       imgs:[
         {
           src:"/images/carousel_item/carousel-1.jpg",
@@ -86,8 +86,8 @@ export default {
   methods:{
 
   },
-  computed:{
-    ulStyle(){
+  computed:{//希望网页宽度变化或i变化，则自动重新计算ul的位置和大小
+    ulStyle(){//修饰所有图片的父元素
       var width=this.innerWidth*(this.imgs.length+1)+"px";
       var transition="all .5s linear";
       var marginLeft=-this.i*this.innerWidth+"px";
