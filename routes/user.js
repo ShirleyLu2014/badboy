@@ -14,7 +14,7 @@ router.post("/signin",(req,res)=>{
         res.send({code:-1, msg:"登录不成功！"})
       }else{
         if(result.length>0){
-          res.send({code:1, token:jwt.generateToken(result[0])})
+          res.send({code:1, uname: result[0]["uname"], token:jwt.generateToken(result[0])})
         }else{
           res.send({code:-1, msg:"用户名密码不正确"})
         }
@@ -100,39 +100,16 @@ router.post("/addfav",(req,res)=>{
     }
   })
 })
-router.post("/addticket",(req,res)=>{
+router.post("/addfans",(req,res)=>{
   var user=req.user;
-  var {tid,count}=req.body;
-  var sql="select * from tickets where uid=? and tid=? and status=0";
-  pool.query(sql,[user.uid,parseInt(tid)],(err,result)=>{
+  var {aid}=req.body;
+  var sql="insert into fans values(NULL,?,?)"
+  pool.query(sql,[aid,user.uid],(err,result)=>{
     if(err){
       console.log(err);
       res.send({code:-1})
     }else{
-      console.log(result.length);
-      if(result.length>0){
-        var now=new Date().getTime();
-        var sql="update tickets set count=count+?, time=? where uid=? and tid=?";
-        pool.query(sql,[parseInt(count),now,user.uid,parseInt(tid)],(err,result)=>{
-          if(err){
-            console.log(err);
-            res.send({code:-1});
-          }else{
-            res.send({code:1});
-          }
-        });
-      }else{
-        var now=new Date().getTime();
-        var sql="insert into tickets values (NULL,?,?,?,?,0)";
-        pool.query(sql,[parseInt(tid),user.uid,now,parseInt(count)],(err,result)=>{
-          if(err){
-            console.log(err);
-            res.send({code:-1});
-          }else{
-            res.send({code:1});
-          }
-        });
-      }
+      res.send({code:1})
     }
   })
 })

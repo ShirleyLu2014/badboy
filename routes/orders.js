@@ -4,9 +4,9 @@ const pool=require("../pool");
 
 router.get("/",(req,res)=>{
   var user=req.user;
-  var {status=0, pno=0, psize=4}=req.query;
+  var {status=100, pno=0, psize=4}=req.query;
   var sql="select cid,vid,tid,tkid,uid,tickets.time as ttime, tickets.count as tcount,status,sid,tours.count as totalCount,price,tours.time as starttime,endtime,vname,vphone,vaddress,vpic,city from tickets inner join tours using(tid) inner join venues using(vid) inner join cities using (cid) where uid=? ";
-  if(status==0){
+  if(status==100){
     var params=[user.uid];
   }else{
     var params=[user.uid,status,new Date().getTime()];
@@ -34,6 +34,42 @@ router.get("/",(req,res)=>{
           })
         }
       })
+    }
+  })
+})
+router.post("/addticket",(req,res)=>{
+  var user=req.user;
+  var {tid,count}=req.body;
+  var sql="select * from tickets where uid=? and tid=? and status=0";
+  pool.query(sql,[user.uid,parseInt(tid)],(err,result)=>{
+    if(err){
+      console.log(err);
+      res.send({code:-1})
+    }else{
+      console.log(result.length);
+      if(result.length>0){
+        var now=new Date().getTime();
+        var sql="update tickets set count=count+?, time=? where uid=? and tid=?";
+        pool.query(sql,[parseInt(count),now,user.uid,parseInt(tid)],(err,result)=>{
+          if(err){
+            console.log(err);
+            res.send({code:-1});
+          }else{
+            res.send({code:1});
+          }
+        });
+      }else{
+        var now=new Date().getTime();
+        var sql="insert into tickets values (NULL,?,?,?,?,0)";
+        pool.query(sql,[parseInt(tid),user.uid,now,parseInt(count)],(err,result)=>{
+          if(err){
+            console.log(err);
+            res.send({code:-1});
+          }else{
+            res.send({code:1});
+          }
+        });
+      }
     }
   })
 })
