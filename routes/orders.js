@@ -37,4 +37,33 @@ router.get("/",(req,res)=>{
     }
   })
 })
+router.post("/pay",(req,res)=>{
+  var user=req.user;
+  var tkid=req.body.tkid;
+  if(tkid!==undefined){
+    var sql1="select * from tickets where tkid=? and uid=?";
+    var sql2="update tickets set status=1 where tkid=?";
+    pool.query(sql1,[tkid,user.uid],(err,result)=>{
+      if(err){
+        console.log(err);
+        res.send({code:-1})
+      }else{
+        if(result.length==1){
+          pool.query(sql2,[tkid],(err,result)=>{
+            if(err){
+              console.log(err);
+              res.send({code:-1});
+            }else{
+              res.send({code:1, msg:"支付成功!"})
+            }
+          })
+        }else{
+          res.send({code:-1, msg:"不是您的票，您无权支付"})
+        }
+      }
+    })
+  }else{
+    res.send({code:-1,msg:"未提供票号"})
+  }
+})
 module.exports=router;
