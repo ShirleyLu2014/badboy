@@ -76,3 +76,30 @@ http://localhost:5050
 ----/venues/byartist?aid=音乐人编号&pno=页码&psize=每页条目数
 
 ****************************finished******************************
+
+登录
+--post请求: /user/signin 参数:uname和upwd
+----返回结果中包含token字符串，需要保存在localstorage中
+
+****************************finished******************************
+
+*以下接口都需要从localstorage中读取token字符串在请求头中携带token字符*
+用户页面
+--个人信息
+----/user/profile
+--收藏的演出
+----/user/favs?pno=n&psize=m
+--订单页面
+----/orders?status=n&pno=m&psize=k
+------status=100,查全部, status=0查未付款，status=1查已付款
+----post请求: /orders/pay 带tkid参数
+
+演出详情页
+--添加收藏
+----post请求: /user/addfav 带tid参数
+--购买
+----post请求: /orders/addticket 带tid参数和count参数
+
+艺人详情页
+--添加关注
+----post请求: /user/addfans 带aid参数
