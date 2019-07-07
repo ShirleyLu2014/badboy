@@ -51,31 +51,28 @@
         <div>
           <ul>
             <li>
-              <a href="">全部</a>
+              <a href="javascript:;">全部</a>
             </li>
             <li>
-              <a href="">今天</a>
+              <a href="javascript:;" @click="today">今天</a>
             </li>
             <li>
-              <a href="">最近一周内</a>
+              <a href="javascript:;" @click="week">最近一周内</a>
             </li>
             <li>
-              <a href="">下周内</a>
+              <a href="javascript:;" @click="month">最近一个月</a>
             </li>
             <li>
-              <a href="">最近一个月</a>
-            </li>
-            <li>
-              <input type="date" placeholder="">
+              <input type="date" v-model="startt">
             </li>
             <li>
               到
             </li>
             <li>
-              <input type="date" placeholder="">
+              <input type="date" v-model="endt">
             </li>
             <li>
-              <a href="">确定</a>
+              <a href="javascript:;" >确定</a>
             </li>
           </ul>
         </div>
@@ -144,10 +141,27 @@ export default {
       pno:"",
       psize:"",
       pcount:"",
-      kws:""
+      kws:"",
+      startt:"",
+      endt:""
     }
   },
   methods:{
+    today(){
+      var ms=new Date().getTime();
+      this.startime=ms-ms%(24*60*60*1000);
+      this.endtime=ms+24*60*60*1000;
+    },
+    week(){
+      var ms=new Date().getTime();
+      this.startime=ms-ms%(24*60*60*1000);
+      this.endtime=ms+24*60*60*1000*7;
+    },
+    month(){
+      var ms=new Date().getTime();
+      this.startime=ms-ms%(24*60*60*1000);
+      this.endtime=ms+24*60*60*1000*31;
+    }, 
     toggleCity(){
       this.cityHide=!this.cityHide;
     },
@@ -210,14 +224,14 @@ export default {
     },
     search(){
       this.axios.get(
-        'lives/kws?kws=宋冬野',
-        /*{
+        'tours/kws',
+        {
           params:{
-            kws:this.myKws,
+            kws:this.kws,
             pno:this.pno,
             psize:this.psize
           }
-        }*/
+        }
       ).then(result=>{
        this.lives_list=result.data.result;
       })
@@ -230,9 +244,20 @@ export default {
     }
   },
   created(){
-    this.search();
-    //演出列表请求
-    this.allLives()
+    this.kws=this.$route.params.kws;
+    if(this.kws){
+      this.search();
+      this.cid=0;
+      this.vid=0;
+      this.startime=0;
+      this.endtime=0;
+      this.stid=0;
+      this.pno=0;
+      this.psize=0;
+    }else{
+      //演出列表请求
+      this.allLives()
+    }
     //演出场次请求
     this.allVenues()
     //演出城市请求
@@ -241,14 +266,15 @@ export default {
     ).then(result=>{
       this.cities=result.data;
       //console.log(this.cities);
-    }),
+    });
     //演出风格
     this.axios.get(
       "styles"
     ).then(result=>{
       this.styles=result.data;
      //console.log(this.styles);
-    })
+    });
+    
   },
   watch:{
     cid(){ this.allLives(); this.allVenues();this.venueSelect(0);},
@@ -256,7 +282,13 @@ export default {
     stid(){ this.allLives();},
     starttime(){ this.allLives() },
     endtime(){ this.allLives() },
-    myKws(){this.search()}
+    myKws(){this.search()},
+    startt(){
+      this.starttime=new Date(this.startt).getTime();
+    },
+    endt(){
+      this.endtime=new Date(this.endt).getTime();
+    }
   },
   components:{
     page

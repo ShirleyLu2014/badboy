@@ -47,10 +47,10 @@
             <a href="javascript:;">注册</a>
           </li>
           <li>
-            <input type="text" placeholder="搜索演出" v-model="searchKws">
+            <input type="text" placeholder="搜索演出" @keyup.13="gosearch()" v-model="searchKws">
           </li>
           <li>
-            <a href="javascript:;" @click="search(searchKws)">
+            <a href="javascript:;" @click="gosearch()">
                 <img src="images/index/search.png" alt="">
             </a>
           </li>
@@ -134,7 +134,7 @@ export default {
       //console.log(this.$route.path);
     },
     //搜索演出
-    search(searchKws){
+    /*search(searchKws){
       this.searchKws=searchKws;
       console.log(this.searchKws);
       this.$store.commit('search',this.searchKws);
@@ -142,6 +142,9 @@ export default {
       　　　　path: 'lives/kws', query:{kws: searchKws}
 
        　　 });
+    },*/
+    gosearch(){
+      this.$router.push(`/lives/${this.searchKws}`)
     },
     // 切换城市事件
     cityChange(e){

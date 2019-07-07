@@ -28,6 +28,11 @@ export default new Router({
       component: Lives
     },
     {
+      path: '/lives/:kws',
+      name: 'lives',
+      component: Lives
+    },
+    {
       path: '/live_details/:tid',
       name: 'live_details',
       component: LiveDetails,
