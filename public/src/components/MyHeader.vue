@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header >
     <div id="header1">
       <!--右侧logo-->
       <div class="logo">
@@ -13,10 +13,10 @@
           {{city}}
         </div>
         <div class="city-select">
-            <a href="javascript:;" class="size cityActive" @click="cityChange">
+            <a href="javascript:;" class="size cityActive" @click="cityChange($event)" id="cityButton">
               <i></i>切换城市
               </a>
-            <div class="cityList" v-show="!cityShow">
+            <div class="cityList" v-show="cityShow" id="cityBox">
               <a href="javascript:;" @click="citySelect(0,0)">全国</a>
               <a href="javascript:;" v-for="(t,i) of cities" :key="i" @click="citySelect(t.city,t.cid)">{{t.city}} </a>
             </div>
@@ -117,7 +117,7 @@ export default {
     return {
       show:false,
       cities:{},
-      cityShow:true,
+      cityShow:false,
       city:"全国",
       cid:0,
       searchKws:""
@@ -144,12 +144,16 @@ export default {
        　　 });
     },
     // 切换城市事件
-    cityChange(){
+    cityChange(e){
+      var cityButton=document.getElementById("cityButton");
+      var cityBox=document.getElementById("cityBox");
+      //console.log(cityBox);
       if(this.cityShow){
         this.cityShow=false;
-      }else{
-        this.cityShow=true;
-      }
+        }else{
+          this.cityShow=true;
+        }
+        console.log(e.target);
     },
     // 城市选择事件
     citySelect(a,b){
@@ -168,6 +172,9 @@ export default {
       //localStorage.setItem("cid",this.cid);
       // this.$router.go(0);
       //console.log("header---->"+this.$store.getters.cid);
+    },
+    closeTab(e){
+      console.log(e.target);
     }
   },
   created(){

@@ -579,8 +579,8 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
 }
 .fifthFloor>.fifthRight{
   width:330px;
-  height:543px;
-  border:1px solid #f00;
+  height:526px;
+  border:1px solid #eee;
 }
 .fifthFloor>.fifthLeft>.titleBar>a{
   margin-left:631px;
@@ -703,6 +703,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
 #popMusic{
   display: flex;
   flex-direction: column;
+  list-style:none;
 }
 
 #popMusic>li{
@@ -723,12 +724,20 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
 }
 
 #popMusic>li>div:nth-child(2){
+  width: 65%;
   position: absolute;
   top: 50%;
   left: 40%;
-  transform: translate(-50%,-50%)
+  margin-left:10%;
+  transform: translate(-50%,-50%);
+  text-align:left;
 }
-
+#popMusic>li>div:nth-child(2)>a{
+  text-decoration:none;
+}
+#popMusic>li>div:nth-child(2)>a:hover{
+  color:#e72f2f;
+}
 #popMusic>li>div:last-child{
   font-size: 40px;
   font-weight: 100;
@@ -747,7 +756,7 @@ font: 13px/1.5 "Microsoft YaHei", 宋体;
 }
 #popMusic>li>div>p{
   position: absolute;
-  top: 48%;
+  top: 52%;
   transform: translate(-50%,-50%);
   width: 14%;
   left: 25px;
