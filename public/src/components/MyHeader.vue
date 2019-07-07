@@ -190,6 +190,13 @@ export default {
       this.cities=result.data;
       //console.log(this.cities);
     })
+  },
+  mounted(){
+    window.addEventListener("click",(e)=>{
+      if(e.target.id!=="cityButton"){
+        this.cityShow=false;
+      }
+    })
   }
 }
 </script>
