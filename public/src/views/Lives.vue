@@ -193,10 +193,10 @@ export default {
         this.lives_list=result.data.result;
         this.pcount=result.data.pcount;
         this.pno=result.data.pno;
-        console.log(this.pno);
-        console.log(this.pcount);
-        console.log(result.data);
-        console.log(result.data.result);
+        // console.log(this.pno);
+        // console.log(this.pcount);
+        // console.log(result.data);
+        // console.log(result.data.result);
       })
     },
     citySelect(cid){
@@ -245,6 +245,8 @@ export default {
   },
   created(){
     this.kws=this.$route.params.kws;
+    this.starttime=this.$route.params.starttime;
+    this.endtime=this.$route.params.endtime;
     if(this.kws){
       this.search();
       this.cid=0;

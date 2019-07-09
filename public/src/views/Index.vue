@@ -305,7 +305,7 @@ export default {
           this.recent_tours = result.data;
           //console.log(this.recent_tours);
           //console.log(this.cid)
-          console.log("#3######333");
+          //console.log("#3######333");
           //console.log(result.data);
         });
     },
@@ -360,9 +360,9 @@ export default {
     }
   },
   created() {
-    console.log(this.$store.getters.cid);
+    //console.log(this.$store.getters.cid);
     // this.cid=this.$store.cid;
-    console.log("index" + this.cid);
+    //console.log("index" + this.cid);
     //this.cid=localStorage.getItem("cid");
     //console.log(this.cid)
     this.getRecentTour();

@@ -153,10 +153,9 @@ export default {
       //console.log(cityBox);
       if(this.cityShow){
         this.cityShow=false;
-        }else{
-          this.cityShow=true;
-        }
-        console.log(e.target);
+      }else{
+        this.cityShow=true;
+      }
     },
     // 城市选择事件
     citySelect(a,b){
@@ -177,13 +176,13 @@ export default {
       //console.log("header---->"+this.$store.getters.cid);
     },
     closeTab(e){
-      console.log(e.target);
+      
     }
   },
   created(){
     this.city=localStorage.getItem("city");
      this.$store.commit('cityAlert',localStorage.getItem("cid"));
-     console.log("store"+localStorage.getItem("cid"));
+     //console.log("store"+localStorage.getItem("cid"));
      //this.citySelect(this.city,this.cid);
     // console.log(this);
     // console.log(this.$store.getters.cidd)

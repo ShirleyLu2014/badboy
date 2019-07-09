@@ -41,7 +41,7 @@
           </tr>
           <tr v-for="(arr,i) of result" class="dateTd" :key="i">
             <td v-for="(date,j) of arr" :key="j" class="preMonthDay">
-              <div :dateview="`${y}-${m}-${date?date.d:0}:''`" class="activity">
+              <div class="activity">
                 <i>{{
                   date?date.d:
                   ((j+i*7)>=day&&(j+i*7)<=dates)?String((j+i*7)-day+1).padStart(2,"0"):
@@ -49,7 +49,7 @@
                   }}</i>
 
                 <span class="span redDot" v-show="date!==undefined"></span>
-                <span class="redSquare" v-if="date!==undefined">{{date?date.count:""}}场</span>
+                <span class="redSquare" @click="gotoTours(date.d)" v-if="date!==undefined">{{date?date.count:""}}场</span>
               </div>
             </td>
           </tr>
@@ -69,6 +69,11 @@ export default {
     }
   },
   methods:{
+    gotoTours(d){
+      var starttime=new Date(`${this.y}/${this.m}/${Number(d)}`).getTime()
+      var endtime=new Date(`${this.y}/${this.m}/${Number(d)+1}`).getTime()
+      this.$router.push(`/lives/${starttime}/${endtime}`)
+    },
     loadCalendar(){
       this.axios.get(
         "tours/bymonth",

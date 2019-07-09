@@ -33,6 +33,11 @@ export default new Router({
       component: Lives
     },
     {
+      path: '/lives/:starttime/:endtime',
+      name: 'lives',
+      component: Lives
+    },
+    {
       path: '/live_details/:tid',
       name: 'live_details',
       component: LiveDetails,
