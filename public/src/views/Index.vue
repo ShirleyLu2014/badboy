@@ -383,5 +383,9 @@ export default {
 };
 </script>
 
-<style src="../../public/css/index.css" scoped>
+<!--<style src="../../public/css/index.css" scoped>
+</style>-->
+<style scoped>
+@import url("../assets/css/index.css");
 </style>
+

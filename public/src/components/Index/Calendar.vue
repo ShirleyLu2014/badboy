@@ -6,10 +6,10 @@
       </div>
       <div class="calendarDate">
         <div class="calendarYear">
-          <span class="leftShift" v-show="!(y==(new Date().getFullYear())&&(m==new Date().getMonth()+1))"></span>
+          <span class="leftShift" v-show="!(y==(new Date().getFullYear())&&(m==new Date().getMonth()+1))" @click="changeM(-1)"></span>
           <span class="year">{{this.y}}年</span>
           <span class="month">{{this.m}}月</span>
-          <span class="rightShift"></span>
+          <span class="rightShift" @click="changeM(+1)"></span>
         </div>
       </div>
     </div>
@@ -41,10 +41,15 @@
           </tr>
           <tr v-for="(arr,i) of result" class="dateTd" :key="i">
             <td v-for="(date,j) of arr" :key="j" class="preMonthDay">
-              <div dateview="2019-05-27" class="activity">
-                <span class="span redDot redSquare"></span>
-                <!--<span class="redSquare">{{}}场</span>-->
-                <i>{{date?date.d:""}}</i>
+              <div :dateview="`${y}-${m}-${date?date.d:0}:''`" class="activity">
+                <i>{{
+                  date?date.d:
+                  ((j+i*7)>=day&&(j+i*7)<=dates)?String((j+i*7)-day+1).padStart(2,"0"):
+                  ""
+                  }}</i>
+
+                <span class="span redDot" v-show="date!==undefined"></span>
+                <span class="redSquare" v-if="date!==undefined">{{date?date.count:""}}场</span>
               </div>
             </td>
           </tr>
@@ -59,8 +64,8 @@ export default {
     return {
       y:new Date().getFullYear(),
       m:new Date().getMonth()+1,
-      result:[
-      ]
+      day:0,
+      result:[]
     }
   },
   methods:{
@@ -70,28 +75,66 @@ export default {
         {
           params:{
             y:this.y,
-            m:this.m
+            m:this.m,
+            cid:this.cid
           }
         }
       ).then(res=>{
         var arr=res.data;
         var day=new Date(`${this.y}-${this.m}-1`).getDay();
+        this.day=day;
         var arr1=new Array(day);
         var arr2=[];
         for(var date of arr){
           arr2[Number(date.d)-1]=date;
         }
         arr=[].concat(arr1,arr2);
-        var result=[];
+        this.result.length=0;
         for(var i=0;i<arr.length;i+=7){
           this.result.push(arr.slice(i,i+7))
         }
-        console.log(this.result);
+        if(this.result[4]!==undefined&&this.result[4].length<7)
+          this.result[4].length=7
       })
+    },
+    changeM(i){
+      if(i==-1&&this.m==1){
+        this.m=12;
+        this.y-=1;
+      }else if(i==+1&&this.m==12){
+        this.m=1;
+        this.y+=1;
+      }else{
+        this.m+=i;
+      }
     }
   },
   created(){
     this.loadCalendar();
+  },
+  computed:{
+    dates(){
+      if([1,3,5,7,8,10,12].indexOf(this.m)!==-1){
+        return 31
+      }else if([4,6,9,11].indexOf(this.m)!==-1){
+        return 30
+      }else if(this.y%4==0&&this.y%100!=0){
+        return 29
+      }else{
+        return 28
+      }
+    },
+    cid(){
+      return this.$store.state.cid;
+    }
+  },
+  watch:{
+    m(){
+      this.loadCalendar();
+    },
+    cid(){
+      this.loadCalendar();
+    }
   }
 }
 </script>
@@ -166,9 +209,17 @@ export default {
     height:45px;
     line-height:45px;
     text-align:center;
+    position:relative;
+    overflow:hidden;
   }
   .preMonthDay>div{
-    position:relative;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow:hidden;
+    height:90px;
+    width:52px;
+    cursor:pointer;
   }
   .dateTd span{
     opacity: 0;
@@ -186,17 +237,25 @@ export default {
     width: 6px;
     height: 6px;
     border-radius: 100%;
-    top: 33px;
-    left: 50%;
+    top: 37px;
+    left: 26px;
     margin-left: -3px;
     background-color: #e72f2f;
     overflow: hidden;
     color: #e72f2f;
   }
   .dateTd .redSquare{
+    position:absolute;
+    left:0;
+    top:45px;
+    width:52px;
     opacity: 1;
     background-color: #e72f2f;
     color:#fff;
+    transition:all .5s linear;
+  }
+  .preMonthDay:hover .redSquare{
+    top:0px;
   }
   .dateTd i,span{
   font: 13px/1.5 "Microsoft YaHei", 宋体;
