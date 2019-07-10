@@ -15,9 +15,21 @@
 </template>
 <script>
 export default {
-  
+  created(){
+    console.log(this.islogin);
+    if(this.islogin){
+
+    }else{
+      alert("请先登录！")
+    }
+  },
+  computed:{
+    islogin(){
+      return this.$store.state.islogin
+    }
+  }
 }
 </script>
 
-<style scoped src="../../public/css/person.css">
+<style scoped src="../assets/css/person.css">
 </style>

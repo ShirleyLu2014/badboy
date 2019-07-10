@@ -3,20 +3,23 @@ const router=express.Router();
 const pool=require("../pool");
 const jwt=require("../jwt");
 
-
+router.get("/islogin",(req,res)=>{
+  var {remember}=req.query;
+  res.send({code:1, uname: req.user.uname, remember, token:jwt.generateToken(req.user)})
+})
 router.post("/signin",(req,res)=>{
-  var {uname,upwd}=req.body;
+  var {uname,upwd,remember}=req.body;
   if(uname&&upwd){
-    var sql="select uid,uname from users where uname=? and binary upwd=?";
-    pool.query(sql,[uname,upwd],(err,result)=>{
+    var sql="select uid,uname from users where (email=? or phone=?) and binary upwd=?";
+    pool.query(sql,[uname,uname,upwd],(err,result)=>{
       if(err){
         console.log(err);
         res.send({code:-1, msg:"登录不成功！"})
       }else{
         if(result.length>0){
-          res.send({code:1, uname: result[0]["uname"], token:jwt.generateToken(result[0])})
+          res.send({code:1, uname: result[0]["uname"], remember, token:jwt.generateToken(result[0])})
         }else{
-          res.send({code:-1, msg:"用户名密码不正确"})
+          res.send({code:-1, msg:"用户名或密码不正确"})
         }
       }
     })
