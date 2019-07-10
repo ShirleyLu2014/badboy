@@ -203,6 +203,6 @@ export default {
 }
 </script>
 
-<style scoped src="../../public/css/header.css">
-  /* @import "../../public/css/header.css" */
+<style scoped>
+  @import "../assets/css/header.css"
 </style>
