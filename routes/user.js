@@ -5,7 +5,11 @@ const jwt=require("../jwt");
 
 router.get("/islogin",(req,res)=>{
   var {remember}=req.query;
-  res.send({code:1, uname: req.user.uname, remember, token:jwt.generateToken(req.user)})
+  if(req.user){
+    res.send({code:1, uname: req.user.uname, remember, token:jwt.generateToken(req.user)})
+  }else{
+    res.send({code:-1, msg:"暂未登录"})
+  }
 })
 router.post("/signin",(req,res)=>{
   var {uname,upwd,remember}=req.body;
@@ -106,14 +110,24 @@ router.post("/addfav",(req,res)=>{
 router.post("/addfans",(req,res)=>{
   var user=req.user;
   var {aid}=req.body;
-  var sql="insert into fans values(NULL,?,?)"
-  pool.query(sql,[aid,user.uid],(err,result)=>{
+  pool.query("select * from fans where aid=? and uid=?",[aid,user.uid],(err,result)=>{
     if(err){
-      console.log(err);
+      console.log(err)
+      res.send({code:-1})
+    }else if(result.length>0){
       res.send({code:-1})
     }else{
-      res.send({code:1})
+      var sql="insert into fans values(NULL,?,?)";
+      pool.query(sql,[aid,user.uid],(err,result)=>{
+        if(err){
+          console.log(err);
+          res.send({code:-1})
+        }else{
+          res.send({code:1})
+        }
+      })
     }
   })
+  
 })
 module.exports=router;

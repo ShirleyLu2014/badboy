@@ -31,9 +31,15 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
   res=>{
     console.log("触发响应拦截器...")
-    if(res.data.code==-1){
-      console.log(res.data.msg);
-      alert(res.data.msg);
+    if(res.data.status==403){
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      store.commit("setIslogin",false);
+      store.commit("setUname","");
+    }else if(res.data.code==-1){
+      store.commit("setIslogin",false);
+      store.commit("setUname","");
+      //alert(res.data.msg+" 请先登录 !");
     }else if(res.data.token){
       store.commit("setUname",res.data.uname);
       store.commit("setIslogin",true);
@@ -46,15 +52,7 @@ Axios.interceptors.response.use(
     return res;
   },
   error=>{
-    if(error.data){
-      switch(error.data.code){
-        case 403:
-          localStorage.removeItem("token");
-          sessionStorage.removeItem("token");
-          alert("请先登录");
-          break;
-      }
-    }
+    
   }
 )
 export default {

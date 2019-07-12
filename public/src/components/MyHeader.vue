@@ -154,7 +154,7 @@ export default {
         "user/signin",
         {uname:this.txtUname, upwd:this.txtUpwd, remember:this.remember}
       ).then(res=>{
-        this.txtUname="";
+        //this.txtUname="";
         this.txtUpwd="";
         if(res.data.code==-1){
           alert(res.data.msg);
@@ -225,29 +225,10 @@ export default {
       this.remember=true;
     }else{
       this.remember=false;
-      token=sessionStorage.getItem("token");
     }
     this.axios.get("user/islogin",{
       params:{
         remember:this.remember
-      },
-      headers:{token}
-    }).then(res=>{
-      if(res.data.code==1){
-        this.$store.commit("setIslogin",true);
-        this.$store.commit("setUname",res.data.uname);
-        this.remember=res.data.remember;
-        if(this.remember){
-          localStorage.setItem("token",res.data.token);
-        }else{
-          sessionStorage.setItem("token",res.data.token);
-        }
-      }else{
-        this.$store.commit("setIslogin",false);
-        this.$store.commit("setUname","");
-        localStorage.removeItem("token");
-        sessionStorage.removeItem("token");
-        console.log(res.data.msg);
       }
     })
     this.city=localStorage.getItem("city");
