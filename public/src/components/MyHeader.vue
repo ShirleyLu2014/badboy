@@ -118,6 +118,7 @@
   </header>
 </template>
 <script>
+import store from "../store";
 export default {
   data(){
     return {
@@ -134,9 +135,9 @@ export default {
   },
   methods:{
     signout(){
-      this.$store.commit("setIslogin",false);
+      store.commit("setIslogin",false);
       this.remember=false;
-      this.$store.commit("setUname","");
+      store.commit("setUname","");
       this.txtUpwd="";
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
@@ -151,21 +152,14 @@ export default {
       //console.log(this.$route.path);
       this.axios.post(
         "user/signin",
-        `uname=${this.txtUname}&upwd=${this.txtUpwd}&remember=${this.remember}`
+        {uname:this.txtUname, upwd:this.txtUpwd, remember:this.remember}
       ).then(res=>{
         this.txtUname="";
         this.txtUpwd="";
         if(res.data.code==-1){
           alert(res.data.msg);
         }else{
-          this.$store.commit("setUname",res.data.uname);
-          this.$store.commit("setIslogin",true);
           this.show=false;
-          if(res.data.remember=="true"){
-            localStorage.setItem("token",res.data.token);
-          }else{
-            sessionStorage.setItem("token",res.data.token);
-          }
         }
       })
     },
