@@ -110,6 +110,5 @@ export default {
   
 }
 </script>
-<style scoped src="../../public/css/profile.css">
-
+<style scoped src="../assets/css/profile.css">
 </style>

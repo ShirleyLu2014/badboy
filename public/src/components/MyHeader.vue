@@ -40,11 +40,17 @@
       </div>
       <div class="user"><!--右边登录 注册 搜索-->
         <ul>
-          <li>
+          <li v-show="!islogin">
             <a href="javascript:;" @click="open()">登录</a>
           </li>
-          <li>
+          <li v-show="!islogin">
             <a href="javascript:;">注册</a>
+          </li>
+          <li v-show="islogin">
+            <router-link to="/user/profile">Welcome {{uname}}</router-link>
+          </li>
+          <li v-show="islogin">
+            <a href="javascript:;" @click="signout">注销</a>
           </li>
           <li>
             <input type="text" placeholder="搜索演出" @keyup.13="gosearch()" v-model="searchKws">
@@ -61,25 +67,25 @@
       <div class="loginBox">
         <div class="loginForm">
           <div class="loginTitle">登录badboy</div>
-          <form action="" autocomplete="off" novalidate="novalidate" class="tableForm">
+          <form class="tableForm">
             <table cellpadding="0" cellspacing="0" border="0">
               <tbody>
                 <tr>
                   <td>
-                    <input type="text" name="uname" id="uname" required="true" placeholder="请输入手机号或邮箱" class="inputStyle error">
+                    <input type="text" name="uname" id="uname" required="true" placeholder="请输入手机号或邮箱" v-model="txtUname" class="inputStyle error">
                     <label for="uname" class="labelError">请输入手机号</label>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <input type="password" name="upwd" class="inputStyle error" id="upwd" required="true" placeholder="请输入密码" autocomplete="off">
+                    <input type="password" name="upwd" v-model="txtUpwd" class="inputStyle error" id="upwd" required="true" placeholder="请输入密码" autocomplete="off">
                     <label for="upwd" generated="true" class="labelError">请输入密码！</label>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <label class="rememberLabel">
-                      <input type="checkbox" name="remember">下次自动登录
+                      <input type="checkbox" name="remember" v-model="remember">下次自动登录
                     </label>
                   </td>
                 </tr>
@@ -112,6 +118,7 @@
   </header>
 </template>
 <script>
+import store from "../store";
 export default {
   data(){
     return {
@@ -120,10 +127,21 @@ export default {
       cityShow:false,
       city:"全国",
       cid:0,
-      searchKws:""
+      searchKws:"",
+      txtUname:"dong@qq.com",
+      txtUpwd:"123456ab",
+      remember:false
     }
   },
   methods:{
+    signout(){
+      store.commit("setIslogin",false);
+      this.remember=false;
+      store.commit("setUname","");
+      this.txtUpwd="";
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+    },
     open(){
       this.show=true;
     },
@@ -132,6 +150,18 @@ export default {
     },
     login(){
       //console.log(this.$route.path);
+      this.axios.post(
+        "user/signin",
+        {uname:this.txtUname, upwd:this.txtUpwd, remember:this.remember}
+      ).then(res=>{
+        //this.txtUname="";
+        this.txtUpwd="";
+        if(res.data.code==-1){
+          alert(res.data.msg);
+        }else{
+          this.show=false;
+        }
+      })
     },
     //搜索演出
     gosearch(){
@@ -167,9 +197,39 @@ export default {
       
     }
   },
+  computed:{
+    uname(){
+      return this.$store.state.uname
+    },
+    islogin(){
+      return this.$store.state.islogin
+    }
+  },
+  watch:{
+  },
   created(){
+<<<<<<< HEAD
     this.city=sessionStorage.getItem("city");
      this.$store.commit('cityAlert',sessionStorage.getItem("cid"));
+=======
+    var token = localStorage.getItem("token");
+    if(token){
+      this.remember=true;
+    }else{
+      this.remember=false;
+    }
+    this.axios.get("user/islogin",{
+      params:{
+        remember:this.remember
+      }
+    })
+    this.city=localStorage.getItem("city");
+     this.$store.commit('cityAlert',localStorage.getItem("cid"));
+     //console.log("store"+localStorage.getItem("cid"));
+     //this.citySelect(this.city,this.cid);
+    // console.log(this);
+    // console.log(this.$store.getters.cidd)
+>>>>>>> 9f0e2f87bb28c79d0e993f6189a1346c9adce042
     this.axios.get(
       'cities'
     ).then(result=>{
@@ -187,6 +247,6 @@ export default {
 }
 </script>
 
-<style scoped src="../../public/css/header.css">
-  /* @import "../../public/css/header.css" */
+<style scoped>
+  @import "../assets/css/header.css"
 </style>

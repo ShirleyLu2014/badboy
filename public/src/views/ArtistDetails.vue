@@ -13,7 +13,7 @@
       </div>
       <div class="artFans">
         <div class="attention">
-          <a href=""><span></span>我要关注</a>
+          <a href="javascript:;" @click="addfans"><span></span>我要关注</a>
         </div>
         <div class="share">
           <span>分享到</span>
@@ -95,10 +95,10 @@
             <div><a href="">{{artist_details.stname}}</a></div>
           </div>
           <div class="fans">
-            <div class="fansHead">乐迷(<span>28853</span>)</div>
+            <div class="fansHead">乐迷(<span>{{artist_fans.length}}</span>)</div>
             <div class="fansList">
               <a href="javascript:;" v-for="(t,i) of artist_fans" :key="i">
-                <img :src="t.avatar" alt="">
+                <img :src="t.avatar" :title="t.uname" alt="">
               </a>
             </div>
           </div>
@@ -143,7 +143,6 @@
 export default {
   data(){
     return {
-      aid:"",
       artist_item:{},
       artist_details:{},
       artist_fans:{},
@@ -155,7 +154,18 @@ export default {
     }
   },
   methods: {   
-  liveShow:function(){
+    addfans(){
+      this.axios.post(
+        "user/addfans",
+        {
+          aid:this.aid
+        }
+      ).then(res=>{
+        alert("关注成功");
+        this.loadDetails();
+      })
+    },
+    liveShow:function(){
       this.shows=true;
       this.unshows=false;
     },
@@ -163,27 +173,29 @@ export default {
       this.shows=false;
       this.unshows=true;
     },
+    loadDetails(){
+      //艺人详情页
+      this.axios.get(
+        "artists/details",
+        {
+          params:{aid:this.aid}
+        }
+      ).then(result=>{
+        this.artist_item=result.data;
+        this.artist_details=result.data.artist;
+        this.artist_fans=result.data.fans;
+        this.artist_venues=result.data.recent_venues;
+        this.artist_pics=result.data.art_pics;
+        //console.log(this.artist_details);
+        //console.log(this.artist_fans);
+        //console.log(this.artist_venues);
+        //console.log(this.artist_pics);
+      })
+    }
   },
   props:{aid:{default:0}},
   created(){
-    //艺人详情页
-    this.axios.get(
-      "artists/details",
-      {
-         params:{aid:this.aid}
-      }
-    ).then(result=>{
-      this.artist_item=result.data;
-      this.artist_details=result.data.artist;
-      this.artist_fans=result.data.fans;
-      this.artist_venues=result.data.recent_venues;
-      this.artist_pics=result.data.art_pics;
-      console.log(result.data);
-      //console.log(this.artist_details);
-      //console.log(this.artist_fans);
-      //console.log(this.artist_venues);
-      //console.log(this.artist_pics);
-    })
+    this.loadDetails();
     this.axios.get(
       "tours/byartist",
       {
@@ -191,10 +203,10 @@ export default {
       }
     ).then(result=>{
       this.artist_tours=result.data.result;
-      console.log(result.data.result);
     })
   }
 }
 </script>
-<style scoped src="../../public/css/artDetail.css">
+<style scoped>
+  @import url("../assets/css/artDetail.css");
 </style>

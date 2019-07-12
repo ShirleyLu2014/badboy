@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cid:0,
-    searchKws:""
+    searchKws:"",
+    uname:"",
+    islogin:false
   },
   //读取状态
   /*getters:{
@@ -16,6 +18,12 @@ export default new Vuex.Store({
   },*/
   //修改状态值
   mutations: {
+    setUname(state,uname){
+      state.uname=uname;
+    },
+    setIslogin(state,islogin){
+      state.islogin=islogin;
+    },
     cityAlert:(state,cid)=>{
       state.cid=cid;
       localStorage.setItem('cid',cid);

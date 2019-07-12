@@ -28,5 +28,12 @@ section{
 .clearfix::after{
   clear: both;
 }
+a{
+  text-decoration: none;
+  font-size:14px;
+}
+a:hover{
+  text-decoration:none;
+}
 
 

@@ -3,20 +3,27 @@ const router=express.Router();
 const pool=require("../pool");
 const jwt=require("../jwt");
 
-
+router.get("/islogin",(req,res)=>{
+  var {remember}=req.query;
+  if(req.user){
+    res.send({code:1, uname: req.user.uname, remember, token:jwt.generateToken(req.user)})
+  }else{
+    res.send({code:-1, msg:"暂未登录"})
+  }
+})
 router.post("/signin",(req,res)=>{
-  var {uname,upwd}=req.body;
+  var {uname,upwd,remember}=req.body;
   if(uname&&upwd){
-    var sql="select uid,uname from users where uname=? and binary upwd=?";
-    pool.query(sql,[uname,upwd],(err,result)=>{
+    var sql="select uid,uname from users where (email=? or phone=?) and binary upwd=?";
+    pool.query(sql,[uname,uname,upwd],(err,result)=>{
       if(err){
         console.log(err);
         res.send({code:-1, msg:"登录不成功！"})
       }else{
         if(result.length>0){
-          res.send({code:1, uname: result[0]["uname"], token:jwt.generateToken(result[0])})
+          res.send({code:1, uname: result[0]["uname"], remember, token:jwt.generateToken(result[0])})
         }else{
-          res.send({code:-1, msg:"用户名密码不正确"})
+          res.send({code:-1, msg:"用户名或密码不正确"})
         }
       }
     })
@@ -103,14 +110,24 @@ router.post("/addfav",(req,res)=>{
 router.post("/addfans",(req,res)=>{
   var user=req.user;
   var {aid}=req.body;
-  var sql="insert into fans values(NULL,?,?)"
-  pool.query(sql,[aid,user.uid],(err,result)=>{
+  pool.query("select * from fans where aid=? and uid=?",[aid,user.uid],(err,result)=>{
     if(err){
-      console.log(err);
+      console.log(err)
+      res.send({code:-1})
+    }else if(result.length>0){
       res.send({code:-1})
     }else{
-      res.send({code:1})
+      var sql="insert into fans values(NULL,?,?)";
+      pool.query(sql,[aid,user.uid],(err,result)=>{
+        if(err){
+          console.log(err);
+          res.send({code:-1})
+        }else{
+          res.send({code:1})
+        }
+      })
     }
   })
+  
 })
 module.exports=router;

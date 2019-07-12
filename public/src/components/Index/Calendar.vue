@@ -18,6 +18,9 @@
         <tbody>
           <tr class="weekHead">
             <td>
+              <span>周日</span>
+            </td>
+            <td>
               <span>周一</span>
             </td>
             <td>
@@ -35,21 +38,16 @@
             <td>
               <span>周六</span>
             </td>
-            <td>
-              <span>周日</span>
-            </td>
           </tr>
           <tr v-for="(arr,i) of result" class="dateTd" :key="i">
             <td v-for="(date,j) of arr" :key="j" class="preMonthDay">
               <div class="activity">
                 <i>{{
-                  date?date.d:
-                  ((j+i*7)>=day&&(j+i*7)<=dates)?String((j+i*7)-day+1).padStart(2,"0"):
-                  ""
+                  date?date.d:""
                   }}</i>
 
-                <span class="span redDot" v-show="date!==undefined"></span>
-                <span class="redSquare" @click="gotoTours(date.d)" v-if="date!==undefined">{{date?date.count:""}}场</span>
+                <span class="span redDot" v-show="date!==undefined&&date.count!=0"></span>
+                <span class="redSquare" @click="gotoTours(date.d)" v-if="date!==undefined&&date.count!=0">{{date?date.count:""}}场</span>
               </div>
             </td>
           </tr>
@@ -89,7 +87,10 @@ export default {
         var day=new Date(`${this.y}-${this.m}-1`).getDay();
         this.day=day;
         var arr1=new Array(day);
-        var arr2=[];
+        var arr2=new Array(this.dates);
+        for(var i=0;i<this.dates;i++){
+          arr2[i]={d:String(i+1).padStart(2,"0"),count:0}
+        }
         for(var date of arr){
           arr2[Number(date.d)-1]=date;
         }
@@ -98,8 +99,12 @@ export default {
         for(var i=0;i<arr.length;i+=7){
           this.result.push(arr.slice(i,i+7))
         }
-        if(this.result[4]!==undefined&&this.result[4].length<7)
+        if(this.result[4]===undefined){
+          this.result.push(new Array(7));
+        }else if(this.result[4].length<7){
           this.result[4].length=7
+        }
+        console.log(this.result);
       })
     },
     changeM(i){
@@ -120,10 +125,13 @@ export default {
   computed:{
     dates(){
       if([1,3,5,7,8,10,12].indexOf(this.m)!==-1){
+        console.log(this.m);
         return 31
       }else if([4,6,9,11].indexOf(this.m)!==-1){
+        console.log(this.m);
         return 30
       }else if(this.y%4==0&&this.y%100!=0){
+        console.log(this.m);
         return 29
       }else{
         return 28

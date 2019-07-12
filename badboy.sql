@@ -49,7 +49,7 @@ INSERT INTO users VALUES
     (4,"Edward","123456ab","1090165833@qq.com","18818218065","images/avatar/avatar03.jpg","徐亮","0",7,"狮子","O"),
     (5,"liang","12345678","liang@qq.com","18818218067","images/avatar/avatar04.jpg","亮亮","1",3,"白羊","B"),
     (6,"ran","123456ab","ran@qq.com","18818218066","images/avatar/avatar05.jpg","然然","0",5,"巨蟹","AB"),
-    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/avatar06.jpg","东东","0",7,"狮子","O"),
+    (7,"dong","123456ab","dong@qq.com","18818218065","images/avatar/dong.jpg","东东","0",7,"狮子","O"),
     (8,"tao","123456ab","tao@qq.com","18818218065","images/avatar/avatar07.jpg","涛涛","0",7,"狮子","O"),
     (9,"tom","12345678","tom@qq.com","18818218067","images/avatar/avatar08.jpg","汤姆","1",3,"白羊","B"),
     (10,"jerry","123456ab","jerry@qq.com","18818218066","images/avatar/avatar09.jpg","杰瑞","0",5,"巨蟹","AB"),

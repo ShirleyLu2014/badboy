@@ -105,7 +105,7 @@ router.get("/details",(req,res)=>{
         var output={
           artist:result[0]
         };
-        var sql="select uid,fid,aid,avatar, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
+        var sql="select distinct uid,uname,aid,avatar, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
         pool.query(sql,[output.artist.aid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})

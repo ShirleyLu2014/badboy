@@ -130,6 +130,8 @@ ul{
   margin-right:10px;
   width:80px;
   text-align:center;
+  font-size:.8em;
+  text-decoration:none;
 }
 .list>ul>li:first-child>a{
   margin:0;
@@ -183,7 +185,7 @@ ul{
 .loginTitle{
   width:332px;
   height:36px;
-  font-size: 24px;
+  font-size: 22px;
   text-align: center;
   color: #666;
   margin-bottom: 10px;
@@ -211,7 +213,7 @@ ul{
 }
 .labelError{
   color:#e72f2f;
-  font-size:13px;
+  font-size:14px;
   margin-top:5px;
   display:none;
 }
@@ -226,7 +228,6 @@ ul{
 }
 .loginBtn{
   width: 100%;
-  font-size: 16px;
   font-weight: bold;
   padding: 0;
   vertical-align:middele;

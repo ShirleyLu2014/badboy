@@ -78,8 +78,10 @@ http://localhost:5050
 ****************************finished******************************
 
 登录
---post请求: /user/signin 参数:uname和upwd
+--post请求: /user/signin 参数:uname和upwd和remember
 ----返回结果中包含token字符串，需要保存在localstorage中
+判断是否登录
+--/user/islogin 参数: remember, 需要从localstorage中读取token字符串在请求头中携带token字符
 
 ****************************finished******************************
 
