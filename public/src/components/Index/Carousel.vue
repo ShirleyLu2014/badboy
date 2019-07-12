@@ -39,22 +39,22 @@ export default {
         {
           src:"/images/carousel_item/carousel-1.jpg",
           title:"《Ghost Mane》| STARR J与恶魔一起住在Dark Castle",
-          to:"javascript:;"
+          to:"live_details/292"
         },
         { 
           src:"/images/carousel_item/carousel-2.jpg",
           title:"赐我们一首比“情歌而已”更值得唱的歌 声音碎片第三支预热单曲《送流水》首发",
-          to:"javascript:;"
+          to:"live_details/120"
         },
         { 
           src:"/images/carousel_item/carousel-3.jpg",
           title:"我眼里只有一个3号他永远昂着头 | 黄旭全新单曲《低位》致敬韦德",
-          to:"javascript:;"
+          to:"live_details/155"
         },
         { 
           src:"/images/carousel_item/carousel-4.jpg",
           title:"彭坦春晓携女率性玩音乐 Modern Sky Kids厂牌汇聚亲子市场新能量",
-          to:"javascript:;"
+          to:"live_details/105"
         },
         /*{ 
           src:"/images/carousel_item/carousel-5.jpg",
