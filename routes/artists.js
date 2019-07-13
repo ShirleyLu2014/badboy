@@ -97,43 +97,63 @@ router.get("/byvenue",(req,res)=>{
 router.get("/details",(req,res)=>{
   var aid=req.query.aid;
   if(aid!==undefined&&aid!=0){
-    var sql=`SELECT *, (select count(*) from fans where fans.aid=artists.aid) as fcount FROM artists inner join styles using(stid) where aid=?`;
-    pool.query(sql,[aid],(err,result)=>{
-      if(err){
-        res.send({code:0, msg:String(err)})
-      }else{
-        var output={
-          artist:result[0]
-        };
-        var sql="select distinct uid,uname,aid,avatar, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
-        pool.query(sql,[output.artist.aid],(err,result)=>{
-          if(err){
-            res.send({code:0, msg:String(err)})
-          }else{
-            output.fans=result;
-            var sql=`SELECT vid,vname,vaddress,vphone,vpic,city,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join cities using(cid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC limit 3`
-            params=[aid];
-            pool.query(sql,params,(err,result)=>{
-              if(err){
-                res.send({code:0,msg:String(err)})
-              }else{
-                output.recent_venues=result;
-                var sql=`select * from art_pics where aid=?`
-                params=[aid];
-                pool.query(sql,params,(err,result)=>{
-                  if(err){
-                    res.send({code:0,msg:String(err)})
-                  }else{
-                    output.art_pics=result;
-                    res.send(output);
-                  }
-                })
-              }
-            })
-          }
+    var output={};
+    (async function(){
+      Promise.all([
+        //任务1: 
+        new Promise((resolve,reject)=>{
+          var sql=`select * from art_pics where aid=?`
+          var params=[aid];
+          pool.query(sql,params,(err,result)=>{
+            if(err){
+              res.send({code:0,msg:String(err)})
+            }else{
+              output.art_pics=result;
+              resolve();
+            }
+          })
+        }),
+        //任务二:
+        new Promise((resolve,reject)=>{
+          var sql=`SELECT vid,vname,vaddress,vphone,vpic,city,(select count(*) from tours where tours.vid=tours2.vid and time>=(select UNIX_TIMESTAMP(NOW()) * 1000)) as tcount FROM tours as tours2 inner join venues using(vid) inner join cities using(cid) inner join arshows using(sid) where aid=? and time>=(select UNIX_TIMESTAMP(NOW()) * 1000) group by vid order by tcount DESC limit 3`
+          params=[aid];
+          pool.query(sql,params,(err,result)=>{
+            if(err){
+              res.send({code:0,msg:String(err)})
+            }else{
+              output.recent_venues=result;
+              resolve();
+            }
+          })
+        }),
+        //任务三: 
+        new Promise((resolve,reject)=>{
+          var sql="select distinct uid,uname,aid,avatar, (select count(*) from tickets inner join users using(uid) where tickets.uid=fans.uid) as tcount from fans inner join users using(uid) where aid=? order by tcount desc limit 8";
+          pool.query(sql,[aid],(err,result)=>{
+            if(err){
+              res.send({code:0, msg:String(err)})
+            }else{
+              output.fans=result;
+              resolve();
+            }
+          })
+        }),
+        //任务四: 
+        new Promise((resolve,reject)=>{
+          var sql=`SELECT *, (select count(*) from fans where fans.aid=artists.aid) as fcount FROM artists inner join styles using(stid) where aid=?`;
+          pool.query(sql,[aid],(err,result)=>{
+            if(err){
+              res.send({code:0, msg:String(err)})
+            }else{
+              output.artist=result[0]
+              resolve();
+            }
+          })
         })
-      }
-    })
+      ])//.then(()=>{
+      res.send(output);
+    //})
+    })()
   }else{
     res.send({code:0, msg:String()})
   }
