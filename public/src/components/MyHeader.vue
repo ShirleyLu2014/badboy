@@ -208,10 +208,6 @@ export default {
   watch:{
   },
   created(){
-<<<<<<< HEAD
-    this.city=sessionStorage.getItem("city");
-     this.$store.commit('cityAlert',sessionStorage.getItem("cid"));
-=======
     var token = localStorage.getItem("token");
     if(token){
       this.remember=true;
@@ -229,7 +225,6 @@ export default {
      //this.citySelect(this.city,this.cid);
     // console.log(this);
     // console.log(this.$store.getters.cidd)
->>>>>>> 9f0e2f87bb28c79d0e993f6189a1346c9adce042
     this.axios.get(
       'cities'
     ).then(result=>{
