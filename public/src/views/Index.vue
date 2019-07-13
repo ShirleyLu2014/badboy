@@ -222,10 +222,6 @@
   </section>
 </template>
 <script>
-// var Event=new Vue();
-// Event.$on('citySelect',data=>{
-//   this.cid;
-// })
 import carousel from "../components/Index/Carousel";
 import calendar from "../components/Index/Calendar";
 export default {
@@ -303,10 +299,6 @@ export default {
         })
         .then(result => {
           this.recent_tours = result.data;
-          //console.log(this.recent_tours);
-          //console.log(this.cid)
-          //console.log("#3######333");
-          //console.log(result.data);
         });
     },
     //获取最热门的演出列表

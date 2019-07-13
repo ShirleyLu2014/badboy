@@ -164,15 +164,6 @@ export default {
       })
     },
     //搜索演出
-    /*search(searchKws){
-      this.searchKws=searchKws;
-      console.log(this.searchKws);
-      this.$store.commit('search',this.searchKws);
-      this.$router.push({
-      　　　　path: 'lives/kws', query:{kws: searchKws}
-
-       　　 });
-    },*/
     gosearch(){
       this.$router.push(`/lives/${this.searchKws}`)
     },
@@ -191,19 +182,16 @@ export default {
     citySelect(a,b){
       if(a==0){
         this.city="全国";
-        localStorage.setItem("city",this.city)
+        sessionStorage.setItem("city",this.city)
         this.cid=b;
         // this.$store.getters.cidd=b;
         this.$store.commit('cityAlert',this.cid);
       }else{
         this.city=a;
-        localStorage.setItem("city",this.city);
+        sessionStorage.setItem("city",this.city);
         this.cid=b;
         this.$store.commit('cityAlert',this.cid);
       }
-      //localStorage.setItem("cid",this.cid);
-      // this.$router.go(0);
-      //console.log("header---->"+this.$store.getters.cid);
     },
     closeTab(e){
       
@@ -220,6 +208,10 @@ export default {
   watch:{
   },
   created(){
+<<<<<<< HEAD
+    this.city=sessionStorage.getItem("city");
+     this.$store.commit('cityAlert',sessionStorage.getItem("cid"));
+=======
     var token = localStorage.getItem("token");
     if(token){
       this.remember=true;
@@ -237,6 +229,7 @@ export default {
      //this.citySelect(this.city,this.cid);
     // console.log(this);
     // console.log(this.$store.getters.cidd)
+>>>>>>> 9f0e2f87bb28c79d0e993f6189a1346c9adce042
     this.axios.get(
       'cities'
     ).then(result=>{
