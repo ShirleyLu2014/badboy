@@ -21,6 +21,7 @@ router.post("/signin",(req,res)=>{
         res.send({code:-1, msg:"登录不成功！"})
       }else{
         if(result.length>0){
+          console.log(remember);
           res.send({code:1, uname: result[0]["uname"], remember, token:jwt.generateToken(result[0])})
         }else{
           res.send({code:-1, msg:"用户名或密码不正确"})

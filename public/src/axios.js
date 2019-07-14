@@ -48,7 +48,7 @@ Axios.interceptors.response.use(
     }else if(res.data.token){
       store.commit("setUname",res.data.uname);
       store.commit("setIslogin",true);
-      if(res.remember==="true"){
+      if(res.data.remember=="true"){
         localStorage.setItem("token",res.data.token);
       }else{
         sessionStorage.setItem("token",res.data.token);
