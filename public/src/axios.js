@@ -2,6 +2,7 @@ import axios from "axios";
 import qs from "qs";
 import store from './store'
 
+//
 const Axios=axios.create({
   baseURL:"http://localhost:5050/",
   withCredentials:true
@@ -9,19 +10,20 @@ const Axios=axios.create({
 Axios.interceptors.request.use(
   config=>{
     console.log("进入请求拦截器...");
-    //this.axios.post(
-      //"user/signin",
-      //{uname:dingding , upwd:123456}
-    //)
+    //this.axios.get("url",{params:{uname:dingding,upwd:123456}})
+    //this.axios.post("url",{uname:dingding,upwd:123456}}
     if(config.method==="post"){
       config.data=qs.stringify(config.data)
+               // "uname=dingding&upwd=123456"
     }
+    //自动为每个即将发出的请求，携带token字符串
     if(localStorage.getItem("token")){
       config.headers.token=localStorage.getItem("token");
     }
     if(sessionStorage.getItem("token")){
       config.headers.token=sessionStorage.getItem("token");
     }
+    //必须加
     return config;
   },
   error=>{

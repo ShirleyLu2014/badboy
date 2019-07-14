@@ -33,12 +33,17 @@ app.use(bodyParser.urlencoded({extended:false}));
   resave: true,
   saveUninitialized: false
 }));*/
+//所有请求，先经过中间件函数
 app.use((req, res, next)=>{ 
+  //除了登录请求以外的所有跟用户和订单有关的请求，都需要先验证是否有正确的token
   if (req.url != '/user/signin' && (req.url.startsWith("/user") || req.url.startsWith("/orders"))) {
+    //获得请求头中的token
     let token = req.headers.token;
+    //将token字符串，转为对象
     let result = jwt.verifyToken(token);
-    // 如果考验通过就next，否则就返回登陆信息不正确
+    //如果没有token
     if(result===undefined){
+      //则返回未登录
       res.send({status:403, msg:"未提供证书"})
     }else if (result.name == 'TokenExpiredError') {
       res.send({status: 403, msg: '登录超时，请重新登录'});

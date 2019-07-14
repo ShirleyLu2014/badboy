@@ -225,7 +225,6 @@ export default {
      //this.citySelect(this.city,this.cid);
     // console.log(this);
     // console.log(this.$store.getters.cidd)
-
     this.axios.get(
       'cities'
     ).then(result=>{
