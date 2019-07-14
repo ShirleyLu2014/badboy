@@ -320,7 +320,6 @@ router.get("/kws",(req,res)=>{
 router.get("/details",(req,res)=>{
   var tid=req.query.tid;
   if(tid!==undefined&&tid!=0){
-    var sql="select * from tours inner join venues using(vid) inner join cities using(cid) inner join shows using(sid) where tid=?";
     var output={
       tour:{},
       wants:[],//想看的用户列表前4位
@@ -329,59 +328,83 @@ router.get("/details",(req,res)=>{
       styles:[],//风格列表
       tours:[] //场次列表
     }
-    //先查询想看的用户列表前4位的
-    pool.query(sql,[tid],(err,result)=>{
-      if(err){
-        res.send({code:0, msg:String(err)})
-      }else{
-        output.tour=result[0];
+    Promise.all([
+      new Promise(function(resolve){
+        //查询想看的人的列表
         var sql=`SELECT uid,wid,tid,uname,avatar,rname,(select count(*) from tickets where tickets.uid=wants.uid) as tcount FROM wants inner join users using(uid) where tid=? order by tcount desc limit 4`;
         pool.query(sql,[tid],(err,result)=>{
           if(err){
             res.send({code:0, msg:String(err)})
           }else{
             output.wants=result;
-            //再查询想看的用户总数
-            var sql=`SELECT count(*) as count FROM wants where tid=? `;
-            pool.query(sql,[tid],(err,result)=>{
-              if(err){
-                res.send({code:0, msg:String(err)})
-              }else{
-                output.wCount=result[0]["count"];
-                //再查询艺人列表
-                var start=new Date().getTime();
-                var sql=`SELECT aid,aname,aphoto, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
-                pool.query(sql,[output.tour.sid],(err,result)=>{
-                  if(err){
-                    res.send({code:0, msg:String(err)})
-                  }else{
-                    output.artists=result;
-                    //再查询风格列表
-                    var sql="SELECT DISTINCT(stname) as stname FROM arshows inner join artists using(aid) inner join styles using(stid) where sid=?";
-                    pool.query(sql,[output.tour.sid],(err,result)=>{
-                      if(err){
-                        res.send({code:0, msg:String(err)})
-                      }else{
-                        output.styles=result;
-                        //再查询场次列表
-                        var sql="select * from tours inner join venues using(vid) inner join cities using (cid) where sid=? order by time"
-                        pool.query(sql,[output.tour.sid],(err,result)=>{
-                          if(err){
-                            res.send({code:0, msg:String(err)})
-                          }else{
-                            output.tours=result;
-                            res.send(output);
-                          }
-                        })
-                      }
-                    })
-                  }
-                })
-              }
-            })
+            resolve();
           }
         })
-      }
+      }),
+      new Promise(function(resolve){
+        //再查询想看的用户总数
+        var sql=`SELECT count(*) as count FROM wants where tid=? `;
+        pool.query(sql,[tid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.wCount=result[0]["count"];
+            resolve();
+          }
+        })
+      }),
+      new Promise(function(resolve){
+        var sql="select * from tours inner join venues using(vid) inner join cities using(cid) inner join shows using(sid) where tid=?";
+        //先查询想看的用户列表前4位的
+        pool.query(sql,[tid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.tour=result[0];
+            resolve();
+          }
+        })
+      })
+    ]).then(()=>Promise.all([
+      new Promise(function(resolve){
+        //再查询场次列表
+        var sql="select * from tours inner join venues using(vid) inner join cities using (cid) where sid=? order by time"
+        pool.query(sql,[output.tour.sid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.tours=result;
+            resolve();
+          }
+        })
+      }),
+      new Promise(function(resolve){
+        //再查询风格列表
+        var sql="SELECT DISTINCT(stname) as stname FROM arshows inner join artists using(aid) inner join styles using(stid) where sid=?";
+        pool.query(sql,[output.tour.sid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.styles=result;
+            resolve();
+          }
+        })
+      }),
+      new Promise(function(resolve){
+        //再查询艺人列表
+        var start=new Date().getTime();
+        var sql=`SELECT distinct aid,aname,aphoto, (select count(*) from tours inner join shows using(sid) inner join arshows using(sid) where time>=${start} and arshows.aid=arshows2.aid) as tcount FROM arshows as arshows2 inner join artists using(aid) where sid=? order by tcount desc`;
+        pool.query(sql,[output.tour.sid],(err,result)=>{
+          if(err){
+            res.send({code:0, msg:String(err)})
+          }else{
+            output.artists=result;
+            resolve();
+          }
+        })
+      })
+    ])).then(()=>{
+      res.send(output);
     })
   }else{
     res.send({code:0, msg:"未提供场次编号"})

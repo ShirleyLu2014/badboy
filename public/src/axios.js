@@ -1,6 +1,5 @@
 import axios from "axios";
 import qs from "qs";
-import router from "./router";
 import store from './store'
 
 const Axios=axios.create({
@@ -10,6 +9,10 @@ const Axios=axios.create({
 Axios.interceptors.request.use(
   config=>{
     console.log("进入请求拦截器...");
+    //this.axios.post(
+      //"user/signin",
+      //{uname:dingding , upwd:123456}
+    //)
     if(config.method==="post"){
       config.data=qs.stringify(config.data)
     }
@@ -57,6 +60,6 @@ Axios.interceptors.response.use(
 )
 export default {
   install: function(Vue, Option){
-    Object.defineProperty(Vue.prototype,"axios",{value:Axios})
+    Vue.prototype.axios=Axios;
   }
 }

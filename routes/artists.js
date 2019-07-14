@@ -99,7 +99,7 @@ router.get("/details",(req,res)=>{
   if(aid!==undefined&&aid!=0){
     var output={};
     (async function(){
-      Promise.all([
+      await Promise.all([
         //任务1: 
         new Promise((resolve,reject)=>{
           var sql=`select * from art_pics where aid=?`
