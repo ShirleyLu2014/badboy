@@ -36,12 +36,12 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
   res=>{
     console.log("触发响应拦截器...")
-    if(res.data.status==403){
+    if(res.data.status==402){
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
       store.commit("setIslogin",false);
       store.commit("setUname","");
-    }else if(res.data.code==-1){
+    }else if(res.data.status==401){
       store.commit("setIslogin",false);
       store.commit("setUname","");
       //alert(res.data.msg+" 请先登录 !");
