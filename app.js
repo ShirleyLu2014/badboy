@@ -20,6 +20,7 @@ var app = express();
 app.listen(5050);
 //统一伪装跨域，之后不用再res.writeHead
 app.use(cors({
+//origin:"http://badboy.applinzi.com",
   origin:"http://localhost:8080",
   credentials:true
 }));
