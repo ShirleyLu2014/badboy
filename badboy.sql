@@ -1,7 +1,7 @@
 SET NAMES UTF8;
-DROP DATABASE IF EXISTS badboy;
-CREATE DATABASE badboy CHARSET=UTF8;
-USE badboy;
+DROP DATABASE IF EXISTS app_badboy;
+CREATE DATABASE app_badboy CHARSET=UTF8;
+USE app_badboy;
 
 -- 演出城市
 CREATE TABLE cities(

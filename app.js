@@ -24,7 +24,7 @@ app.use(cors({
   credentials:true
 }));
 //托管静态资源到public目录下
-app.use(express.static('public'));
+app.use(express.static('public/dist'));
 //使用body-parser中间件
 app.use(bodyParser.urlencoded({extended:false}));
 //配置session
