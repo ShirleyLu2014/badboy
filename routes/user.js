@@ -13,9 +13,10 @@ router.get("/islogin",(req,res)=>{
 })
 router.post("/signin",(req,res)=>{
   var {uname,upwd,remember}=req.body;
+  console.log(uname,upwd,remember);
   if(uname&&upwd){
-    var sql="select uid,uname from users where (email=? or phone=?) and binary upwd=?";
-    pool.query(sql,[uname,uname,upwd],(err,result)=>{
+    var sql="select uid,uname from users where (uname=? or email=? or phone=?) and binary upwd=?"
+    pool.query(sql,[uname,uname,uname,upwd],(err,result)=>{
       if(err){
         console.log(err);
         res.send({code:-1, msg:"登录不成功！"})
