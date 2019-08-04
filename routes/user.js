@@ -99,6 +99,8 @@ router.get("/favs",(req,res)=>{
 router.post("/addfav",(req,res)=>{
   var user=req.user;
   var {tid}=req.body;
+  console.log(user);
+  console.log(tid);
   var sql="insert into wants values(NULL,?,?)"
   pool.query(sql,[tid,user.uid],(err,result)=>{
     if(err){
@@ -117,7 +119,7 @@ router.post("/addfans",(req,res)=>{
       console.log(err)
       res.send({code:-1})
     }else if(result.length>0){
-      res.send({code:-1})
+      res.send({code:1})
     }else{
       var sql="insert into fans values(NULL,?,?)";
       pool.query(sql,[aid,user.uid],(err,result)=>{

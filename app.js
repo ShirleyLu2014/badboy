@@ -20,7 +20,8 @@ var app = express();
 app.listen(5050);
 //统一伪装跨域，之后不用再res.writeHead
 app.use(cors({
-  origin:"http://localhost:8080",
+  origin:"http://badboy.applinzi.com",
+//origin:"http://localhost:8080",
   credentials:true
 }));
 //托管静态资源到public目录下
@@ -44,9 +45,9 @@ app.use((req, res, next)=>{
     //如果没有token
     if(result===undefined){
       //则返回未登录
-      res.send({status:403, msg:"未提供证书"})
+      res.send({status:401, msg:"未提供证书"})
     }else if (result.name == 'TokenExpiredError') {
-      res.send({status: 403, msg: '登录超时，请重新登录'});
+      res.send({status: 402, msg: '登录超时，请重新登录'});
     } else if (result.name=="JsonWebTokenError"){
       res.send({status: 403, msg: '证书出错'})
     } else{
