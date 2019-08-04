@@ -113,7 +113,8 @@ export default {
       // this.cid=0;
       this.kws=kws;
       // this.getList();
-      this.$router.push({path:'venues/list'});
+      //this.$router.push({path:'venues'});
+      //this.$router.go(0);
     },
   },
  created(){
@@ -127,7 +128,8 @@ export default {
   })
   },
   watch:{
-    kws(){this.cid=0;this.getList()},
+    // kws(){this.cid=0;this.getList()},
+    kws(){this.getList()},
     cid(){this.getList();this.kws=""}
   },
   components:{

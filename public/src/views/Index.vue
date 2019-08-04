@@ -312,7 +312,7 @@ export default {
         })
         .then(result => {
           this.hot_tours = result.data;
-          //console.log(result.data);
+          console.log("------------"+result.data);
         });
     },
     //获取演出场次最多的现场列表

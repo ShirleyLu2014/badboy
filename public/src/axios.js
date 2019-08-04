@@ -4,8 +4,8 @@ import store from './store'
 
 //
 const Axios=axios.create({
-  //baseURL:"http://localhost:5050/",
-  baseURL:"http://badboy.applinzi.com/",
+  baseURL:"http://localhost:5050/",
+  //baseURL:"http://badboy.applinzi.com/",
   withCredentials:true
 })
 Axios.interceptors.request.use(
